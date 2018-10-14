@@ -1,0 +1,15 @@
+'use strict';
+
+const UPDATE_URL = '/UPDATE',
+      INITIALISE_URL = '/INITIALISE',
+      HTTP_OK_STATUS_CODE = 200,
+      HTTP_INTERNAL_SERVER_ERROR_STATUS_CODE = 200;
+
+const constants = {
+  UPDATE_URL,
+  INITIALISE_URL,
+  HTTP_OK_STATUS_CODE,
+  HTTP_INTERNAL_SERVER_ERROR_STATUS_CODE
+};
+
+module.exports = constants;

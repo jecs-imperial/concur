@@ -1,0 +1,8 @@
+{
+  "environments": [
+    {
+      "name": "development",
+      "port": 8888
+    }
+  ]
+}

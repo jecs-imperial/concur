@@ -1,7 +1,7 @@
 {
   "name": "concur",
   "description": "An implementation of the Concur algorithm.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
