@@ -1,0 +1,78 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.25; }
+
+button,
+input,
+select,
+textarea {
+  line-height: 1.25; }
+
+a, a:before, a:after,
+em,
+em:before,
+em:after,
+span,
+span:before,
+span:after,
+strong,
+strong:before,
+strong:after {
+  font-size: inherit; }
+
+table {
+  border-collapse: collapse; }
+
+img {
+  vertical-align: bottom; }
+
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.5rem; }
+
+h3,
+ol,
+ul,
+p {
+  font-size: 1rem; }
+
+h1,
+h2,
+h3,
+ol,
+ul,
+p {
+  margin: 1rem 0 1rem 0; }
+h1:first-child,
+h2:first-child,
+h3:first-child,
+ol:first-child,
+ul:first-child,
+p:first-child {
+  margin-top: 0; }
+h1:last-child,
+h2:last-child,
+h3:last-child,
+ol:last-child,
+ul:last-child,
+p:last-child {
+  margin-bottom: 0; }
+
+li {
+  margin-left: 2rem; }
+
+ul li {
+  list-style-type: disc; }
+
+button {
+  cursor: pointer; }
+button:disabled {
+  cursor: default; }

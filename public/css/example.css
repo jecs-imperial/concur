@@ -1,0 +1,13 @@
+*,
+*:after,
+*:before {
+  font-family: Serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  padding: 1rem;
+}

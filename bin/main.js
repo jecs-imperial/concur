@@ -1,19 +1,32 @@
 'use strict';
 
-const http = require('http'),
-      necessary = require('necessary');
+const express = require('express'),
+      necessary = require('necessary'),
+      bodyParser = require('body-parser');
 
-const server = require('./server');
+const restfulRouter = require('./router/restful');
 
 const { miscellaneousUtilities } = necessary,
       { rc, onETX } = miscellaneousUtilities,
-      { handleRequest } = server,
       { exit } = process;
 
 rc();
 
-const { port } = rc;
-
 onETX(exit);
 
-http.createServer(handleRequest).listen(port);
+const { publicDirectoryPath, port } = rc,
+      server = express(), ///
+      extended = true,
+      options = {
+        extended
+      },
+      staticRouter = express.static(publicDirectoryPath),
+      bodyParserMiddleware = bodyParser.urlencoded(options); ///
+
+server.use(bodyParserMiddleware);
+
+server.use(restfulRouter);
+
+server.use(staticRouter);
+
+server.listen(port);
