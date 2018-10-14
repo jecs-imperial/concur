@@ -1,8 +1,7 @@
 'use strict';
 
 const express = require('express'),
-      necessary = require('necessary'),
-      bodyParser = require('body-parser');
+      necessary = require('necessary');
 
 const restfulRouter = require('./router/restful');
 
@@ -12,21 +11,16 @@ const { miscellaneousUtilities } = necessary,
 
 rc();
 
-onETX(exit);
+const { publicDirectoryPath, port } = rc;
 
-const { publicDirectoryPath, port } = rc,
-      server = express(), ///
-      extended = true,
-      options = {
-        extended
-      },
-      staticRouter = express.static(publicDirectoryPath),
-      bodyParserMiddleware = bodyParser.urlencoded(options); ///
+const server = express(); ///
 
-server.use(bodyParserMiddleware);
+const staticRouter = express.static(publicDirectoryPath);
 
 server.use(restfulRouter);
 
 server.use(staticRouter);
 
 server.listen(port);
+
+onETX(exit);
