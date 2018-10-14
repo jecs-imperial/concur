@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 class EmptyOperation {
   constructor() {
     this.type = EmptyOperation.type;
@@ -7,10 +9,6 @@ class EmptyOperation {
 
   clone() {
     return new EmptyOperation();
-  }
-
-  getType() {
-    return this.type;
   }
 
   toJSON() {
@@ -47,3 +45,68 @@ Object.assign(EmptyOperation, {
 });
 
 module.exports = EmptyOperation;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
