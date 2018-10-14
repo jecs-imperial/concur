@@ -3,7 +3,8 @@
     {
       "name": "development",
       "port": 8888,
-      "publicDirectoryPath": "public"
+      "publicDirectoryPath": "public",
+      "host": "http://localhost:8888"
     }
   ]
 }

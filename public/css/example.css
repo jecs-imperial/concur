@@ -1,7 +1,7 @@
 *,
 *:after,
 *:before {
-  font-family: Serif;
+  font-family: serif;
 }
 
 html {
@@ -10,4 +10,10 @@ html {
 
 body {
   padding: 1rem;
+}
+
+textarea {
+  border: 1px solid black;
+  width: 40rem;
+  height: 20rem;
 }

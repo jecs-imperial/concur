@@ -4,14 +4,28 @@ require('juxtapose');
 
 const easy = require('easy');
 
-const { Body } = easy;
+const model = require('./model'),
+      ContentTextarea = require('./example/textarea/content');
 
-const body = new Body();
+const { Body } = easy,
+      { initialise, update } = model;
 
-body.append(
+initialise(function() {
+  const body = new Body();
 
-  <section>
-    <h1>Example...</h1>
-  </section>
+  body.append(
 
-);
+    <section>
+      <h1>Concur example</h1>
+      <ContentTextarea onKeyUp={function() {
+
+                         const content = this.getContent();
+
+                         update(content, content => this.setContent(content));
+
+                       }}
+      />
+    </section>
+
+  );
+});
