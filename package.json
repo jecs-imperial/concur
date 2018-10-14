@@ -1,13 +1,14 @@
 {
   "name": "concur",
   "description": "An implementation of the Concur algorithm.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-es2015": "^6.18.0",
     "chai": "^4.1.0",
-    "mocha": "~2.2.5"
+    "mocha": "~2.2.5",
+    "necessary": "^3.2.1"
   },
   "scripts": {
     "clean": "rm -rf ./lib",
