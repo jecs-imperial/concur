@@ -24,12 +24,15 @@ const handle = Handler => function(request, response, next) {
 
   response.writeHead(statusCode, headers);
 
-  response.end(content);
+  response.write(content);
+
+  response.end();
 };
 
-const restfulRouter = express.Router();
+const restfulRouter = express.Router(),
+      jsonBodyParser = bodyParser.json();
 
-restfulRouter.use(bodyParser.json());
+restfulRouter.use(jsonBodyParser);
 
 restfulRouter.post(UPDATE_URL, handle(UpdateHandler));
 

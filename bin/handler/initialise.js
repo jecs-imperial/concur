@@ -6,7 +6,7 @@ class InitialiseHandler {
   }
 
   toJSON() {
-
+    return {};  ///
   }
 
   static fromJSON(json) {

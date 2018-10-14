@@ -6,7 +6,7 @@ class UpdateHandler {
   }
 
   toJSON() {
-
+    return {};  ///
   }
 
   static fromJSON(json) {
