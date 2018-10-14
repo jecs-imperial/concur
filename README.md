@@ -19,7 +19,14 @@ Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have
     npm run build-debug
     npm run watch-debug
 
+## Running the tests
+
+This can be done from the root of the repository:
+
+    ./node_modules/.bin/mocha --recursive -R spec ./test
+    
 ## Contact
 
 - james.smith@openmathematics.org
 - http://djalbat.com
+
