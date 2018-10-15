@@ -14,8 +14,8 @@ const { assert } = chai,
 describe('es6/InsertOperation', function() {
   describe('#transform', function() {
     it('transforms a second insert operation at position 0, leaving it in the same position', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            insertOperation2 = new InsertOperation('b', 0),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 0),
             transformedOperations = insertOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -30,8 +30,8 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a second, lexicographically lesser insert operation at position 1, leaving it in the same position', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            insertOperation2 = new InsertOperation(' ', 1),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition(' ', 1),
             transformedOperations = insertOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -46,7 +46,7 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a second, equal insert operation, leaving it in the same position', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
             insertOperation2 = insertOperation1.clone(),
             transformedOperations = insertOperation1.transformOperation(insertOperation2);
 
@@ -62,8 +62,8 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a second, lexicographically greater insert operation at position 1 to position 2', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            insertOperation2 = new InsertOperation('b', 1),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 1),
             transformedOperations = insertOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -71,15 +71,15 @@ describe('es6/InsertOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new InsertOperation('b', 2),
+            expectedTransformedOperation = InsertOperation.fromStringAndPosition('b', 2),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a second insert operation at position 2 to position 3', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            insertOperation2 = new InsertOperation('b', 2),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 2),
             transformedOperations = insertOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -87,15 +87,15 @@ describe('es6/InsertOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new InsertOperation('b', 3),
+            expectedTransformedOperation = InsertOperation.fromStringAndPosition('b', 3),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms an empty operation, leaving it the same', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            emptyOperation2 = new EmptyOperation(),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            emptyOperation2 = EmptyOperation.fromNothing(),
             transformedOperations = insertOperation1.transformOperation(emptyOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -110,8 +110,8 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a delete operation at position 0 of length 1, leaving it the same position', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            deleteOperation2 = new DeleteOperation(1, 0),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 0),
             transformedOperations = insertOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -126,8 +126,8 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a delete operation at position 0 of length 2, splitting it into two delete operations of length 1, the first at position 0 and the second at position 1', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            deleteOperation2 = new DeleteOperation(2, 0),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(2, 0),
             transformedOperations = insertOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 2);
@@ -136,8 +136,8 @@ describe('es6/InsertOperation', function() {
             secondTransformedOperation = second(transformedOperations),
             firstTransformedOperationJSON = firstTransformedOperation.toJSON(),
             secondTransformedOperationJSON = secondTransformedOperation.toJSON(),
-            firstExpectedTransformedOperation = new DeleteOperation(1, 0),
-            secondExpectedTransformedOperation = new DeleteOperation(1, 1),
+            firstExpectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 0),
+            secondExpectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 1),
             firstExpectedTransformedOperationJSON = firstExpectedTransformedOperation.toJSON(),
             secondExpectedTransformedOperationJSON = secondExpectedTransformedOperation.toJSON();
 
@@ -146,8 +146,8 @@ describe('es6/InsertOperation', function() {
     });
 
     it('transforms a delete operation at position 1 of length 1 to position 2', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            deleteOperation2 = new DeleteOperation(1, 1),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 1),
             transformedOperations = insertOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -155,15 +155,15 @@ describe('es6/InsertOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 2),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 2),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON);
     });
 
     it('transforms a delete operation at position 2 of length 1 to position 3', function() {
-      const insertOperation1 = new InsertOperation('a', 1),
-            deleteOperation2 = new DeleteOperation(1, 2),
+      const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 2),
             transformedOperations = insertOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -171,7 +171,7 @@ describe('es6/InsertOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 3),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 3),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON);
@@ -181,7 +181,7 @@ describe('es6/InsertOperation', function() {
   describe('#transformContent', function() {
     it('inserts its characters in the the relevant place in the content', function() {
       const content = 'asdffdghasdf',
-          emptyOperation = new InsertOperation('123', 4),
+          emptyOperation = InsertOperation.fromStringAndPosition('123', 4),
           transformedContent = emptyOperation.transformContent(content),
           expectedContent = 'asdf123fdghasdf';
 

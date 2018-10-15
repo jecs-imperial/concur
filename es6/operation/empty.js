@@ -2,19 +2,25 @@
 
 
 
+const type = 'empty';
+
 class EmptyOperation {
-  constructor() {
-    this.type = EmptyOperation.type;
+  constructor(type) {
+    this.type = type;
+
+
   }
 
   clone() {
-    return new EmptyOperation();
+    return EmptyOperation.fromNothing();
   }
 
   toJSON() {
     const json = {
             "type": this.type
           };
+
+
     
     return json;
   }
@@ -29,19 +35,35 @@ class EmptyOperation {
     return content;
   }
 
+  transformSelection(selection) {
+    return selection.clone();
+  }
+
+
+
   shift(operation) {
   	const offset = 0;
 
     return (operation.shifted(offset));
   }
 
+
+
+
+
+  static fromNothing() {
+    return new EmptyOperation(type);
+  }
+
   static fromJSON(json) {
-    return new EmptyOperation();
+    const type = json["type"];
+
+    return new EmptyOperation(type);
   }
 }
 
 Object.assign(EmptyOperation, {
-  type: 'empty'
+  type
 });
 
 module.exports = EmptyOperation;

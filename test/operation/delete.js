@@ -14,8 +14,8 @@ const { assert } = chai,
 describe('es6/DeleteOperation', function() {
   describe('#transform', function() {
     it('transforms an insert operation at position 2 to position 1', function() {
-      const deleteOperation1 = new DeleteOperation(2, 1),
-            insertOperation2 = new InsertOperation('b', 2),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(2, 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 2),
             transformedOperations = deleteOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -23,15 +23,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new InsertOperation('b', 1),
+            expectedTransformedOperation = InsertOperation.fromStringAndPosition('b', 1),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 1 at position 2 to an empty operation', function() {
-      const deleteOperation1 = new DeleteOperation(2, 1),
-            deleteOperation2 = new DeleteOperation(1, 2),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(2, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 2),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -39,15 +39,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new EmptyOperation(),
+            expectedTransformedOperation = EmptyOperation.fromNothing(),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
   
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 2 at position 2 to a delete operation of length 1 at position 1', function() {
-      const deleteOperation1 = new DeleteOperation(2, 1),
-            deleteOperation2 = new DeleteOperation(2, 2),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(2, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(2, 2),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -55,15 +55,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 1),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 1),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms an insert operation at position 0, leaving it in the same position', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            insertOperation2 = new InsertOperation('b', 0),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 0),
             transformedOperations = deleteOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -78,8 +78,8 @@ describe('es6/DeleteOperation', function() {
     });
 
     it('transforms an insert operation at position 1, leaving it in the same position', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            insertOperation2 = new InsertOperation('b', 1),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 1),
             transformedOperations = deleteOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -94,8 +94,8 @@ describe('es6/DeleteOperation', function() {
     });
 
     it('transforms an insert operation at position 2 to position 1', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            insertOperation2 = new InsertOperation('b', 2),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            insertOperation2 = InsertOperation.fromStringAndPosition('b', 2),
             transformedOperations = deleteOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -103,15 +103,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new InsertOperation('b', 1),
+            expectedTransformedOperation = InsertOperation.fromStringAndPosition('b', 1),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms an empty operation, leaving it the same', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            emptyOperation2 = new EmptyOperation(),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            emptyOperation2 = EmptyOperation.fromNothing(),
             transformedOperations = deleteOperation1.transformOperation(emptyOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -126,8 +126,8 @@ describe('es6/DeleteOperation', function() {
     });
 
     it('transforms a delete operation of length 1 at position 0, leaving it the same position', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(1, 0),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 0),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -142,8 +142,8 @@ describe('es6/DeleteOperation', function() {
     });
 
     it('transforms a delete operation of length 2 at position 0 to a delete operation of length 1 at position 0', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(2, 0),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(2, 0),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -151,15 +151,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 0),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 0),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 3 at position 0 to a delete operation of length 2 at position 0', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(3, 0),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(3, 0),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -167,15 +167,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(2, 0),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(2, 0),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 1 at position 1 to an empty operation', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(1, 1),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 1),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -183,15 +183,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new EmptyOperation(),
+            expectedTransformedOperation = EmptyOperation.fromNothing(),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 2 at position 1 to a delete operation of length 1 at position 1', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(2, 1),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(2, 1),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -199,15 +199,15 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 1),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 1),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
     it('transforms a delete operation of length 1 at position 2 to a delete operation of length 1 at position 1', function() {
-      const deleteOperation1 = new DeleteOperation(1, 1),
-            deleteOperation2 = new DeleteOperation(1, 2),
+      const deleteOperation1 = DeleteOperation.fromLengthAndPosition(1, 1),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(1, 2),
             transformedOperations = deleteOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -215,7 +215,7 @@ describe('es6/DeleteOperation', function() {
       const firstTransformedOperation = first(transformedOperations),
             transformedOperation = firstTransformedOperation, ///
             transformedOperationJSON = transformedOperation.toJSON(),
-            expectedTransformedOperation = new DeleteOperation(1, 1),
+            expectedTransformedOperation = DeleteOperation.fromLengthAndPosition(1, 1),
             expectedTransformedOperationJSON = expectedTransformedOperation.toJSON();
 
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
@@ -225,7 +225,7 @@ describe('es6/DeleteOperation', function() {
   describe('#transformContent', function() {
     it('deletes the relevant characters from the content', function() {
       const content = 'asdffdghasdf',
-            deleteOperation = new DeleteOperation(3, 4),
+            deleteOperation = DeleteOperation.fromLengthAndPosition(3, 4),
             transformedContent = deleteOperation.transformContent(content),
             expectedContent = 'asdfhasdf';
 

@@ -69,21 +69,22 @@ function generateOperation(string) {
 }
 
 function generateEmptyOperation(string) {
-  return new EmptyOperation();
+  return EmptyOperation.fromNothing();
 }
 
 function generateInsertOperation(string) {
   const stringLength = string.length,
-        s = generateString(MAXIMUM_INSERT_OPERATION_LENGTH),
-        n = random(stringLength + 1);
+        position = random(stringLength + 1);
 
-  return new InsertOperation(s, n);
+  string = generateString(MAXIMUM_INSERT_OPERATION_LENGTH); ///
+
+  return InsertOperation.fromStringAndPosition(string, position);
 }
 
 function generateDeleteOperation(string) {
   const stringLength = string.length,
-        n = random(stringLength),
-        l = random(stringLength - n) + 1;
+        position = random(stringLength),
+        length = random(stringLength - position) + 1;
 
-  return new DeleteOperation(l, n);
+  return DeleteOperation.fromLengthAndPosition(length, position);
 }

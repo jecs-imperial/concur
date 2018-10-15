@@ -16,7 +16,7 @@ function generateOperations(fromContent, toContent) {
     length = fromContent.length - left - right;  ///
     position = left; ///
     
-    const deleteOperation = new DeleteOperation(length, position);
+    const deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
 
     operations.push(deleteOperation);
   }
@@ -25,12 +25,12 @@ function generateOperations(fromContent, toContent) {
     string = toContent.substring(left, toContent.length - right);  ///
     position = left; ///
     
-    const insertOperation = new InsertOperation(string, position);
+    const insertOperation = InsertOperation.fromStringAndPosition(string, position);
 
     operations.push(insertOperation);
   }
 
   return operations;
-};
+}
 
 module.exports = generateOperations;

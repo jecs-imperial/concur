@@ -14,8 +14,8 @@ const { assert } = chai,
 describe('es6/EmptyOperation', function() {
   describe('#transform', function() {
     it('transforms an insert operation, leaving it the same', function() {
-      const emptyOperation1 = new EmptyOperation(),
-            insertOperation2 = new InsertOperation(0, 'b'),
+      const emptyOperation1 = EmptyOperation.fromNothing(),
+            insertOperation2 = InsertOperation.fromStringAndPosition(0, 'b'),
             transformedOperations = emptyOperation1.transformOperation(insertOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -30,8 +30,8 @@ describe('es6/EmptyOperation', function() {
     });
 
     it('transforms a second empty operation, leaving it the same', function() {
-      const emptyOperation1 = new EmptyOperation(),
-            emptyOperation2 = new EmptyOperation(),
+      const emptyOperation1 = EmptyOperation.fromNothing(),
+            emptyOperation2 = EmptyOperation.fromNothing(),
             transformedOperations = emptyOperation1.transformOperation(emptyOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -46,8 +46,8 @@ describe('es6/EmptyOperation', function() {
     });
 
     it('transforms a delete operation, leaving it the same', function() {
-      const emptyOperation1 = new EmptyOperation(),
-            deleteOperation2 = new DeleteOperation(0, 1),
+      const emptyOperation1 = EmptyOperation.fromNothing(),
+            deleteOperation2 = DeleteOperation.fromLengthAndPosition(0, 1),
             transformedOperations = emptyOperation1.transformOperation(deleteOperation2);
 
       assert.lengthOf(transformedOperations, 1);
@@ -65,7 +65,7 @@ describe('es6/EmptyOperation', function() {
   describe('#transformContent', function() {
     it('leaves the content unchanged', function() {
       const content = 'asdffdghasdf',
-            emptyOperation = new EmptyOperation(),
+            emptyOperation = EmptyOperation.fromNothing(),
             transformedContent = emptyOperation.transformContent(content),
             expectedContent = content;
 
