@@ -12,7 +12,7 @@ const { assert } = chai,
       { first } = arrayUtilities;
 
 describe('es6/DeleteOperation', function() {
-  describe('#transform', function() {
+  describe('transform', function() {
     it('transforms an insert operation at position 2 to position 1', function() {
       const deleteOperation1 = DeleteOperation.fromLengthAndPosition(2, 1),
             insertOperation2 = InsertOperation.fromStringAndPosition('b', 2),
@@ -222,7 +222,7 @@ describe('es6/DeleteOperation', function() {
     });
   });
 
-  describe('#transformContent', function() {
+  describe('transformContent', function() {
     it('deletes the relevant characters from the content', function() {
       const content = 'asdffdghasdf',
             deleteOperation = DeleteOperation.fromLengthAndPosition(3, 4),
@@ -233,7 +233,7 @@ describe('es6/DeleteOperation', function() {
     });
   });
 
-  describe('#fromJSON, toJSON', function() {
+  describe('fromJSON, toJSON', function() {
     it('transforms from and to JSON, leaving the operation unchanged', function() {
       const expectedJSON = {
 				      "type": "delete",

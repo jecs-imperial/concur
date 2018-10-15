@@ -12,7 +12,7 @@ const { assert } = chai,
       { first, second } = arrayUtilities;
 
 describe('es6/InsertOperation', function() {
-  describe('#transform', function() {
+  describe('transform', function() {
     it('transforms a second insert operation at position 0, leaving it in the same position', function() {
       const insertOperation1 = InsertOperation.fromStringAndPosition('a', 1),
             insertOperation2 = InsertOperation.fromStringAndPosition('b', 0),
@@ -178,7 +178,7 @@ describe('es6/InsertOperation', function() {
     });
   });
 
-  describe('#transformContent', function() {
+  describe('transformContent', function() {
     it('inserts its characters in the the relevant place in the content', function() {
       const content = 'asdffdghasdf',
           emptyOperation = InsertOperation.fromStringAndPosition('123', 4),
@@ -189,7 +189,7 @@ describe('es6/InsertOperation', function() {
     });
   });
 
-  describe('#fromJSON, toJSON', function() {
+  describe('fromJSON, toJSON', function() {
     it('transforms from and to JSON, leaving the operation unchanged', function() {
       const expectedJSON = {
             "type": "insert",

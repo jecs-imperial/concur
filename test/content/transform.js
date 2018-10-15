@@ -8,7 +8,7 @@ const transformContent = require('../../es6/content/transform'),
 
 const { assert } = chai;
 
-describe('es6/content/#transform', function() {
+describe('es6/transformContent', function() {
   it('leaves the content unchanged if the sequence of operations is ofo zero length', function() {
     const content = 'asdf',
           operations = [],

@@ -9,7 +9,7 @@ const { assert } = chai,
       { arrayUtilities } = necessary,
       { first, second } = arrayUtilities;
 
-describe('es6/operations/#generate', function() {
+describe('es6/generateOperations', function() {
   it('generates a zero length sequence of operations if previous content and content are the same', function() {
     const content = 'asdf',
           previousContent = content,  ///

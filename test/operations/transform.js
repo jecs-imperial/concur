@@ -9,7 +9,7 @@ const helpers = require('../helpers'),
 
 const { assert } = chai;
 
-describe('es6/operations/#transform', function() {
+describe('es6/transformOperations', function() {
   describe('for two empty sequences of operations', function() {
     it('tau;rho/tau has the same effect as rho;tau/rho', function() {
       const tauJSON = [],

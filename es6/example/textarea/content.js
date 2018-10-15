@@ -17,27 +17,6 @@ class ContentTextarea extends InputElement {
     this.setInitialState();
   }
 
-  getContent() {
-    const value = this.getValue(),
-          content = value; ///
-
-    return content;
-  }
-
-  setContent(content) {
-    const value = content;  ///
-
-    this.setValue(value);
-  }
-
-  getOperations() {
-    const content = this.getContent(),
-          previousContent = this.getPreviousContent(),
-          operations = generateOperations(previousContent, content);
-
-    return operations;
-  }
-
   update(pendingOperations) {
     this.updateContent(pendingOperations);
 
@@ -47,7 +26,7 @@ class ContentTextarea extends InputElement {
   updateContent(pendingOperations) {
     let content = this.getContent();
 
-    const operations = this.getOperations(),
+    const operations = this.generateOperations(),
           transformedPendingOperations = transformOperations(pendingOperations, operations),
           transformedContent = transformContent(content, transformedPendingOperations);
 
@@ -66,6 +45,14 @@ class ContentTextarea extends InputElement {
     this.setPreviousContent(previousContent);
   }
 
+  generateOperations() {
+    const content = this.getContent(),
+          previousContent = this.getPreviousContent(),
+          operations = generateOperations(previousContent, content);
+
+    return operations;
+  }
+
   keyUpHandler() {
     let content = this.getContent(),
         previousContent = this.getPreviousContent();
@@ -81,14 +68,17 @@ class ContentTextarea extends InputElement {
     }
   }
 
-  parentContext() {
-    const getContent = this.getContent.bind(this),
-          setContent = this.setContent.bind(this);
+  setContent(content) {
+    const value = content;  ///
 
-    return ({
-      getContent,
-      setContent
-    });
+    this.setValue(value);
+  }
+
+  getContent() {
+    const value = this.getValue(),
+        content = value; ///
+
+    return content;
   }
 
   getPreviousContent() {
@@ -109,6 +99,16 @@ class ContentTextarea extends InputElement {
 
     this.setState({
       previousContent
+    });
+  }
+
+  parentContext() {
+    const getContent = this.getContent.bind(this),
+        setContent = this.setContent.bind(this);
+
+    return ({
+      getContent,
+      setContent
     });
   }
 

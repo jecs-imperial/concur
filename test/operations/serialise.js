@@ -6,8 +6,8 @@ const serialiseOperations = require('../../es6/operations/serialise');
 
 const { assert } = chai;
 
-describe('es6/operations/#serialise', function() {
-  describe('#fromJSON, toJSON', function() {
+describe('es6/serialiseOperations', function() {
+  describe('fromJSON, toJSON', function() {
     it('transforms the operations from and to JSON, leaving them unchanged', function() {
       const operationsJSON = [{
               "type": "insert",

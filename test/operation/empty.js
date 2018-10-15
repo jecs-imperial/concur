@@ -12,7 +12,7 @@ const { assert } = chai,
       { first } = arrayUtilities;
 
 describe('es6/EmptyOperation', function() {
-  describe('#transform', function() {
+  describe('transform', function() {
     it('transforms an insert operation, leaving it the same', function() {
       const emptyOperation1 = EmptyOperation.fromNothing(),
             insertOperation2 = InsertOperation.fromStringAndPosition(0, 'b'),
@@ -62,7 +62,7 @@ describe('es6/EmptyOperation', function() {
     });
   });
 
-  describe('#transformContent', function() {
+  describe('transformContent', function() {
     it('leaves the content unchanged', function() {
       const content = 'asdffdghasdf',
             emptyOperation = EmptyOperation.fromNothing(),
@@ -73,7 +73,7 @@ describe('es6/EmptyOperation', function() {
     });
   });
 
-  describe('#fromJSON, toJSON', function() {
+  describe('fromJSON, toJSON', function() {
     it('transforms from and to JSON, leaving the operation unchanged', function() {
       const expectedJSON = {
               "type": "empty"
