@@ -2,6 +2,10 @@
 
 const easy = require('easy');
 
+const transformContent = require('../../content/transform'),
+      generateOperations = require('../../operations/generate'),
+      transformOperations = require('../../operations/transform');
+
 const { InputElement } = easy;
 
 class ContentTextarea extends InputElement {
@@ -21,10 +25,43 @@ class ContentTextarea extends InputElement {
   }
 
   setContent(content) {
-    const value = content,  ///
-          previousContent = content;  ///
+    const value = content;  ///
 
     this.setValue(value);
+  }
+
+  getOperations() {
+    const content = this.getContent(),
+          previousContent = this.getPreviousContent(),
+          operations = generateOperations(previousContent, content);
+
+    return operations;
+  }
+
+  update(pendingOperations) {
+    this.updateContent(pendingOperations);
+
+    this.updatePreviousContent(pendingOperations);
+  }
+
+  updateContent(pendingOperations) {
+    let content = this.getContent();
+
+    const operations = this.getOperations(),
+          transformedPendingOperations = transformOperations(pendingOperations, operations),
+          transformedContent = transformContent(content, transformedPendingOperations);
+
+    content = transformedContent; ///
+
+    this.setContent(content);
+  }
+
+  updatePreviousContent(pendingOperations) {
+    let previousContent = this.getPreviousContent();
+
+    const transformedPreviousContent = transformContent(previousContent, pendingOperations);
+
+    previousContent = transformedPreviousContent; ///
 
     this.setPreviousContent(previousContent);
   }

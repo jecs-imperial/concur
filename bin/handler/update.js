@@ -4,7 +4,7 @@ const server = require('../server'),
       UpdateRequest = require('../../es6/example/request/update'),
       UpdateResponse = require('../../es6/example/response/update');
 
-const { generatePendingOperations } = server;
+const { update } = server;
 
 class UpdateHandler {
   constructor(updateResponse) {
@@ -17,7 +17,7 @@ class UpdateHandler {
     const updateRequest = UpdateRequest.fromJSON(json),
           operations = updateRequest.getOperations(),
           userIdentifier = updateRequest.getUserIdentifier(),
-          pendingOperations = generatePendingOperations(operations, userIdentifier),
+          pendingOperations = update(operations, userIdentifier),
           updateResponse = UpdateResponse.fromPendingOperations(pendingOperations),
           updateHandler = new UpdateHandler(updateResponse);
 

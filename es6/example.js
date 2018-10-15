@@ -18,9 +18,7 @@ client.initialise(function(content) {
       <h1>Concur example</h1>
       <ContentTextarea onChange={function(content, previousContent) {
 
-                         const success = client.update(content, previousContent, function(pendingOperations) {
-                           ///
-                         });
+                         const success = client.update(content, previousContent, pendingOperations => this.update(pendingOperations));
 
                          return success;
 
