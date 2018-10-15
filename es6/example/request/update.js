@@ -1,12 +1,11 @@
 'use strict';
 
-const generateOperations = require('../operations/generate'),
-      serialiseOperations = require('../operations/serialise');
+const serialiseOperations = require('../../operations/serialise');
 
 const { toJSON, fromJSON } = serialiseOperations;
 
 class UpdateRequest {
-  constructor(userIdentifier, operations) {
+  constructor(operations, userIdentifier) {
     this.operations = operations;
     this.userIdentifier = userIdentifier;
   }
@@ -40,9 +39,8 @@ class UpdateRequest {
     return updateRequest;
   }
 
-  static fromUserIdentifierContentAndPreviousContent(userIdentifier, content, previousContent) {
-    const operations = generateOperations(content, previousContent),  ///
-          updateRequest = new UpdateRequest(userIdentifier, operations);
+  static fromOperationsAndUserIdentifier(operations, userIdentifier) {
+    const updateRequest = new UpdateRequest(operations, userIdentifier);
 
     return updateRequest;
   }

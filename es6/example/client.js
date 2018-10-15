@@ -8,37 +8,33 @@ const UpdateAsynchronousTask = require('./task/asynchronous/update'),
 const { Scheduler } = sufficient;
 
 class Client {
-  constructor(host, scheduler, userIdentifier) {
-    this.host = host;
+  constructor(scheduler, userIdentifier) {
     this.scheduler = scheduler;
     this.userIdentifier = userIdentifier;
   }
 
   update(content, previousContent, callback) {
-    const updateAsynchronousTask = new UpdateAsynchronousTask(this.host, this.userIdentifier, content, previousContent, function(pendingOperations) {
-      callback(pendingOperations)
-    }.bind(this));
+    const updateAsynchronousTask = new UpdateAsynchronousTask(this.userIdentifier, content, previousContent, callback);
 
     const success = this.scheduler.executeTaskImmediately(updateAsynchronousTask);
 
     return success;
   }
 
-  initialise(done) {
-    const initialiseAsynchronousTask = new InitialiseAsynchronousTask(this.host, function(userIdentifier) {
+  initialise(callback) {
+    const initialiseAsynchronousTask = new InitialiseAsynchronousTask(function(content, userIdentifier) {
       this.userIdentifier = userIdentifier;
 
-      done();
+      callback(content);
     }.bind(this));
 
     this.scheduler.addTaskToQueue(initialiseAsynchronousTask);
   }
 
   static fromNothing() {
-    const host = '',  ///
-          scheduler = Scheduler.fromNothing(),
+    const scheduler = Scheduler.fromNothing(),
           userIdentifier = null,  ///
-          client = new Client(host, scheduler, userIdentifier);
+          client = new Client(scheduler, userIdentifier);
 
     return client;
   }

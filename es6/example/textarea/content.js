@@ -68,7 +68,7 @@ class ContentTextarea extends InputElement {
   }
 
   setInitialState() {
-    const previousContent = '';
+    const previousContent = null;
 
     this.setState({
       previousContent
@@ -76,6 +76,11 @@ class ContentTextarea extends InputElement {
   }
 
   initialise() {
+    const content = this.getContent(),
+          previousContent = content;  ///
+
+    this.setPreviousContent(previousContent);
+
     this.on('keyup', this.keyUpHandler, this);
   }
 

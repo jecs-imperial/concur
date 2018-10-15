@@ -1,6 +1,6 @@
 'use strict';
 
-const serialiseOperations = require('../operations/serialise');
+const serialiseOperations = require('../../operations/serialise');
 
 const { toJSON, fromJSON } = serialiseOperations;
 

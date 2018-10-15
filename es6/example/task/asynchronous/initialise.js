@@ -1,34 +1,31 @@
 'use strict';
 
-const necessary = require('necessary'),
-      sufficient = require('sufficient');
+const sufficient = require('sufficient');
 
-const uris = require('../../uris'),
+const post = require('../../post'),
       InitialiseRequest = require('../../request/initialise'),
       InitialiseResponse = require('../../response/initialise');
 
-const { miscellaneousUtilities } = necessary,
-      { AsynchronousTask } = sufficient,
-      { post } = miscellaneousUtilities,
-      { INITIALISE_URI } = uris;
+const { postInitialise } = post,
+      { AsynchronousTask } = sufficient;
 
 class InitialiseAsynchronousTask extends AsynchronousTask {
-  constructor(host, callback) {
-    super(asynchronousMethod, host, callback)
+  constructor(callback) {
+    super(asynchronousMethod, callback)
   }
 }
 
 module.exports = InitialiseAsynchronousTask;
 
-function asynchronousMethod(host, callback) {
+function asynchronousMethod(callback) {
   const initialiseRequest = InitialiseRequest.fromNothing(),
-        uri = INITIALISE_URI,
         json = initialiseRequest.toJSON();
 
-  post(host, uri, json, function(json) {
+  postInitialise(json, function(json) {
     const initialiseResponse = InitialiseResponse.fromJSON(json),
+          content = initialiseResponse.getContent(),
           userIdentifier = initialiseResponse.getUserIdentifier();
 
-    callback(userIdentifier);
+    callback(content, userIdentifier);
   });
 }

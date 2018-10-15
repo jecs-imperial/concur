@@ -1,8 +1,8 @@
 'use strict';
 
 const server = require('../server'),
-      UpdateRequest = require('../../es6/request/update'),
-      UpdateResponse = require('../../es6/response/update');
+      UpdateRequest = require('../../es6/example/request/update'),
+      UpdateResponse = require('../../es6/example/response/update');
 
 const { generatePendingOperations } = server;
 

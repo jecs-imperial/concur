@@ -4,12 +4,12 @@ require('juxtapose');
 
 const easy = require('easy');
 
-const client = require('./client'),
-      ContentTextarea = require('./example/textarea/content');
+const ContentTextarea = require('./example/textarea/content'),
+      client = require('./example/client');
 
 const { Body } = easy;
 
-client.initialise(function() {
+client.initialise(function(content) {
   const body = new Body();
 
   body.append(
@@ -25,7 +25,9 @@ client.initialise(function() {
                          return success;
 
                        }}
-      />
+      >
+        {content}
+      </ContentTextarea>
     </section>
 
   );
