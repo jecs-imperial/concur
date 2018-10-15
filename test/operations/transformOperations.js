@@ -23,16 +23,14 @@ describe('es6/operations/#transform', function() {
 
   describe('for a sequence containing one operation and an empty sequence', function() {
     it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [
-            {
+      const tauJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1
-            }
-          ],
-          rhoJSON = [],
-          tau = serialiseOperations.fromJSON(tauJSON),
-          rho = serialiseOperations.fromJSON(rhoJSON);
+            }],
+            rhoJSON = [],
+            tau = serialiseOperations.fromJSON(tauJSON),
+            rho = serialiseOperations.fromJSON(rhoJSON);
 
       assertOperationsHaveSameEffect(tau, rho);
     });
@@ -40,22 +38,18 @@ describe('es6/operations/#transform', function() {
 
   describe('for two sequences each containing one operation', function() {
     it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [
-            {
+      const tauJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1
-            }
-          ],
-          rhoJSON = [
-            {
+            }],
+            rhoJSON = [{
               "type": "delete",
               "length": 2,
               "position": 1
-            }
-          ],
-          tau = serialiseOperations.fromJSON(tauJSON),
-          rho = serialiseOperations.fromJSON(rhoJSON);
+            }],
+            tau = serialiseOperations.fromJSON(tauJSON),
+            rho = serialiseOperations.fromJSON(rhoJSON);
 
       assertOperationsHaveSameEffect(tau, rho);
     });
@@ -63,15 +57,12 @@ describe('es6/operations/#transform', function() {
 
   describe('for a sequences containing one operation and a sequence containing two operations', function() {
     it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [
-            {
+      const tauJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1,
-            }
-          ],
-          rhoJSON = [
-            {
+            }],
+            rhoJSON = [{
               "type": "insert",
               "string": "abc",
               "position": 3
@@ -80,10 +71,9 @@ describe('es6/operations/#transform', function() {
               "type": "delete",
               "length": 2,
               "position": 1,
-            }
-          ],
-          tau = serialiseOperations.fromJSON(tauJSON),
-          rho = serialiseOperations.fromJSON(rhoJSON);
+            }],
+            tau = serialiseOperations.fromJSON(tauJSON),
+            rho = serialiseOperations.fromJSON(rhoJSON);
 
       assertOperationsHaveSameEffect(tau, rho);
     });
@@ -91,8 +81,7 @@ describe('es6/operations/#transform', function() {
 
   describe('for two sequences each containing two operations', function() {
     it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [
-            {
+      const tauJSON = [{
               "type": "delete",
               "length": 6,
               "position": 0
@@ -101,10 +90,8 @@ describe('es6/operations/#transform', function() {
               "type": "insert",
               "string": "JQ",
               "position": 0
-            }
-          ],
-          rhoJSON = [
-            {
+            }],
+            rhoJSON = [{
               "type": "delete",
               "length": 4,
               "position": 0
@@ -113,10 +100,9 @@ describe('es6/operations/#transform', function() {
               "type": "insert",
               "string": "bkW",
               "position": 0
-            }
-          ],
-          tau = serialiseOperations.fromJSON(tauJSON),
-          rho = serialiseOperations.fromJSON(rhoJSON);
+            }],
+            tau = serialiseOperations.fromJSON(tauJSON),
+            rho = serialiseOperations.fromJSON(rhoJSON);
 
       assertOperationsHaveSameEffect(tau, rho);
     });

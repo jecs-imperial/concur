@@ -4,24 +4,25 @@ require('juxtapose');
 
 const easy = require('easy');
 
-const model = require('./model'),
+const client = require('./client'),
       ContentTextarea = require('./example/textarea/content');
 
-const { Body } = easy,
-      { initialise, update } = model;
+const { Body } = easy;
 
-initialise(function() {
+client.initialise(function() {
   const body = new Body();
 
   body.append(
 
     <section>
       <h1>Concur example</h1>
-      <ContentTextarea onKeyUp={function() {
+      <ContentTextarea onChange={function(content, previousContent) {
 
-                         const content = this.getContent();
+                         const success = client.update(content, previousContent, function(pendingOperations) {
+                           ///
+                         });
 
-                         update(content, content => this.setContent(content));
+                         return success;
 
                        }}
       />

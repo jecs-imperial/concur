@@ -1,16 +1,25 @@
 'use strict';
 
+const server = require('../server'),
+      UpdateRequest = require('../../es6/request/update'),
+      UpdateResponse = require('../../es6/response/update');
+
+const { generatePendingOperations } = server;
+
 class UpdateHandler {
-  constructor() {
-
+  constructor(updateResponse) {
+    this.updateResponse = updateResponse;
   }
 
-  toJSON() {
-    return {};  ///
-  }
+  toJSON() { return this.updateResponse.toJSON(); }
 
   static fromJSON(json) {
-    const updateHandler = new UpdateHandler();
+    const updateRequest = UpdateRequest.fromJSON(json),
+          operations = updateRequest.getOperations(),
+          userIdentifier = updateRequest.getUserIdentifier(),
+          pendingOperations = generatePendingOperations(operations, userIdentifier),
+          updateResponse = UpdateResponse.fromPendingOperations(pendingOperations),
+          updateHandler = new UpdateHandler(updateResponse);
 
     return updateHandler;
   }

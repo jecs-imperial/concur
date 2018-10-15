@@ -8,28 +8,24 @@ const { assert } = chai;
 
 describe('es6/operations/#serialise', function() {
   describe('#fromJSON, toJSON', function() {
-    it('transforms from and to JSON, leaving the operations unchanged', function() {
-      const operationsJSON = [
-              {
-	              "type": "insert",
-	              "string": "xyz",
-	              "position": 1
-              },
-              {
-	              "type": "delete",
-	              "length": 2,
-	              "position": 1
-              },
-              {
-              	"type": "empty"
-              }
-            ],
-            resultantOperations = serialiseOperations.toJSON(serialiseOperations.fromJSON(operationsJSON)),
-            expectedOperations = resultantOperations;
+    it('transforms the operations from and to JSON, leaving them unchanged', function() {
+      const operationsJSON = [{
+              "type": "insert",
+              "string": "xyz",
+              "position": 1
+            },
+            {
+              "type": "delete",
+              "length": 2,
+              "position": 1
+            },
+            {
+              "type": "empty"
+            }],
+            operations = serialiseOperations.toJSON(serialiseOperations.fromJSON(operationsJSON)),
+            expectedOperations = operations;  ///
 
-      assert.deepEqual(resultantOperations, expectedOperations);
-
-      assert.isTrue(true);
+      assert.deepEqual(operations, expectedOperations);
     });
   });
 });

@@ -3,7 +3,7 @@
 const express = require('express'),
       bodyParser = require('body-parser');
 
-const uris = require('../uris'),
+const uris = require('../../es6/uris'), ///
       UpdateHandler = require('../handler/update'),
       InitialiseHandler = require('../handler/initialise');
 

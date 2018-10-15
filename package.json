@@ -17,7 +17,7 @@
     "easy": "^8.2.19",
     "juxtapose": "^1.0.91",
     "mocha": "~2.2.5",
-    "necessary": "^3.2.1",
+    "necessary": "^3.2.2",
     "random-seed": "~0.2.0",
     "sufficient": "^1.1.12"
   },

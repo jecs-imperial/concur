@@ -9,11 +9,11 @@ const transformContent = require('../../es6/content/transform'),
 const { assert } = chai;
 
 describe('es6/content/#transform', function() {
-  it('leaves the content unchanged if the sequence of operations is zero length', function() {
+  it('leaves the content unchanged if the sequence of operations is ofo zero length', function() {
     const content = 'asdf',
           operations = [],
           transformedContent = transformContent(content, operations),
-          expectedContent = content;
+          expectedContent = content;  ///
 
     assert.equal(transformedContent, expectedContent);
   });
@@ -47,12 +47,12 @@ describe('es6/content/#transform', function() {
   });
 
   it('results in a second content being returned if the operations generated from the first and second contents are applied to the first content', function() {
-    const contentA = 'asdf',
-          contentB = 'xyccde',
-          generatedOperations = generateOperations(contentA, contentB),
-          transformedContent = transformContent(contentA, generatedOperations),
-          expectedContent = contentB;
+    const content = 'xyccde',
+          previousContent = 'asdf',
+          operations = generateOperations(content, previousContent),
+          transformedPreviousContent = transformContent(previousContent, operations),
+          expectedContent = content;  ///
 
-    assert.equal(transformedContent, expectedContent);
+    assert.equal(transformedPreviousContent, expectedContent);
   });
 });

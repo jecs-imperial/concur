@@ -5,6 +5,14 @@ const easy = require('easy');
 const { InputElement } = easy;
 
 class ContentTextarea extends InputElement {
+  constructor(selector, changeHandler) {
+    super(selector);
+
+    this.changeHandler = changeHandler;
+
+    this.setInitialState();
+  }
+
   getContent() {
     const value = this.getValue(),
           content = value; ///
@@ -13,9 +21,27 @@ class ContentTextarea extends InputElement {
   }
 
   setContent(content) {
-    const value = content;
+    const value = content,  ///
+          previousContent = content;  ///
 
     this.setValue(value);
+
+    this.setPreviousContent(previousContent);
+  }
+
+  keyUpHandler() {
+    let content = this.getContent(),
+        previousContent = this.getPreviousContent();
+
+    if (content !== previousContent) {
+      const success = this.changeHandler(content, previousContent);
+
+      if (success) {
+        previousContent = content;  ///
+
+        this.setPreviousContent(previousContent);
+      }
+    }
   }
 
   parentContext() {
@@ -28,7 +54,40 @@ class ContentTextarea extends InputElement {
     });
   }
 
-  static fromProperties(properties) { return InputElement.fromProperties(ContentTextarea, properties); }
+  getPreviousContent() {
+    const state = this.getState(),
+          { previousContent } = state;
+
+    return previousContent;
+  }
+
+  setPreviousContent(previousContent) {
+    this.updateState({
+      previousContent
+    });
+  }
+
+  setInitialState() {
+    const previousContent = '';
+
+    this.setState({
+      previousContent
+    });
+  }
+
+  initialise() {
+    this.on('keyup', this.keyUpHandler, this);
+  }
+
+  static fromProperties(properties) {
+    const { onChange } = properties,
+          changeHandler = onChange, ///
+          contentTextarea = InputElement.fromProperties(ContentTextarea, properties, changeHandler);
+
+    contentTextarea.initialise();
+
+    return contentTextarea;
+  }
 }
 
 Object.assign(ContentTextarea, {
@@ -36,7 +95,10 @@ Object.assign(ContentTextarea, {
   defaultProperties: {
     className: 'content',
     spellCheck: false
-  }
+  },
+  ignoredProperties: [
+    'onChange'
+  ]
 });
 
 module.exports = ContentTextarea;
