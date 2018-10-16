@@ -42,7 +42,7 @@ Once the server is running, launch a browser and the client will be available at
     const concur = require('concur-algorithm'),    ///
           { generateOperations, transformContent } = concur;
 
-Not all the functionality required to implement the algorithm is exported by the package. If you want to implement the algorithm the only place to start is the example.
+Not all the functionality required to implement the algorithm is exported by the package. If you want to implement the algorithm fully, the only place to start is the example.
 
 ## Compiling from source
 
