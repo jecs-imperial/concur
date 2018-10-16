@@ -5,7 +5,7 @@ const types = require('../types'),
       DeleteOperation = require('../operation/delete'),
       InsertOperation = require('../operation/insert');
 
-const { emptyType, insertType, deleteType } = types;
+const { emptyType, deleteType, insertType } = types;
 
 function toJSON(operations) {
   return operations.map(function(operation) {

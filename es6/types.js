@@ -1,11 +1,11 @@
 'use strict';
 
 const emptyType = 'empty',
-      insertType = 'insert',
-      deleteType = 'delete';
+      deleteType = 'delete',
+      insertType = 'insert';
 
 module.exports = {
   emptyType,
-  insertType,
-  deleteType
+  deleteType,
+  insertType
 };
