@@ -3,9 +3,10 @@
 const chai = require('chai');
 
 const helpers = require('../helpers'),
+      DeleteOperation = require('../../es6/operation/delete'),
+      InsertOperation = require('../../es6/operation/insert'),
       transformContent = require('../../es6/content/transform'),
-      generateOperations = require('../../es6/operations/generate'),
-      serialiseOperations = require('../../es6/operations/serialise');
+      generateOperations = require('../../es6/operations/generate');
 
 const { assert } = chai;
 
@@ -24,12 +25,10 @@ describe('es6/transformContent', function() {
   describe('if the sequence of operations is contains a single delete operation', function() {
     it('deletes the requisite characters', function() {
       const content = helpers.content(),
-            operationsJSON = [{
-              "type": "delete",
-              "length": 2,
-              "position": 0
-            }],
-            operations = serialiseOperations.fromJSON(operationsJSON),
+            deleteOperation = DeleteOperation.fromLengthAndPosition(2, 0),
+            operations = [
+              deleteOperation
+            ],
             transformedContent = transformContent(content, operations),
             expectedContent = content.substring(2);
 
@@ -40,12 +39,10 @@ describe('es6/transformContent', function() {
   describe('if the sequence of operations is contains a single insert operation', function() {
     it('inserts the requisite characters', function() {
       const content = helpers.content(),
-            operationsJSON = [{
-              "type": "insert",
-              "string": "xyz",
-              "position": 0
-            }],
-            operations = serialiseOperations.fromJSON(operationsJSON),
+            insertOperation = InsertOperation.fromStringAndPosition('xyz', 0),
+            operations = [
+              insertOperation
+            ],
             transformedContent = transformContent(content, operations),
             expectedContent = `xyz${content}`;
 

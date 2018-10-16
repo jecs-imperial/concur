@@ -3,7 +3,8 @@
 const chai = require('chai'),
       necessary = require('necessary');
 
-const EmptyOperation = require('../../es6/operation/empty'),
+const helpers = require('../helpers'),
+      EmptyOperation = require('../../es6/operation/empty'),
       DeleteOperation = require('../../es6/operation/delete'),
       InsertOperation = require('../../es6/operation/insert');
 
@@ -223,11 +224,11 @@ describe('es6/DeleteOperation', function() {
   });
 
   describe('transformContent', function() {
-    it('deletes the relevant characters from the content', function() {
-      const content = 'asdffdghasdf',
-            deleteOperation = DeleteOperation.fromLengthAndPosition(3, 4),
+    it('deletes the requisite characters from the content', function() {
+      const content = helpers.content(10),
+            deleteOperation = DeleteOperation.fromLengthAndPosition(6, 4),
             transformedContent = deleteOperation.transformContent(content),
-            expectedContent = 'asdfhasdf';
+            expectedContent = content.substring(0, 4);
 
       assert.equal(transformedContent, expectedContent);
     });

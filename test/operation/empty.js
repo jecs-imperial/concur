@@ -3,7 +3,8 @@
 const chai = require('chai'),
       necessary = require('necessary');
 
-const EmptyOperation = require('../../es6/operation/empty'),
+const helpers = require('../helpers'),
+      EmptyOperation = require('../../es6/operation/empty'),
       DeleteOperation = require('../../es6/operation/delete'),
       InsertOperation = require('../../es6/operation/insert');
 
@@ -64,7 +65,7 @@ describe('es6/EmptyOperation', function() {
 
   describe('transformContent', function() {
     it('leaves the content unchanged', function() {
-      const content = 'asdffdghasdf',
+      const content = helpers.content(),
             emptyOperation = EmptyOperation.fromNothing(),
             transformedContent = emptyOperation.transformContent(content),
             expectedContent = content;

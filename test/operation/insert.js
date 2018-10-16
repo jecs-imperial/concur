@@ -3,7 +3,8 @@
 const chai = require('chai'),
       necessary = require('necessary');
 
-const EmptyOperation = require('../../es6/operation/empty'),
+const helpers = require('../helpers'),
+      EmptyOperation = require('../../es6/operation/empty'),
       DeleteOperation = require('../../es6/operation/delete'),
       InsertOperation = require('../../es6/operation/insert');
 
@@ -179,11 +180,11 @@ describe('es6/InsertOperation', function() {
   });
 
   describe('transformContent', function() {
-    it('inserts its characters in the the relevant place in the content', function() {
-      const content = 'asdffdghasdf',
-          emptyOperation = InsertOperation.fromStringAndPosition('123', 4),
-          transformedContent = emptyOperation.transformContent(content),
-          expectedContent = 'asdf123fdghasdf';
+    it('inserts the requisite characters into the content', function() {
+      const content = helpers.content(),
+            emptyOperation = InsertOperation.fromStringAndPosition('123', 0),
+            transformedContent = emptyOperation.transformContent(content),
+            expectedContent = `123${content}`;
 
       assert.equal(transformedContent, expectedContent);
     });
@@ -192,11 +193,11 @@ describe('es6/InsertOperation', function() {
   describe('fromJSON, toJSON', function() {
     it('transforms from and to JSON, leaving the operation unchanged', function() {
       const expectedJSON = {
-            "type": "insert",
-            "string": "a",
-            "position": 1
-          },
-          json = InsertOperation.fromJSON(expectedJSON).toJSON();
+              "type": "insert",
+              "string": "a",
+              "position": 1
+            },
+            json = InsertOperation.fromJSON(expectedJSON).toJSON();
 
       assert.deepEqual(json, expectedJSON);
     });

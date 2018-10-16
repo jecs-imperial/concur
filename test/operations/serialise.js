@@ -8,8 +8,8 @@ const { assert } = chai;
 
 describe('es6/serialiseOperations', function() {
   describe('fromJSON, toJSON', function() {
-    it('transforms the operations from and to JSON, leaving them unchanged', function() {
-      const operationsJSON = [{
+    it('transforms the operations from and to JSON, leaving the operations unchanged', function() {
+      const expectedOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1
@@ -22,10 +22,9 @@ describe('es6/serialiseOperations', function() {
             {
               "type": "empty"
             }],
-            operations = serialiseOperations.toJSON(serialiseOperations.fromJSON(operationsJSON)),
-            expectedOperations = operations;  ///
+            operationsJSON = serialiseOperations.toJSON(serialiseOperations.fromJSON(expectedOperationsJSON));
 
-      assert.deepEqual(operations, expectedOperations);
+      assert.deepEqual(operationsJSON, expectedOperationsJSON);
     });
   });
 });

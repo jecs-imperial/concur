@@ -11,58 +11,58 @@ const { assert } = chai;
 
 describe('es6/transformOperations', function() {
   describe('for two empty sequences of operations', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [],
-            rhoJSON = [],
-            tau = serialiseOperations.fromJSON(tauJSON),
-            rho = serialiseOperations.fromJSON(rhoJSON);
+    it('The intentions are preserved', function() {
+      const firstOperationsJSON = [],
+            secondOperationsJSON = [],
+            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
+            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
 
-      assertOperationsHaveSameEffect(tau, rho);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 
   describe('for a sequence containing one operation and an empty sequence', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [{
+    it('The intentions are preserved', function() {
+      const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1
             }],
-            rhoJSON = [],
-            tau = serialiseOperations.fromJSON(tauJSON),
-            rho = serialiseOperations.fromJSON(rhoJSON);
+            secondOperationsJSON = [],
+            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
+            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
 
-      assertOperationsHaveSameEffect(tau, rho);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 
   describe('for two sequences each containing one operation', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [{
+    it('The intentions are preserved', function() {
+      const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1
             }],
-            rhoJSON = [{
+            secondOperationsJSON = [{
               "type": "delete",
               "length": 2,
               "position": 1
             }],
-            tau = serialiseOperations.fromJSON(tauJSON),
-            rho = serialiseOperations.fromJSON(rhoJSON);
+            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
+            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
 
-      assertOperationsHaveSameEffect(tau, rho);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 
-  describe('for a sequences containing one operation and a sequence containing two operations', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [{
+  describe('for a sequence containing one operation and a sequence containing two operations', function() {
+    it('The intentions are preserved', function() {
+      const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
               "position": 1,
             }],
-            rhoJSON = [{
+            secondOperationsJSON = [{
               "type": "insert",
               "string": "abc",
               "position": 3
@@ -72,16 +72,16 @@ describe('es6/transformOperations', function() {
               "length": 2,
               "position": 1,
             }],
-            tau = serialiseOperations.fromJSON(tauJSON),
-            rho = serialiseOperations.fromJSON(rhoJSON);
+            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
+            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
 
-      assertOperationsHaveSameEffect(tau, rho);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 
   describe('for two sequences each containing two operations', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const tauJSON = [{
+    it('The intentions are preserved', function() {
+      const firstOperationsJSON = [{
               "type": "delete",
               "length": 6,
               "position": 0
@@ -91,7 +91,7 @@ describe('es6/transformOperations', function() {
               "string": "JQ",
               "position": 0
             }],
-            rhoJSON = [{
+            secondOperationsJSON = [{
               "type": "delete",
               "length": 4,
               "position": 0
@@ -101,39 +101,34 @@ describe('es6/transformOperations', function() {
               "string": "bkW",
               "position": 0
             }],
-            tau = serialiseOperations.fromJSON(tauJSON),
-            rho = serialiseOperations.fromJSON(rhoJSON);
+            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
+            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
 
-      assertOperationsHaveSameEffect(tau, rho);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 
-  describe('for a number of operations', function() {
-    it('tau;rho/tau has the same effect as rho;tau/rho', function() {
-      const numberOfOperations = 50,  ///
-            content = helpers.content(),
-            tau = helpers.operations(content, numberOfOperations),
-            rho = helpers.operations(content, numberOfOperations),
-            tauBackslashRho = transformOperations(tau, rho),
-            rhoBackslashTau = transformOperations(rho, tau),
-            firstOperations = tau.concat(rhoBackslashTau),
-            secondOperations = rho.concat(tauBackslashRho),
-            firstResultantContent = transformContent(content, firstOperations),
-            secondResultantContent = transformContent(content, secondOperations);
+  describe('for two sequences each containing a hundred operations', function() {
+    it('The intentions are preserved', function() {
+      const content = helpers.content(100),
+            firstOperations = helpers.operations(content, 100),
+            secondOperations = helpers.operations(content, 100);
 
-      assert.equal(firstResultantContent, secondResultantContent);
+      assertIntentionsPreserved(firstOperations, secondOperations);
     });
   });
 });
 
-function assertOperationsHaveSameEffect(tau, rho) {
-  const transformedTau = transformOperations(tau, rho),
-        transformedRho = transformOperations(rho, tau),
-        firstOperations = tau.concat(transformedRho),
-        secondOperations = rho.concat(transformedTau),
-        content = 'zxcvyoiuq4658aadsf7809hj312wre', ///
-        firstResultantContent = transformContent(content, firstOperations),
-        secondResultantContent = transformContent(content, secondOperations);
+function assertIntentionsPreserved(firstOperations, secondOperations) {
+  const content = helpers.content(100),
+        transformedFirstOperations = transformOperations(firstOperations, secondOperations),
+        transformedSecondOperations = transformOperations(secondOperations, firstOperations);
 
-  assert.equal(firstResultantContent, secondResultantContent);
+  firstOperations = firstOperations.concat(transformedSecondOperations);
+  secondOperations = secondOperations.concat(transformedFirstOperations);
+
+  const firstTransformedContent = transformContent(content, firstOperations),
+        secondTransformedContent = transformContent(content, secondOperations);
+
+  assert.equal(firstTransformedContent, secondTransformedContent);
 }
