@@ -6,12 +6,7 @@ There is a paper describing the algorithm which is (as they say) by no means ina
 
 * [The First Correct Concurrency Control Algorithm](http://djalbat.com/TFCCCA.pdf)
 
-To summarise, the algorithm makes the following contributions:
-
-1. It includes a set of comprehensive stringwise operational transformations,
-2. has a recursive function that composes these transformations and is guaranteed to terminate,
-3. includes a protocol that makes use of this recursive function and
-4. can handle an arbitrary number of users and any amount of latency.
+The example includes a basic implementation of the algorithm.
 
 ## Installation
 
@@ -31,7 +26,7 @@ You will need to do this if you want to look at the example.
 
 ## Example
 
-This encompasses a basic implementation of the algorithm. If you have cloned the repository, the server can be run with the following command:
+This includes a basic implementation of the algorithm. Once you have cloned the repository, the server can be run with the following command:
 
     node ./bin/example.js
 
