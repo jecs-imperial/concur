@@ -6,7 +6,7 @@ There is a paper describing the algorithm which is (as they say) by no means ina
 
 * [The First Correct Concurrency Control Algorithm](http://djalbat.com/TFCCCA.pdf)
 
-The example includes a basic implementation of the algorithm.
+The example includes a basic implementation.
 
 ## Installation
 
@@ -26,11 +26,11 @@ You will need to do this if you want to look at the example.
 
 ## Example
 
-This includes a basic implementation of the algorithm. Once you have cloned the repository, the server can be run with the following command:
+Once you have cloned the repository, the server can be run with the following command:
 
     node ./bin/example.js
 
-Once the server is running, launch a browser and the client will be available at `http://localhost:8888/example.html`.
+When the server is running the client will be available at `http://localhost:8888/example.html`.
 
 ## Usage
 
