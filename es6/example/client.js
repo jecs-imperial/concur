@@ -8,13 +8,12 @@ const UpdateAsynchronousTask = require('./task/asynchronous/update'),
 const { Scheduler } = sufficient;
 
 class Client {
-  constructor(scheduler, userIdentifier) {
+  constructor(scheduler) {
     this.scheduler = scheduler;
-    this.userIdentifier = userIdentifier;
   }
 
-  update(workingContent, editableContent, callback) {
-    const updateAsynchronousTask = new UpdateAsynchronousTask(this.userIdentifier, workingContent, editableContent, callback);
+  update(userIdentifier, workingContent, editableContent, callback) {
+    const updateAsynchronousTask = new UpdateAsynchronousTask(userIdentifier, workingContent, editableContent, callback);
 
     const success = this.scheduler.executeTaskImmediately(updateAsynchronousTask);
 
@@ -22,11 +21,7 @@ class Client {
   }
 
   initialise(callback) {
-    const initialiseAsynchronousTask = new InitialiseAsynchronousTask(function(content, userIdentifier) {
-      this.userIdentifier = userIdentifier;
-
-      callback(content);
-    }.bind(this));
+    const initialiseAsynchronousTask = new InitialiseAsynchronousTask(callback);
 
     this.scheduler.addTaskToQueue(initialiseAsynchronousTask);
   }
@@ -40,6 +35,4 @@ class Client {
   }
 }
 
-const client = Client.fromNothing();
-
-module.exports = client;
+module.exports = Client;

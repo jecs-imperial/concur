@@ -47,7 +47,7 @@ class Document {
   }
 
   static fromEditableContentTextarea(editableContentTextarea) {
-    const editableContent =editableContentTextarea.getEditableContent(),
+    const editableContent = editableContentTextarea.getEditableContent(),
           workingContent = editableContent, ///
           document = new Document(workingContent, editableContentTextarea);
 

@@ -4,13 +4,15 @@ require('juxtapose');
 
 const easy = require('easy');
 
-const client = require('./example/client'),
+const Agent = require('./example/agent'),
       Document = require('./example/document'),
       EditableContentTextarea = require('./example/textarea/editableContent');
 
 const { Body } = easy;
 
-client.initialise(function(content) {
+const agent = Agent.fromNothing();
+
+agent.initialise(function(content) {
   const body = new Body(),
         editableContent = content,  ///
         editableContentTextarea =
@@ -33,7 +35,7 @@ client.initialise(function(content) {
     const workingContent = document.getWorkingContent(),
           editableContent = document.getEditableContent();
 
-    const success = client.update(workingContent, editableContent, pendingOperations => document.update(pendingOperations));
+    const success = agent.update(workingContent, editableContent, pendingOperations => document.update(pendingOperations));
 
     if (success) {
       document.synchroniseWorkingContent();
