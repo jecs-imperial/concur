@@ -5,9 +5,10 @@ const serialiseOperations = require('../../operations/serialise');
 const { toJSON, fromJSON } = serialiseOperations;
 
 class UpdateRequest {
-  constructor(operations, userIdentifier) {
+  constructor(operations, userIdentifier, sessionIdentifier) {
     this.operations = operations;
     this.userIdentifier = userIdentifier;
+    this.sessionIdentifier = sessionIdentifier;
   }
 
   getOperations() {
@@ -18,12 +19,17 @@ class UpdateRequest {
     return this.userIdentifier;
   }
 
+  getSessionIdentifier() {
+  	return this.sessionIdentifier;
+	}
+
   toJSON() {
     const operationsJSON = toJSON(this.operations),
           operations = operationsJSON,  ///
           json = {
             "operations": operations,
-            "userIdentifier": this.userIdentifier
+            "userIdentifier": this.userIdentifier,
+						"sessionIdentifier": this.sessionIdentifier
           };
 
     return json;
@@ -32,15 +38,17 @@ class UpdateRequest {
   static fromJSON(json) {
     const operationsJSON = json["operations"],
           userIdentifierJSON = json["userIdentifier"],
+					sessionIdentifierJSON = json["sessionIdentifier"],
           operations = fromJSON(operationsJSON),
           userIdentifier = userIdentifierJSON,  ///
-          updateRequest = new UpdateRequest(operations, userIdentifier);
+					sessionIdentifier = sessionIdentifierJSON,  ///
+          updateRequest = new UpdateRequest(operations, userIdentifier, sessionIdentifier);
 
     return updateRequest;
   }
 
-  static fromOperationsAndUserIdentifier(operations, userIdentifier) {
-    const updateRequest = new UpdateRequest(operations, userIdentifier);
+  static fromOperationsUserIdentifierAndSessionIdentifier(operations, userIdentifier, sessionIdentifier) {
+    const updateRequest = new UpdateRequest(operations, userIdentifier, sessionIdentifier);
 
     return updateRequest;
   }

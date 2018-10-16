@@ -11,16 +11,16 @@ const { postUpdate } = post,
       { AsynchronousTask } = sufficient;
 
 class UpdateAsynchronousTask extends AsynchronousTask {
-  constructor(userIdentifier, workingContent, editableContent, callback) {
-    super(asynchronousMethod, userIdentifier, workingContent, editableContent, callback)
+  constructor(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
+    super(asynchronousMethod, userIdentifier, sessionIdentifier, workingContent, editableContent, callback)
   }
 }
 
 module.exports = UpdateAsynchronousTask;
 
-function asynchronousMethod(userIdentifier, workingContent, editableContent, callback) {
+function asynchronousMethod(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
   const operations = generateOperations(workingContent, editableContent),
-        updateRequest = UpdateRequest.fromOperationsAndUserIdentifier(operations, userIdentifier),
+        updateRequest = UpdateRequest.fromOperationsUserIdentifierAndSessionIdentifier(operations, userIdentifier, sessionIdentifier),
         json = updateRequest.toJSON();
 
   postUpdate(json, function(json) {

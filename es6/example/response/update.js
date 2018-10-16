@@ -5,9 +5,14 @@ const serialiseOperations = require('../../operations/serialise');
 const { toJSON, fromJSON } = serialiseOperations;
 
 class UpdateResponse {
-  constructor(pendingOperations) {
+  constructor(sessionExpired, pendingOperations) {
+  	this.sessionExpired = sessionExpired;
     this.pendingOperations = pendingOperations;
   }
+
+  getSessionExpired() {
+  	return this.sessionExpired;
+	}
 
   getPendingOperations() {
     return this.pendingOperations;
@@ -17,6 +22,7 @@ class UpdateResponse {
     const pendingOperationsJSON = toJSON(this.pendingOperations),
           pendingOperations = pendingOperationsJSON,  ///
           json = {
+    				"sessionExpired": this.sessionExpired,
             "pendingOperations": pendingOperations
           };
 
@@ -24,15 +30,17 @@ class UpdateResponse {
   }
 
   static fromJSON(json) {
-    const pendingOperationsJSON = json["pendingOperations"],
-          pendingOperations = fromJSON(pendingOperationsJSON),
-          updateResponse = new UpdateResponse(pendingOperations);
+    const sessionExpiredJSON = json["sessionExpired"],
+					pendingOperationsJSON = json["pendingOperations"],
+					sessionExpired = sessionExpiredJSON,	///
+					pendingOperations = fromJSON(pendingOperationsJSON),
+          updateResponse = new UpdateResponse(sessionExpired, pendingOperations);
 
     return updateResponse;
   }
 
-  static fromPendingOperations(pendingOperations) {
-    const updateResponse = new UpdateResponse(pendingOperations);
+  static fromSessionExpiredAndPendingOperations(sessionExpired, pendingOperations) {
+    const updateResponse = new UpdateResponse(sessionExpired, pendingOperations);
 
     return updateResponse;
   }

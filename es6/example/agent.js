@@ -56,7 +56,7 @@ class Agent {
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
 
-    const success = this.client.update(this.userIdentifier, workingContent, editableContent, pendingOperations => this.updateDocument(pendingOperations));
+    const success = this.client.update(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, pendingOperations => this.updateDocument(pendingOperations));
 
     if (success) {
       this.document.synchroniseWorkingContent();

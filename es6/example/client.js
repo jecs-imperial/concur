@@ -12,8 +12,8 @@ class Client {
     this.scheduler = scheduler;
   }
 
-  update(userIdentifier, workingContent, editableContent, callback) {
-    const updateAsynchronousTask = new UpdateAsynchronousTask(userIdentifier, workingContent, editableContent, callback);
+  update(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
+    const updateAsynchronousTask = new UpdateAsynchronousTask(userIdentifier, sessionIdentifier, workingContent, editableContent, callback);
 
     const success = this.scheduler.executeTaskImmediately(updateAsynchronousTask);
 

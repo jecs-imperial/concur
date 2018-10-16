@@ -1,10 +1,8 @@
 'use strict';
 
-const server = require('../server'),
+const session = require('../session'),
       UpdateRequest = require('../../../es6/example/request/update'),
       UpdateResponse = require('../../../es6/example/response/update');
-
-const { update } = server;
 
 class UpdateHandler {
   constructor(updateResponse) {
@@ -17,8 +15,12 @@ class UpdateHandler {
     const updateRequest = UpdateRequest.fromJSON(json),
           operations = updateRequest.getOperations(),
           userIdentifier = updateRequest.getUserIdentifier(),
-          pendingOperations = update(operations, userIdentifier),
-          updateResponse = UpdateResponse.fromPendingOperations(pendingOperations),
+					sessionIdentifier = updateRequest.getSessionIdentifier(),
+					sessionExpired = session.hasExpired(sessionIdentifier),
+					pendingOperations = sessionExpired ?
+																[] :
+																	session.update(operations, userIdentifier),
+          updateResponse = UpdateResponse.fromSessionExpiredAndPendingOperations(sessionExpired, pendingOperations),
           updateHandler = new UpdateHandler(updateResponse);
 
     return updateHandler;

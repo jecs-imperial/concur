@@ -1,9 +1,7 @@
 'use strict';
 
-const server = require('../server'),
+const session = require('../session'),
       InitialiseResponse = require('../../../es6/example/response/initialise');
-
-const { createUser, getContent, getSessionIdentifier } = server;
 
 class InitialiseHandler {
   constructor(initialiseResponse) {
@@ -13,9 +11,9 @@ class InitialiseHandler {
   toJSON() { return this.initialiseResponse.toJSON(); }
 
   static fromJSON(json) {
-    const content = getContent(),
-          userIdentifier = createUser(),
-					sessionIdentifier = getSessionIdentifier(),
+    const content = session.getContent(),
+          userIdentifier = session.createUser(),
+					sessionIdentifier = session.getIdentifier(),
           initialiseResponse = InitialiseResponse.fromContentUserIdentifierAndSessionIdentifier(content, userIdentifier, sessionIdentifier),
           initialiseHandler = new InitialiseHandler(initialiseResponse);
 
