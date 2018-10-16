@@ -31,7 +31,7 @@ You will need to do this if you want to look at the example.
 
 ## Example
 
-This encompasses a basic implementation of the algorithm. If you have cloned the repository, it can be run with the following command:
+This encompasses a basic implementation of the algorithm. If you have cloned the repository, the server can be run with the following command:
 
     node ./bin/example.js
 

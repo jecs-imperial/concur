@@ -1,7 +1,7 @@
 {
   "name": "concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.4"
