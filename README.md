@@ -27,6 +27,23 @@ You can also clone the repository with [Git](https://git-scm.com/)...
 
     npm install
 
+You will need to do this if you want to look at the example.
+
+## Example
+
+This encompasses a basic implementation of the algorithm. If you have cloned the repository, it can be run with the following command:
+
+   node ./bin/example.js
+
+Once the server is running, launch a browser and the client will be available at `http://localhost:8888`.
+
+## Usage
+
+    const concur = require('concur-algorithm'),    ///
+          { generateOperations, transformContent } = concur;
+
+Not all the functionality required to implement the algorithm is exported by the package. If you want to implement the algorithm the only place to start is the example.
+
 ## Compiling from source
 
 Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have a look at the `package.json` file. The pertinent commands are:
