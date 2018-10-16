@@ -1,8 +1,11 @@
 'use strict';
 
-const EmptyOperation = require('../operation/empty'),
+const types = require('../types'),
+      EmptyOperation = require('../operation/empty'),
       DeleteOperation = require('../operation/delete'),
       InsertOperation = require('../operation/insert');
+
+const { emptyType, insertType, deleteType } = types;
 
 function toJSON(operations) {
   return operations.map(function(operation) {
@@ -12,18 +15,27 @@ function toJSON(operations) {
 
 function fromJSON(operationsJSON) {
   const operations = operationsJSON.map(function(operationJSON) {
-          const type = operationJSON.type,
-                json = operationJSON; ///
+    let operation;
 
-          switch (type) {
-            case EmptyOperation.type:
-              return EmptyOperation.fromJSON(json);
-            case DeleteOperation.type:
-              return DeleteOperation.fromJSON(json);
-            case InsertOperation.type:
-              return InsertOperation.fromJSON(json);
-          }
-        });
+    const json = operationJSON, ///
+          type = json["type"];
+
+    switch (type) {
+      case emptyType:
+        operation = EmptyOperation.fromJSON(json);
+        break;
+
+      case deleteType:
+        operation = DeleteOperation.fromJSON(json);
+        break;
+
+      case insertType:
+        operation = InsertOperation.fromJSON(json);
+        break;
+    }
+
+    return operation;
+  });
 
   return operations;
 }

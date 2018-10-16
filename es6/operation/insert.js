@@ -1,8 +1,9 @@
 'use strict';
 
-const DeleteOperation = require('./delete');
+const types = require('../types'),
+      DeleteOperation = require('./delete');
 
-const type = 'insert';
+const { insertType } = types;
 
 class InsertOperation {
   constructor(type, string, position) {
@@ -31,25 +32,25 @@ class InsertOperation {
         return (function(tau, rho) {
 
           if (tau.position < rho.position) {
-            return ([tau.clone()]);
+            return [tau.clone()];
           }
 
           if (tau.position === rho.position) {
             if (tau.string === rho.string) {
-              return ([tau.clone()]);
+              return [tau.clone()];
             }
             if (tau.string !== rho.string) {
               if (rho.string.localeCompare(tau.string) < 0) {
-                return ([rho.shift(tau)]);
+                return [rho.shift(tau)];
               }
               else {
-                return ([tau.clone()]);
+                return [tau.clone()];
               }
             }
           }
 
           if (tau.position > rho.position) {
-            return ([rho.shift(tau)]);
+            return [rho.shift(tau)];
           }
 
         })(operation, this);
@@ -58,15 +59,15 @@ class InsertOperation {
         return (function(tau, rho) {
 
           if (tau.position + tau.length <= rho.position) {
-            return ([tau.clone()]);
+            return [tau.clone()];
           }
 
           if (tau.position < rho.position) {
-            return ([rho.left(tau), rho.left(tau).shift(rho.shift(rho.right(tau)))]);
+            return [rho.left(tau), rho.left(tau).shift(rho.shift(rho.right(tau)))];
           }
 
           if (tau.position >= rho.position) {
-            return ([rho.shift(tau)]);
+            return [rho.shift(tau)];
           }
 
         })(operation, this);
@@ -85,6 +86,8 @@ class InsertOperation {
   }
 
   transformSelection(selection) {
+    let transformedSelection;
+
     const startPosition = this.position, ///
           length = this.string.length,
           selectionStartPosition = selection.getStartPosition(),
@@ -93,35 +96,39 @@ class InsertOperation {
           endOffset = offset;
 
     if (selectionStartPosition >= startPosition) {
-      return selection.shifted(offset);
+      transformedSelection = selection.shifted(offset);
     }
 
     if (selectionEndPosition > startPosition) {
-      return selection.endPositionShifted(endOffset);
+      transformedSelection = selection.endPositionShifted(endOffset);
     }
 
-    return selection.clone();
+    return transformedSelection;
   }
 
   shifted(offset) {
     const string = this.string,
-          position = this.position + offset;
+          position = this.position + offset,
+          insertOperation = InsertOperation.fromStringAndPosition(string, position);
 
-    return InsertOperation.fromStringAndPosition(string, position);
+    return insertOperation;
   }
 
   shift(operation) {
     const length = this.string.length,
-				  offset = length;  ///
+				  offset = length,  ///
+          shiftedOperation = operation.shifted(offset);
 
-    return operation.shifted(offset);
+    return shiftedOperation;
   }
 
   left(deleteOperation) {
     const position = deleteOperation.position,
           length = this.position - position;
 
-    return DeleteOperation.fromLengthAndPosition(length, position);
+    deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
+
+    return deleteOperation;
   }
 
   right(deleteOperation) {
@@ -131,24 +138,26 @@ class InsertOperation {
     length = length - this.position + position;
     position = this.position;
 
-    return DeleteOperation.fromLengthAndPosition(length, position);
+    deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
+
+    return deleteOperation;
   }
 
   static fromStringAndPosition(string, position) {
-    return new InsertOperation(type, string, position);
+    const type = insertType,  ///
+          insertOperation = new InsertOperation(type, string, position);
+
+    return insertOperation;
   }
 
   static fromJSON(json) {
     const type = json["type"],
           string = json["string"],
-          position = json["position"];
+          position = json["position"],
+          insertOperation = new InsertOperation(type, string, position);
 
-    return new InsertOperation(type, string, position);
+    return insertOperation;
   }
 }
-
-Object.assign(InsertOperation, {
-  type
-});
 
 module.exports = InsertOperation;

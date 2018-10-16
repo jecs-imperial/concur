@@ -1,8 +1,8 @@
 'use strict';
 
+const types = require('../types');
 
-
-const type = 'empty';
+const { emptyType } = types;
 
 class EmptyOperation {
   constructor(type) {
@@ -27,7 +27,9 @@ class EmptyOperation {
 
   transformOperation(operation) {
     return (function(tau, rho) {
+
       return [tau.clone()];
+
     })(operation, this);
   }
 
@@ -36,15 +38,18 @@ class EmptyOperation {
   }
 
   transformSelection(selection) {
-    return selection.clone();
+    const transformedSelection = selection.clone();
+
+    return transformedSelection;
   }
 
 
 
   shift(operation) {
-  	const offset = 0;
+  	const offset = 0,
+          shiftedOperation = operation.shifted(offset);
 
-    return (operation.shifted(offset));
+  	return shiftedOperation;
   }
 
 
@@ -52,19 +57,19 @@ class EmptyOperation {
 
 
   static fromNothing() {
-    return new EmptyOperation(type);
+    const type = emptyType, ///
+            emptyOperation = new EmptyOperation(type);
+
+    return emptyOperation;
   }
 
   static fromJSON(json) {
-    const type = json["type"];
+    const type = json["type"],
+          emptyOperation = new EmptyOperation(type);
 
-    return new EmptyOperation(type);
+    return emptyOperation;
   }
 }
-
-Object.assign(EmptyOperation, {
-  type
-});
 
 module.exports = EmptyOperation;
 

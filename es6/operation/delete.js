@@ -1,8 +1,9 @@
 'use strict';
 
-const EmptyOperation = require('./empty');
+const types = require('../types'),
+      EmptyOperation = require('./empty');
 
-const type = 'delete';
+const { deleteType } = types;
 
 class DeleteOperation {
   constructor(type, length, position) {
@@ -31,15 +32,15 @@ class DeleteOperation {
         return (function(tau, rho) {
 
           if (tau.position <= rho.position) {
-            return ([tau.clone()]);
+            return [tau.clone()];
           }
 
           if (tau.position > rho.position) {
             if (tau.position < rho.length + rho.position) {
-              return ([tau.left(rho).shift(tau)]);
+              return [tau.left(rho).shift(tau)];
             }
             if (tau.position >= rho.length + rho.position) {
-              return ([rho.shift(tau)]);
+              return [rho.shift(tau)];
             }
           }
 
@@ -50,35 +51,35 @@ class DeleteOperation {
 
           if (tau.position < rho.position) {
             if (tau.length + tau.position <= rho.position) {
-              return ([tau.clone()]);
+              return [tau.clone()];
             }
             if (tau.length + tau.position <= rho.length + rho.position) {
-              return ([rho.takenFrom(tau)]);
+              return [rho.takenFrom(tau)];
             }
             if (tau.length + tau.position > rho.length + rho.position) {
-              return ([rho.split(tau)]);
+              return [rho.split(tau)];
             }
           }
 
           if (tau.position === rho.position) {
             if (tau.length + tau.position <= rho.length + rho.position) {
-              return ([EmptyOperation.fromNothing()]);
+              return [EmptyOperation.fromNothing()];
             }
             if (tau.length + tau.position > rho.length + rho.position) {
-              return ([rho.shift(rho.takenFrom(tau))]);
+              return [rho.shift(rho.takenFrom(tau))];
             }
           }
 
           if (tau.position >= rho.length + rho.position) {
-            return ([rho.shift(tau)]);
+            return [rho.shift(tau)];
           }
 
           if (tau.position > rho.position) {
             if (tau.length + tau.position <= rho.length + rho.position) {
-              return ([EmptyOperation.fromNothing()]);
+              return [EmptyOperation.fromNothing()];
             }
             if (tau.length + tau.position > rho.length + rho.position) {
-              return ([rho.shift(rho.takenFrom(tau))]);
+              return [rho.shift(rho.takenFrom(tau))];
             }
           }
 
@@ -98,6 +99,8 @@ class DeleteOperation {
   }
 
   transformSelection(selection) {
+    let transformedSelection;
+
     const length = this.length,  ///
           startPosition = this.position, ///
           endPosition = startPosition + length,
@@ -110,7 +113,7 @@ class DeleteOperation {
     if (selectionStartPosition >= endPosition) {
       offset = -length;
 
-      return selection.shifted(offset);
+      transformedSelection = selection.shifted(offset);
     }
 
     if (selectionStartPosition >= startPosition) {
@@ -118,40 +121,42 @@ class DeleteOperation {
         offset = startPosition - selectionStartPosition;
         endOffset = selectionStartPosition - endPosition;
 
-        return selection.shifted(offset).endPositionShifted(endOffset);
+        transformedSelection = selection.shifted(offset).endPositionShifted(endOffset);
       } else {
         const Selection = selection.constructor;  ///
 
-        return new Selection(startPosition, startPosition);
+        transformedSelection = new Selection(startPosition, startPosition);
       }
     }
 
     if (selectionEndPosition > endPosition) {
       endOffset = -length;
 
-      return selection.endPositionShifted(endOffset);
+      transformedSelection = selection.endPositionShifted(endOffset);
     }
 
     if (selectionEndPosition > startPosition) {
       endOffset = startPosition - selectionEndPosition;
 
-      return selection.endPositionShifted(endOffset);
+      transformedSelection = selection.endPositionShifted(endOffset);
     }
 
-    return selection.clone();
+    return transformedSelection;
   }
 
   shifted(offset) {
     const length = this.length,
-          position = this.position + offset;
+          position = this.position + offset,
+          deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
 
-    return DeleteOperation.fromLengthAndPosition(length, position);
+    return deleteOperation;
   }
 
   shift(operation) {
-    const offset = -this.length;
+    const offset = -this.length,
+          shiftedOperation = operation.shifted(offset);
 
-    return (operation.shifted(offset));
+    return shiftedOperation
   }
 
   takenFrom(deleteOperation) {
@@ -161,15 +166,17 @@ class DeleteOperation {
     if (this.position > position && this.length + this.position >= length + position) {
       length = this.position - position;
 
-      return DeleteOperation.fromLengthAndPosition(length, position);
+      deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
     }
 
     if (this.position <= position && this.length + this.position < length + position) {
       length = length + position - this.position - this.length;
       position = this.length + this.position;
 
-      return DeleteOperation.fromLengthAndPosition(length, position);
+      deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
     }
+
+    return deleteOperation;
   }
 
   split(deleteOperation) {
@@ -178,24 +185,26 @@ class DeleteOperation {
 
     length = length - this.length;
 
-    return DeleteOperation.fromLengthAndPosition(length, position);
+    deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
+
+    return deleteOperation;
   }
 
   static fromLengthAndPosition(length, position) {
-    return new DeleteOperation(type, length, position);
+    const type = deleteType, ///
+          deleteOperation = new DeleteOperation(type, length, position);
+
+    return deleteOperation;
   }
 
   static fromJSON(json) {
     const type = json["type"],
           length = json["length"],
-          position = json["position"];
+          position = json["position"],
+          deleteOperation = new DeleteOperation(type, length, position);
 
-    return new DeleteOperation(type, length, position);
+    return deleteOperation;
   }
 }
-
-Object.assign(DeleteOperation, {
-  type
-});
 
 module.exports = DeleteOperation;
