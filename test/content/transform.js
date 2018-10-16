@@ -46,13 +46,13 @@ describe('es6/transformContent', function() {
     assert.equal(transformedContent, expectedContent);
   });
 
-  it('results in a second content being returned if the operations generated from the first and second contents are applied to the first content', function() {
-    const content = 'xyccde',
-          previousContent = 'asdf',
-          operations = generateOperations(content, previousContent),
-          transformedPreviousContent = transformContent(previousContent, operations),
-          expectedContent = content;  ///
+  it('results in a editable content being returned if the operations generated from the working and editable contents are applied to the working content', function() {
+    const editableContent = 'xyccde',
+          workingContent = 'asdf',
+          operations = generateOperations(workingContent, editableContent),
+          transformedWorkingContent = transformContent(workingContent, operations),
+          expectedContent = editableContent;  ///
 
-    assert.equal(transformedPreviousContent, expectedContent);
+    assert.equal(transformedWorkingContent, expectedContent);
   });
 });

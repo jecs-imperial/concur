@@ -11,15 +11,15 @@ const { postUpdate } = post,
       { AsynchronousTask } = sufficient;
 
 class UpdateAsynchronousTask extends AsynchronousTask {
-  constructor(userIdentifier, content, previousContent, callback) {
-    super(asynchronousMethod, userIdentifier, content, previousContent, callback)
+  constructor(userIdentifier, workingContent, editableContent, callback) {
+    super(asynchronousMethod, userIdentifier, workingContent, editableContent, callback)
   }
 }
 
 module.exports = UpdateAsynchronousTask;
 
-function asynchronousMethod(userIdentifier, content, previousContent, callback) {
-  const operations = generateOperations(content, previousContent),
+function asynchronousMethod(userIdentifier, workingContent, editableContent, callback) {
+  const operations = generateOperations(workingContent, editableContent),
         updateRequest = UpdateRequest.fromOperationsAndUserIdentifier(operations, userIdentifier),
         json = updateRequest.toJSON();
 

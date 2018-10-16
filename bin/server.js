@@ -8,7 +8,7 @@ const User = require('./user'),
 const { arrayUtilities } = necessary,
       { filter } = arrayUtilities;
 
-let content = '13241234';
+let content = '';
 
 const map = {};
 
@@ -18,7 +18,7 @@ function getContent() {
 
 function createUser() {
   const user = User.fromNothing(),
-      userIdentifier = user.getIdentifier();
+        userIdentifier = user.getIdentifier();
 
   map[userIdentifier] = user;
 

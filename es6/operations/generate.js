@@ -3,17 +3,17 @@
 const InsertOperation = require('../operation/insert'),
       DeleteOperation = require('../operation/delete');
 
-function generateOperations(content, previousContent) {
+function generateOperations(workingContent, editableContent) {
   const operations = [];
   
   let left, right, length, string, position;
 
-  for (left = 0; (left < previousContent.length) && (left < content.length) && (previousContent[left] === content[left]); left++) {}
+  for (left = 0; (left < workingContent.length) && (left < editableContent.length) && (workingContent[left] === editableContent[left]); left++) {}
 
-  for (right = 0; (right < previousContent.length - left) && (right < content.length - left) && (previousContent[previousContent.length - right - 1] === content[content.length - right - 1]); right++) {}
+  for (right = 0; (right < workingContent.length - left) && (right < editableContent.length - left) && (workingContent[workingContent.length - right - 1] === editableContent[editableContent.length - right - 1]); right++) {}
 
-  if (left + right !== previousContent.length) {
-    length = previousContent.length - left - right;  ///
+  if (left + right !== workingContent.length) {
+    length = workingContent.length - left - right;  ///
     position = left; ///
     
     const deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
@@ -21,8 +21,8 @@ function generateOperations(content, previousContent) {
     operations.push(deleteOperation);
   }
 
-  if (left + right !== content.length) {
-    string = content.substring(left, content.length - right);  ///
+  if (left + right !== editableContent.length) {
+    string = editableContent.substring(left, editableContent.length - right);  ///
     position = left; ///
     
     const insertOperation = InsertOperation.fromStringAndPosition(string, position);

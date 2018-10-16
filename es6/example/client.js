@@ -13,8 +13,8 @@ class Client {
     this.userIdentifier = userIdentifier;
   }
 
-  update(content, previousContent, callback) {
-    const updateAsynchronousTask = new UpdateAsynchronousTask(this.userIdentifier, content, previousContent, callback);
+  update(workingContent, editableContent, callback) {
+    const updateAsynchronousTask = new UpdateAsynchronousTask(this.userIdentifier, workingContent, editableContent, callback);
 
     const success = this.scheduler.executeTaskImmediately(updateAsynchronousTask);
 

@@ -10,18 +10,18 @@ const { assert } = chai,
       { first, second } = arrayUtilities;
 
 describe('es6/generateOperations', function() {
-  it('generates a zero length sequence of operations if previous content and content are the same', function() {
-    const content = 'asdf',
-          previousContent = content,  ///
-          operations = generateOperations(content, previousContent);
+  it('generates a zero length sequence of operations if the working and editable content are the same', function() {
+    const workingContent = 'asdf',  ///
+          editableContent = workingContent,
+          operations = generateOperations(workingContent, editableContent);
 
     assert.lengthOf(operations, 0);
   });
 
-  it('generates sequence containing one insert operation if the previous content is a subset of the content', function() {
-    const content = 'asdfxyz',
-          previousContent = 'asdf',
-          operations = generateOperations(content, previousContent);
+  it('generates sequence containing one insert operation if the the working content is a subset of the editable content', function() {
+    const workingContent = 'asdf',
+          editableContent = 'asdfxyz',
+          operations = generateOperations(workingContent, editableContent);
 
     assert.lengthOf(operations, 1);
 
@@ -37,10 +37,10 @@ describe('es6/generateOperations', function() {
     assert.deepEqual(operationJSON, expectedOperationJSON);
   });
 
-  it('generates sequence containing one delete operation if the content is a subset of the previous content', function() {
-    const content = 'asdf',
-          previousContent = 'asdfxyz',
-          operations = generateOperations(content, previousContent);
+  it('generates sequence containing one delete operation if the editable content is a subset of the the working content', function() {
+    const workingContent = 'asdfxyz',
+          editableContent = 'asdf',
+          operations = generateOperations(workingContent, editableContent);
 
     assert.lengthOf(operations, 1);
 
@@ -56,10 +56,10 @@ describe('es6/generateOperations', function() {
     assert.deepEqual(operationJSON, expectedOperationJSON);
   });
 
-  it('generates sequence containing one delete operation followed by an insert operation if the previous content and content are different', function() {
-    const content = 'asdfcde',
-          previousContent = 'asdfxyz',
-          operations = generateOperations(content, previousContent);
+  it('generates sequence containing one delete operation followed by an insert operation if the the working and editable content are different', function() {
+    const workingContent = 'asdfxyz',
+          editableContent = 'asdfcde',
+          operations = generateOperations(workingContent, editableContent);
 
     assert.lengthOf(operations, 2);
 
