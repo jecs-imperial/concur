@@ -3,7 +3,7 @@
 const server = require('../server'),
       InitialiseResponse = require('../../../es6/example/response/initialise');
 
-const { getContent, createUser } = server;
+const { createUser, getContent, getSessionIdentifier } = server;
 
 class InitialiseHandler {
   constructor(initialiseResponse) {
@@ -15,7 +15,8 @@ class InitialiseHandler {
   static fromJSON(json) {
     const content = getContent(),
           userIdentifier = createUser(),
-          initialiseResponse = InitialiseResponse.fromContentAndUserIdentifier(content, userIdentifier),
+					sessionIdentifier = getSessionIdentifier(),
+          initialiseResponse = InitialiseResponse.fromContentUserIdentifierAndSessionIdentifier(content, userIdentifier, sessionIdentifier),
           initialiseHandler = new InitialiseHandler(initialiseResponse);
 
     return initialiseHandler;

@@ -28,8 +28,7 @@ class Client {
 
   static fromNothing() {
     const scheduler = Scheduler.fromNothing(),
-          userIdentifier = null,  ///
-          client = new Client(scheduler, userIdentifier);
+          client = new Client(scheduler);
 
     return client;
   }

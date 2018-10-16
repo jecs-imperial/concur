@@ -24,8 +24,9 @@ function asynchronousMethod(callback) {
   postInitialise(json, function(json) {
     const initialiseResponse = InitialiseResponse.fromJSON(json),
           content = initialiseResponse.getContent(),
-          userIdentifier = initialiseResponse.getUserIdentifier();
+          userIdentifier = initialiseResponse.getUserIdentifier(),
+					sessionIdentifier = initialiseResponse.getSessionIdentifier();
 
-    callback(content, userIdentifier);
+    callback(content, userIdentifier, sessionIdentifier);
   });
 }

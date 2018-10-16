@@ -6,16 +6,18 @@ const Client = require('./client'),
 const { UPDATE_DELAY } = constants;
 
 class Agent {
-  constructor(client, timeout, document, userIdentifier) {
+  constructor(client, timeout, document, userIdentifier, sessionIdentifier) {
     this.client = client;
     this.timeout = timeout;
     this.document = document;
     this.userIdentifier = userIdentifier;
+    this.sessionIdentifier = sessionIdentifier;
   }
 
   initialise(callback) {
-    this.client.initialise(function(content, userIdentifier) {
+    this.client.initialise(function(content, userIdentifier, sessionIdentifier) {
       this.userIdentifier = userIdentifier;
+      this.sessionIdentifier = sessionIdentifier;
 
       callback(content);
     }.bind(this));
@@ -66,7 +68,8 @@ class Agent {
           timeout = null, ///
           document = null,  ///
           userIdentifier = null,  ///
-          agent = new Agent(client, timeout, document, userIdentifier);
+					sessionIdentifier = null,	///
+          agent = new Agent(client, timeout, document, userIdentifier, sessionIdentifier);
 
     return agent;
   }

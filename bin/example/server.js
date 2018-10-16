@@ -10,10 +10,16 @@ const { arrayUtilities } = necessary,
 
 let content = '';
 
+const sessionIdentifier = '1234';
+
 const map = {};
 
 function getContent() {
   return content;
+}
+
+function getSessionIdentifier() {
+	return sessionIdentifier;
 }
 
 function createUser() {
@@ -45,6 +51,7 @@ function update(operations, userIdentifier) {
 }
 
 module.exports = {
+	getSessionIdentifier,
   getContent,
   createUser,
   update

@@ -30,7 +30,7 @@ This includes a basic implementation of the algorithm. Once you have cloned the 
 
     node ./bin/example.js
 
-Once the server is running, launch a browser and the client will be available at `http://localhost:8888`.
+Once the server is running, launch a browser and the client will be available at `http://localhost:8888/example.html`.
 
 ## Usage
 

@@ -1,9 +1,10 @@
 'use strict';
 
 class InitialiseResponse {
-  constructor(content, userIdentifier) {
+  constructor(content, userIdentifier, sessionIdentifier) {
     this.content = content;
     this.userIdentifier = userIdentifier;
+    this.sessionIdentifier = sessionIdentifier;
   }
 
   getContent() {
@@ -14,10 +15,15 @@ class InitialiseResponse {
     return this.userIdentifier;
   }
 
+  getSessionIdentifier() {
+  	return this.sessionIdentifier;
+	}
+
   toJSON() {
     const json = {
       "content": this.content,
-      "userIdentifier": this.userIdentifier
+      "userIdentifier": this.userIdentifier,
+			"sessionIdentifier": this.sessionIdentifier
     };
 
     return json;
@@ -26,15 +32,17 @@ class InitialiseResponse {
   static fromJSON(json) {
     const contentJSON = json["content"],
           userIdentifierJSON = json["userIdentifier"],
+					sessionIdentifierJSON = json["sessionIdentifier"],
           content = contentJSON,  ///
           userIdentifier = userIdentifierJSON,  ///
-          initialiseResponse = new InitialiseResponse(content, userIdentifier);
+					sessionIdentifier = sessionIdentifierJSON,  ///
+          initialiseResponse = new InitialiseResponse(content, userIdentifier, sessionIdentifier);
 
     return initialiseResponse;
   }
 
-  static fromContentAndUserIdentifier(content, userIdentifier) {
-    const initialiseResponse = new InitialiseResponse(content, userIdentifier);
+  static fromContentUserIdentifierAndSessionIdentifier(content, userIdentifier, sessionIdentifier) {
+    const initialiseResponse = new InitialiseResponse(content, userIdentifier, sessionIdentifier);
 
     return initialiseResponse;
   }
