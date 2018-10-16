@@ -17,10 +17,19 @@ agent.initialise(function(content) {
         editableContent = content,  ///
         editableContentTextarea =
 
-          <EditableContentTextarea onKeyUp={keyUpHandler}>{editableContent}</EditableContentTextarea>
+          <EditableContentTextarea onKeyUp={() => {
+
+                                     agent.update();
+
+                                   }}
+          >
+            {editableContent}
+          </EditableContentTextarea>
 
         ,
         document = Document.fromEditableContentTextarea(editableContentTextarea);
+
+  agent.setDocument(document);
 
   body.append(
 
@@ -31,14 +40,5 @@ agent.initialise(function(content) {
 
   );
 
-  function keyUpHandler() {
-    const workingContent = document.getWorkingContent(),
-          editableContent = document.getEditableContent();
-
-    const success = agent.update(workingContent, editableContent, pendingOperations => document.update(pendingOperations));
-
-    if (success) {
-      document.synchroniseWorkingContent();
-    }
-  }
+  agent.startUpdates();
 });

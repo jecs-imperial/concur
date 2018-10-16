@@ -31,6 +31,10 @@ class Document {
     this.setEditableContent(editableContent);
 
     this.workingContent = transformedWorkingContent; ///
+
+    const upToDate = (editableContent === this.workingContent);
+
+    return upToDate
   }
 
   generateOperations() {
