@@ -33,7 +33,7 @@ You will need to do this if you want to look at the example.
 
 This encompasses a basic implementation of the algorithm. If you have cloned the repository, it can be run with the following command:
 
-   node ./bin/example.js
+    node ./bin/example.js
 
 Once the server is running, launch a browser and the client will be available at `http://localhost:8888`.
 
