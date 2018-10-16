@@ -6,18 +6,15 @@ const EmptyOperation = require('../es6/operation/empty'),
       InsertOperation = require('../es6/operation/insert'),
       DeleteOperation = require('../es6/operation/delete');
 
-const DEFAULT_CONTENT = '',
+const DEFAULT_CONTENT_LENGTH = 4,
       DEFAULT_NUMBER_OF_OPERATIONS = 2,
       MAXIMUM_INSERT_OPERATION_LENGTH = 4;
 
 const random = randomSeed.create('.');
 
-function content(content = DEFAULT_CONTENT, numberOfOperations = DEFAULT_NUMBER_OF_OPERATIONS) {
-  for (let i = 0; i < numberOfOperations; i++) {
-    const operation = generateOperation(content);
-
-    content = operation.transformContent(content);
-  }
+function content(length = DEFAULT_CONTENT_LENGTH) {
+  const string = generateString(length),
+        content = string; ///
 
   return content;
 }
