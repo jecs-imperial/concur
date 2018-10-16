@@ -56,7 +56,11 @@ class Agent {
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
 
-    const success = this.client.update(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, pendingOperations => this.updateDocument(pendingOperations));
+    const success = this.client.update(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, (sessionExpired, pendingOperations) => {
+    	sessionExpired ?
+				alert('The session has expired. Please refresh!') :
+					this.updateDocument(pendingOperations);
+		});
 
     if (success) {
       this.document.synchroniseWorkingContent();

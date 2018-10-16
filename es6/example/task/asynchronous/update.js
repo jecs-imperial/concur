@@ -25,8 +25,9 @@ function asynchronousMethod(userIdentifier, sessionIdentifier, workingContent, e
 
   postUpdate(json, function(json) {
     const updateResponse = UpdateResponse.fromJSON(json),
+					sessionExpired = updateResponse.getSessionExpired(),
           pendingOperations = updateResponse.getPendingOperations();
 
-    callback(pendingOperations);
+    callback(sessionExpired, pendingOperations);
   });
 }
