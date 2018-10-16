@@ -44,18 +44,18 @@ Once the server is running, launch a browser and the client will be available at
 
 Not all the functionality required to implement the algorithm is exported by the package. If you want to implement the algorithm fully, the only place to start is the example.
 
+## Running the tests
+
+This can be done from the root of the repository:
+
+    ./node_modules/.bin/mocha --recursive -R spec ./test
+
 ## Compiling from source
 
 Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have a look at the `package.json` file. The pertinent commands are:
 
     npm run build-debug
     npm run watch-debug
-
-## Running the tests
-
-This can be done from the root of the repository:
-
-    ./node_modules/.bin/mocha --recursive -R spec ./test
 
 ## Contact
 
