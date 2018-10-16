@@ -3,7 +3,7 @@
 const necessary = require('necessary');
 
 const User = require('./user'),
-      transformContent = require('../es6/content/transform')
+      transformContent = require('../../es6/content/transform');
 
 const { arrayUtilities } = necessary,
       { filter } = arrayUtilities;

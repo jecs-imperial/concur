@@ -1,7 +1,7 @@
 'use strict';
 
 const server = require('../server'),
-      InitialiseResponse = require('../../es6/example/response/initialise');
+      InitialiseResponse = require('../../../es6/example/response/initialise');
 
 const { getContent, createUser } = server;
 

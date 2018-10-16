@@ -3,7 +3,7 @@
 const express = require('express'),
       necessary = require('necessary');
 
-const restfulRouter = require('./router/restful');
+const restfulRouter = require('./example/router/restful');
 
 const { miscellaneousUtilities } = necessary,
       { rc, onETX } = miscellaneousUtilities,
