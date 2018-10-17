@@ -3,7 +3,7 @@
 const session = require('../session'),
       InitialiseResponse = require('../../../es6/example/response/initialise');
 
-class InitialiseHandler {
+class InitialiseTransaction {
   constructor(initialiseResponse) {
     this.initialiseResponse = initialiseResponse;
   }
@@ -15,10 +15,10 @@ class InitialiseHandler {
           userIdentifier = session.createUser(),
 					sessionIdentifier = session.getIdentifier(),
           initialiseResponse = InitialiseResponse.fromContentUserIdentifierAndSessionIdentifier(content, userIdentifier, sessionIdentifier),
-          initialiseHandler = new InitialiseHandler(initialiseResponse);
+          initialiseTransaction = new InitialiseTransaction(initialiseResponse);
 
-    return initialiseHandler;
+    return initialiseTransaction;
   }
 }
 
-module.exports = InitialiseHandler;
+module.exports = InitialiseTransaction;

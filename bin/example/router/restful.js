@@ -4,19 +4,19 @@ const express = require('express'),
       bodyParser = require('body-parser');
 
 const uris = require('../../../es6/example/uris'), ///
-      UpdateHandler = require('../handler/update'),
-      InitialiseHandler = require('../handler/initialise');
+      UpdateTransaction = require('../transaction/update'),
+      InitialiseTransaction = require('../transaction/initialise');
 
 const { UPDATE_URI, INITIALISE_URI } = uris;
 
-const handle = Handler => function(request, response, next) {
+const handler = Transaction => function(request, response, next) {
   const { body } = request;
 
   let json = body;  ///
 
-  const handler = Handler.fromJSON(json);
+  const transaction = Transaction.fromJSON(json);
 
-  json = handler.toJSON();
+  json = transaction.toJSON();
 
   const statusCode = 200,
         headers = { 'Content-Type': 'application/json; charset=utf-8' },
@@ -34,8 +34,8 @@ const restfulRouter = express.Router(),
 
 restfulRouter.use(jsonBodyParser);
 
-restfulRouter.post(UPDATE_URI, handle(UpdateHandler));
+restfulRouter.post(UPDATE_URI, handler(UpdateTransaction));
 
-restfulRouter.post(INITIALISE_URI, handle(InitialiseHandler));
+restfulRouter.post(INITIALISE_URI, handler(InitialiseTransaction));
 
 module.exports = restfulRouter;

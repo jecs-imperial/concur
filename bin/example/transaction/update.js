@@ -4,7 +4,7 @@ const session = require('../session'),
       UpdateRequest = require('../../../es6/example/request/update'),
       UpdateResponse = require('../../../es6/example/response/update');
 
-class UpdateHandler {
+class UpdateTransaction {
   constructor(updateResponse) {
     this.updateResponse = updateResponse;
   }
@@ -21,10 +21,10 @@ class UpdateHandler {
 																[] :
 																	session.update(operations, userIdentifier),
           updateResponse = UpdateResponse.fromSessionExpiredAndPendingOperations(sessionExpired, pendingOperations),
-          updateHandler = new UpdateHandler(updateResponse);
+          updateTransaction = new UpdateTransaction(updateResponse);
 
-    return updateHandler;
+    return updateTransaction;
   }
 }
 
-module.exports = UpdateHandler;
+module.exports = UpdateTransaction;
