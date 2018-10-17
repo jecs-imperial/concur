@@ -30,9 +30,7 @@ Once you have cloned the repository, the server can be run with the following co
 
     node ./bin/example.js
 
-When the server is running the client will be available at `http://localhost:8888/example.html`.
-
-To try out the algorithm you might want to open several browser tabs or windows. You can also increase the latency in most browser's developer tools.
+When the server is running the client will be available at `http://localhost:8888/example.html`. To try out the algorithm you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
 ## Usage
 
