@@ -110,13 +110,13 @@ class DeleteOperation {
     let offset,
         endOffset;
 
-    if (selectionStartPosition >= endPosition) {
+    if (false) {
+
+    } else if (selectionStartPosition >= endPosition) {
       offset = -length;
 
       transformedSelection = selection.shifted(offset);
-    }
-
-    if (selectionStartPosition >= startPosition) {
+    } else if (selectionStartPosition >= startPosition) {
       if (selectionEndPosition > endPosition) {
         offset = startPosition - selectionStartPosition;
         endOffset = selectionStartPosition - endPosition;
@@ -127,15 +127,11 @@ class DeleteOperation {
 
         transformedSelection = new Selection(startPosition, startPosition);
       }
-    }
-
-    if (selectionEndPosition > endPosition) {
+    } else if (selectionEndPosition > endPosition) {
       endOffset = -length;
 
       transformedSelection = selection.endPositionShifted(endOffset);
-    }
-
-    if (selectionEndPosition > startPosition) {
+    } else if (selectionEndPosition > startPosition) {
       endOffset = startPosition - selectionEndPosition;
 
       transformedSelection = selection.endPositionShifted(endOffset);
