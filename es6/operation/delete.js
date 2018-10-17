@@ -1,7 +1,7 @@
 'use strict';
 
 const types = require('../types'),
-      EmptyOperation = require('./empty');
+      EmptyOperation = require('../operation/empty');
 
 const { deleteType } = types;
 

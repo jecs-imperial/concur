@@ -1,7 +1,8 @@
 'use strict';
 
 const types = require('../types'),
-      DeleteOperation = require('./delete');
+      stringCompare = require('../stringCompare'),
+      DeleteOperation = require('../operation/delete');
 
 const { insertType } = types;
 
@@ -40,10 +41,9 @@ class InsertOperation {
               return [tau.clone()];
             }
             if (tau.string !== rho.string) {
-              if (rho.string.localeCompare(tau.string) < 0) {
+              if (stringCompare(rho.string, tau.string)) {
                 return [rho.shift(tau)];
-              }
-              else {
+              } else {
                 return [tau.clone()];
               }
             }
