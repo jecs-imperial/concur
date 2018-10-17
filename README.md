@@ -6,8 +6,6 @@ There is a paper describing the algorithm which is (as they say) by no means ina
 
 * [The First Correct Concurrency Control Algorithm](http://djalbat.com/TFCCCA.pdf)
 
-The example includes a basic implementation.
-
 ## Installation
 
 With [npm](https://www.npmjs.com/):
