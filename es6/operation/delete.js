@@ -135,6 +135,8 @@ class DeleteOperation {
       endOffset = startPosition - selectionEndPosition;
 
       transformedSelection = selection.endPositionShifted(endOffset);
+    } else {
+      transformedSelection = selection.clone();
     }
 
     return transformedSelection;
