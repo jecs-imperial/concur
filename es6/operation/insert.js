@@ -92,15 +92,17 @@ class InsertOperation {
           length = this.string.length,
           selectionStartPosition = selection.getStartPosition(),
           selectionEndPosition = selection.getEndPosition(),
-          offset = length,
-          endOffset = offset;
+          offset = length,  ///
+          endOffset = offset; ///
 
-    if (selectionStartPosition >= startPosition) {
+    if (false) {
+
+    } else if (selectionStartPosition >= startPosition) {
       transformedSelection = selection.shifted(offset);
-    }
-
-    if (selectionEndPosition > startPosition) {
+    } else if (selectionEndPosition > startPosition) {
       transformedSelection = selection.endPositionShifted(endOffset);
+    } else {
+      transformedSelection = selection.clone();
     }
 
     return transformedSelection;
