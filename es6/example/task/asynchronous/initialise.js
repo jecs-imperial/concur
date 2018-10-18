@@ -2,11 +2,11 @@
 
 const sufficient = require('sufficient');
 
-const post = require('../../post'),
+const poster = require('../../poster'),
       InitialiseRequest = require('../../request/initialise'),
       InitialiseResponse = require('../../response/initialise');
 
-const { postInitialise } = post,
+const { initialisePost } = poster,
       { AsynchronousTask } = sufficient;
 
 class InitialiseAsynchronousTask extends AsynchronousTask {
@@ -21,7 +21,7 @@ function asynchronousMethod(callback) {
   const initialiseRequest = InitialiseRequest.fromNothing(),
         json = initialiseRequest.toJSON();
 
-  postInitialise(json, function(json) {
+  initialisePost(json, function(json) {
     const initialiseResponse = InitialiseResponse.fromJSON(json),
           content = initialiseResponse.getContent(),
           userIdentifier = initialiseResponse.getUserIdentifier(),
