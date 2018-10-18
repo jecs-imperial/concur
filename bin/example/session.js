@@ -1,6 +1,7 @@
 'use strict';
 
-const necessary = require('necessary');
+const uuidV4 = require('uuid/v4'),  ///
+      necessary = require('necessary');
 
 const User = require('./user'),
       transformContent = require('../../es6/content/transform');
@@ -84,7 +85,7 @@ class Session {
 	static fromNothing() {
 		const map = {},
 					content = '',	///
-					identifier = Math.random(),
+					identifier = uuidV4(),  ///
 					session = new Session(map, content, identifier);
 
 		return session;

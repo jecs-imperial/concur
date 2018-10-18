@@ -1,7 +1,7 @@
 {
   "name": "concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.4"
@@ -19,7 +19,8 @@
     "mocha": "~2.2.5",
     "necessary": "^3.2.2",
     "random-seed": "~0.2.0",
-    "sufficient": "^1.1.12"
+    "sufficient": "^1.1.12",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "clean": "rm -rf ./lib",
