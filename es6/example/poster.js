@@ -5,22 +5,14 @@ const necessary = require('necessary');
 const uris = require('./uris');
 
 const { miscellaneousUtilities } = necessary,
-      { post: poster } = miscellaneousUtilities,
+      { post } = miscellaneousUtilities,
       { UPDATE_URI, INITIALISE_URI } = uris;
 
 const host = '';  ///
 
-function updatePost(json, callback) {
-  const uri = UPDATE_URI;
+function updatePost(json, callback) { post(host, UPDATE_URI, json, callback); }
 
-  poster(host, uri, json, callback);
-}
-
-function initialisePost(json, callback) {
-  const uri = INITIALISE_URI;
-
-  poster(host, uri, json, callback);
-}
+function initialisePost(json, callback) { post(host, INITIALISE_URI, json, callback); }
 
 module.exports = {
   updatePost,
