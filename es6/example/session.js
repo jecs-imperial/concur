@@ -63,24 +63,32 @@ class Session {
 		return userIdentifier;
 	}
 
-	update(operations, userIdentifier) {
-		const user = this.getUser(userIdentifier),
-					otherUsers = this.getOtherUsers(userIdentifier),
-					transformedOperations = user.transformOperations(operations),
-					transformedPendingOperations = user.transformedPendingOperations(operations);
-
-		otherUsers.forEach(function(otherUser) {
-			otherUser.update(transformedOperations);
-		});
-
-		this.content = transformContent(this.content, transformedOperations);
-
-		user.reset();
-
-		const pendingOperations = transformedPendingOperations; ///
+	update(operations, userIdentifier, sessionExpired) {
+	  const pendingOperations = sessionExpired ?
+                                [] :
+                                  this.updateUsers(operations, userIdentifier);
 
 		return pendingOperations;
 	}
+
+	updateUsers(operations, userIdentifier) {
+    const user = this.getUser(userIdentifier),
+          otherUsers = this.getOtherUsers(userIdentifier),
+          transformedOperations = user.transformOperations(operations),
+          transformedPendingOperations = user.transformedPendingOperations(operations);
+
+    otherUsers.forEach(function(otherUser) {
+      otherUser.update(transformedOperations);
+    });
+
+    this.content = transformContent(this.content, transformedOperations);
+
+    user.reset();
+
+    const pendingOperations = transformedPendingOperations; ///
+
+    return pendingOperations;
+  }
 
 	static fromNothing() {
 		const map = {},

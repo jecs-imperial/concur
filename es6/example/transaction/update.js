@@ -17,9 +17,7 @@ class UpdateTransaction {
           userIdentifier = updateRequest.getUserIdentifier(),
 					sessionIdentifier = updateRequest.getSessionIdentifier(),
 					sessionExpired = session.hasExpired(sessionIdentifier),
-					pendingOperations = sessionExpired ?
-																[] :
-																	session.update(operations, userIdentifier),
+					pendingOperations = session.update(operations, userIdentifier, sessionExpired),
           updateResponse = UpdateResponse.fromSessionExpiredAndPendingOperations(sessionExpired, pendingOperations),
           updateTransaction = new UpdateTransaction(updateResponse);
 
