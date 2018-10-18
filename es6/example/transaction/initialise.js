@@ -1,7 +1,7 @@
 'use strict';
 
 const session = require('../session'),
-      InitialiseResponse = require('../../../es6/example/response/initialise');
+      InitialiseResponse = require('../response/initialise');
 
 class InitialiseTransaction {
   constructor(initialiseResponse) {

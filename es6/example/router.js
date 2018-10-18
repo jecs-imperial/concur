@@ -3,9 +3,9 @@
 const express = require('express'),
       bodyParser = require('body-parser');
 
-const uris = require('../../../es6/example/uris'), ///
-      UpdateTransaction = require('../transaction/update'),
-      InitialiseTransaction = require('../transaction/initialise');
+const uris = require('./uris'),
+      UpdateTransaction = require('./transaction/update'),
+      InitialiseTransaction = require('./transaction/initialise');
 
 const { UPDATE_URI, INITIALISE_URI } = uris;
 
@@ -29,13 +29,13 @@ const handler = Transaction => function(request, response, next) {
   response.end();
 };
 
-const restfulRouter = express.Router(),
+const router = express.Router(),
       jsonBodyParser = bodyParser.json();
 
-restfulRouter.use(jsonBodyParser);
+router.use(jsonBodyParser);
 
-restfulRouter.post(UPDATE_URI, handler(UpdateTransaction));
+router.post(UPDATE_URI, handler(UpdateTransaction));
 
-restfulRouter.post(INITIALISE_URI, handler(InitialiseTransaction));
+router.post(INITIALISE_URI, handler(InitialiseTransaction));
 
-module.exports = restfulRouter;
+module.exports = router;

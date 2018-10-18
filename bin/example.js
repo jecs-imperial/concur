@@ -3,7 +3,7 @@
 const express = require('express'),
       necessary = require('necessary');
 
-const restfulRouter = require('./example/router/restful');
+const exampleRouter = require('../es6/example/router');
 
 const { miscellaneousUtilities } = necessary,
       { rc, onETX } = miscellaneousUtilities,
@@ -17,7 +17,7 @@ const server = express(); ///
 
 const staticRouter = express.static(publicDirectoryPath);
 
-server.use(restfulRouter);
+server.use(exampleRouter);
 
 server.use(staticRouter);
 
