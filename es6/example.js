@@ -39,6 +39,4 @@ agent.initialise(function(content) {
     </section>
 
   );
-
-  agent.startUpdates();
 });

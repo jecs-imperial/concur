@@ -19,6 +19,8 @@ class Agent {
       this.userIdentifier = userIdentifier;
       this.sessionIdentifier = sessionIdentifier;
 
+      this.startUpdates();
+
       callback(content);
     }.bind(this));
   }
