@@ -29,6 +29,12 @@ class Agent {
     this.document = document;
   }
 
+  update() {
+    const immediately = true;
+
+    this.scheduleUpdate(immediately);
+  }
+
   startUpdates() {
     const immediately = false;
 
@@ -44,17 +50,10 @@ class Agent {
       clearTimeout(this.timeout);
     }
 
-    this.timeout = setTimeout(() => this.update(), delay);
+    this.timeout = setTimeout(() => this.scheduledUpdate(), delay);
   }
 
-  updateDocument(pendingOperations) {
-    const upToDate = this.document.update(pendingOperations),
-          immediately = !upToDate;
-
-    this.scheduleUpdate(immediately);
-  }
-
-  update() {
+  scheduledUpdate() {
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
 
@@ -71,6 +70,13 @@ class Agent {
     if (success) {
       this.document.synchroniseWorkingContent();
     }
+  }
+
+  updateDocument(pendingOperations) {
+    const upToDate = this.document.update(pendingOperations),
+          immediately = !upToDate;
+
+    this.scheduleUpdate(immediately);
   }
 
   static fromNothing() {
