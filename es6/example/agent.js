@@ -15,14 +15,14 @@ class Agent {
   }
 
   initialise(callback) {
-    this.client.initialise(function(content, userIdentifier, sessionIdentifier) {
+    this.client.initialise((content, userIdentifier, sessionIdentifier) => {
       this.userIdentifier = userIdentifier;
       this.sessionIdentifier = sessionIdentifier;
 
       this.startUpdates();
 
       callback(content);
-    }.bind(this));
+    });
   }
 
   setDocument(document) {
@@ -32,51 +32,49 @@ class Agent {
   update() {
     const immediately = true;
 
-    this.scheduleUpdate(immediately);
+    this.deferUpdate(immediately);
   }
 
   startUpdates() {
     const immediately = false;
 
-    this.scheduleUpdate(immediately);
+    this.deferUpdate(immediately);
   }
 
-  scheduleUpdate(immediately) {
+  deferUpdate(immediately) {
     const delay = immediately ?
                     0 : ///
                       UPDATE_DELAY;
 
-    if (this.timeout !== null) {
-      clearTimeout(this.timeout);
-    }
+    cancel(this.timeout);
 
-    this.timeout = setTimeout(() => this.scheduledUpdate(), delay);
+    this.timeout = defer(() => this.deferredUpdate(), delay);
   }
 
-  scheduledUpdate() {
+  deferredUpdate() {
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
 
-    const success = this.client.update(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, (sessionExpired, pendingOperations) => {
+    const success = this.client.updateDocument(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, (sessionExpired, pendingOperations) => {
     	if (sessionExpired) {
 				alert('The session has expired. Please refresh!');
 
 				return;
 			}
 
-			this.updateDocument(pendingOperations);
+      const upToDate = this.document.update(pendingOperations),
+            immediately = !upToDate;
+
+      this.deferUpdate(immediately);
 		});
 
     if (success) {
       this.document.synchroniseWorkingContent();
+    } else {
+      const immediately = false;
+
+      this.deferUpdate(immediately);
     }
-  }
-
-  updateDocument(pendingOperations) {
-    const upToDate = this.document.update(pendingOperations),
-          immediately = !upToDate;
-
-    this.scheduleUpdate(immediately);
   }
 
   static fromNothing() {
@@ -92,3 +90,19 @@ class Agent {
 }
 
 module.exports = Agent;
+
+function defer(method, delay) {
+  const timeout = setTimeout(method, delay);
+
+  return timeout;
+}
+
+function cancel(timeout) {
+  if (timeout !== null) {
+    clearTimeout(timeout);
+
+    timeout = null;
+  }
+
+  return timeout;
+}
