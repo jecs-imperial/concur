@@ -4,8 +4,8 @@ const chai = require('chai');
 
 const helpers = require('../helpers'),
       transformContent = require('../../es6/content/transform'),
-      transformOperations = require('../../es6/operations/transform'),
-      serialiseOperations = require('../../es6/operations/serialise');
+      operationsFromJSON = require('../../es6/operations/fromJSON'),
+      transformOperations = require('../../es6/operations/transform');
 
 const { assert } = chai;
 
@@ -14,8 +14,8 @@ describe('es6/transformOperations', function() {
     it('The intentions are preserved', function() {
       const firstOperationsJSON = [],
             secondOperationsJSON = [],
-            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
-            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
+            firstOperations = operationsFromJSON(firstOperationsJSON),
+            secondOperations = operationsFromJSON(secondOperationsJSON);
 
       assertIntentionsPreserved(firstOperations, secondOperations);
     });
@@ -29,8 +29,8 @@ describe('es6/transformOperations', function() {
               "position": 1
             }],
             secondOperationsJSON = [],
-            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
-            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
+            firstOperations = operationsFromJSON(firstOperationsJSON),
+            secondOperations = operationsFromJSON(secondOperationsJSON);
 
       assertIntentionsPreserved(firstOperations, secondOperations);
     });
@@ -48,8 +48,8 @@ describe('es6/transformOperations', function() {
               "length": 2,
               "position": 1
             }],
-            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
-            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
+            firstOperations = operationsFromJSON(firstOperationsJSON),
+            secondOperations = operationsFromJSON(secondOperationsJSON);
 
       assertIntentionsPreserved(firstOperations, secondOperations);
     });
@@ -72,8 +72,8 @@ describe('es6/transformOperations', function() {
               "length": 2,
               "position": 1,
             }],
-            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
-            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
+            firstOperations = operationsFromJSON(firstOperationsJSON),
+            secondOperations = operationsFromJSON(secondOperationsJSON);
 
       assertIntentionsPreserved(firstOperations, secondOperations);
     });
@@ -101,8 +101,8 @@ describe('es6/transformOperations', function() {
               "string": "bkW",
               "position": 0
             }],
-            firstOperations = serialiseOperations.fromJSON(firstOperationsJSON),
-            secondOperations = serialiseOperations.fromJSON(secondOperationsJSON);
+            firstOperations = operationsFromJSON(firstOperationsJSON),
+            secondOperations = operationsFromJSON(secondOperationsJSON);
 
       assertIntentionsPreserved(firstOperations, secondOperations);
     });

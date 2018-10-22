@@ -18,6 +18,12 @@ class Document {
 
   setEditableContent(editableContent) { this.editableContentTextarea.setEditableContent(editableContent); }
 
+  reset() {
+    const editableContent = this.getEditableContent();
+
+    this.workingContent = editableContent;  ///
+  }
+
   update(pendingOperations) {
     let editableContent = this.getEditableContent();
 
@@ -42,12 +48,6 @@ class Document {
           operations = generateOperations(this.workingContent, editableContent);
 
     return operations;
-  }
-
-  synchroniseWorkingContent() {
-    const editableContent = this.getEditableContent();
-
-    this.workingContent = editableContent;  ///
   }
 
   static fromEditableContentTextarea(editableContentTextarea) {

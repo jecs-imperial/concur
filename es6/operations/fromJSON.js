@@ -7,13 +7,7 @@ const types = require('../types'),
 
 const { emptyType, deleteType, insertType } = types;
 
-function toJSON(operations) {
-  return operations.map(function(operation) {
-    return operation.toJSON();
-  });
-}
-
-function fromJSON(operationsJSON) {
+function operationsFromJSON(operationsJSON) {
   const operations = operationsJSON.map(function(operationJSON) {
     let operation;
 
@@ -40,7 +34,4 @@ function fromJSON(operationsJSON) {
   return operations;
 }
 
-module.exports = {
-  toJSON,
-  fromJSON
-};
+module.exports = operationsFromJSON;

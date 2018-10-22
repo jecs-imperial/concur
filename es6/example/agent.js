@@ -69,7 +69,7 @@ class Agent {
 		});
 
     if (success) {
-      this.document.synchroniseWorkingContent();
+      this.document.reset();
     } else {
       const immediately = false;
 

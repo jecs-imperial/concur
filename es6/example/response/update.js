@@ -1,8 +1,7 @@
 'use strict';
 
-const serialiseOperations = require('../../operations/serialise');
-
-const { toJSON, fromJSON } = serialiseOperations;
+const operationsToJSON = require('../../operations/toJSON'),
+      operationsFromJSON = require('../../operations/fromJSON');
 
 class UpdateResponse {
   constructor(sessionExpired, pendingOperations) {
@@ -19,7 +18,7 @@ class UpdateResponse {
   }
 
   toJSON() {
-    const pendingOperationsJSON = toJSON(this.pendingOperations),
+    const pendingOperationsJSON = operationsToJSON(this.pendingOperations),
           pendingOperations = pendingOperationsJSON,  ///
           json = {
     				"sessionExpired": this.sessionExpired,
@@ -33,7 +32,7 @@ class UpdateResponse {
     const sessionExpiredJSON = json["sessionExpired"],
 					pendingOperationsJSON = json["pendingOperations"],
 					sessionExpired = sessionExpiredJSON,	///
-					pendingOperations = fromJSON(pendingOperationsJSON),
+					pendingOperations = operationsFromJSON(pendingOperationsJSON),
           updateResponse = new UpdateResponse(sessionExpired, pendingOperations);
 
     return updateResponse;

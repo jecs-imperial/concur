@@ -1,8 +1,7 @@
 'use strict';
 
-const serialiseOperations = require('../../operations/serialise');
-
-const { toJSON, fromJSON } = serialiseOperations;
+const operationsToJSON = require('../../operations/toJSON'),
+      operationsFromJSON = require('../../operations/fromJSON');
 
 class UpdateRequest {
   constructor(operations, userIdentifier, sessionIdentifier) {
@@ -24,7 +23,7 @@ class UpdateRequest {
 	}
 
   toJSON() {
-    const operationsJSON = toJSON(this.operations),
+    const operationsJSON = operationsToJSON(this.operations),
           operations = operationsJSON,  ///
           json = {
             "operations": operations,
@@ -39,7 +38,7 @@ class UpdateRequest {
     const operationsJSON = json["operations"],
           userIdentifierJSON = json["userIdentifier"],
 					sessionIdentifierJSON = json["sessionIdentifier"],
-          operations = fromJSON(operationsJSON),
+          operations = operationsFromJSON(operationsJSON),
           userIdentifier = userIdentifierJSON,  ///
 					sessionIdentifier = sessionIdentifierJSON,  ///
           updateRequest = new UpdateRequest(operations, userIdentifier, sessionIdentifier);
