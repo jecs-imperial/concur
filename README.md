@@ -32,8 +32,10 @@ When the server is running the client will be available at `http://localhost:888
 
 ## Usage
 
-    const concur = require('concur-algorithm'),    ///
-          { generateOperations, transformContent } = concur;
+```js
+const concur = require('concur-algorithm'),    ///
+      { generateOperations, transformContent } = concur;
+```
 
 Not all the functionality required to implement the algorithm is exported by the package. If you want to see a full albeit basic implementation, the only place to start is the example.
 
