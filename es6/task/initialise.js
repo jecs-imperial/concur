@@ -2,20 +2,20 @@
 
 const sufficient = require('sufficient');
 
-const poster = require('../../poster'),
-      InitialiseRequest = require('../../../request/initialise'),
-      InitialiseResponse = require('../../../response/initialise');
+const poster = require('../poster'),
+      InitialiseRequest = require('../request/initialise'),
+      InitialiseResponse = require('../response/initialise');
 
 const { initialisePost } = poster,
       { AsynchronousTask } = sufficient;
 
-class InitialiseAsynchronousTask extends AsynchronousTask {
+class InitialiseTask extends AsynchronousTask {
   constructor(callback) {
     super(asynchronousMethod, callback)
   }
 }
 
-module.exports = InitialiseAsynchronousTask;
+module.exports = InitialiseTask;
 
 function asynchronousMethod(callback) {
   const initialiseRequest = InitialiseRequest.fromNothing(),

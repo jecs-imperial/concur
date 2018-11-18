@@ -22,14 +22,6 @@ You can also clone the repository with [Git](https://git-scm.com/)...
 
 You will need to do this if you want to look at the example.
 
-## Example
-
-Once you have cloned the repository, the server can be run with the following command:
-
-    node ./bin/example.js
-
-When the server is running the client will be available at `http://localhost:8888/example.html`. To try out the algorithm you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
-
 ## Usage
 
 ```js
@@ -37,13 +29,30 @@ const concur = require('concur-algorithm'),    ///
       { generateOperations, transformContent } = concur;
 ```
 
-Not all the functionality required to implement the algorithm is exported by the package. If you want to see a full albeit basic implementation, the only place to start is the example.
+Not all of the functionality required to implement the algorithm is exported by the package. If you want to see a full implementation, albeit a basic one, the only place to start is the example.
+
+## Example
+
+Once you have cloned the repository, the example server can be run with the following command:
+
+    node ./bin/example.js
+
+When the server is running the example client will be available at `http://localhost:8888/example.html`. To try out the algorithm you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
+
+For a closer look, see the `example.js` files in `bin/` and `es6/` directories. These are the implementations of the example server and client, respectively.
+
+The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported by the algorithm alongside the handlers and must be used as-is, because they are utilised by the client.
+
+The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a textarea, and scheduling. A document is then created from the textarea and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations, but bear in mind that this communication layer is a part of the algorithm, too.
+```
 
 ## Running the tests
 
 This can be done from the root of the repository:
 
     ./node_modules/.bin/mocha --recursive -R spec ./test
+
+As of writing the tests cover the operational transformations and rescursive function to transform sequences of operations, but no much else.
 
 ## Compiling from source
 

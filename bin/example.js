@@ -1,14 +1,13 @@
 'use strict';
 
-const express = require('express'),
+const concur = require('../index'), ///
+      express = require('express'),
       necessary = require('necessary'),
       bodyParser = require('body-parser');
 
-const uris = require('../es6/uris'),
-      handlers = require('../es6/handlers');
-
 const { miscellaneousUtilities } = necessary,
       { exit } = process,
+      { uris, handlers } = concur,
       { rc, onETX } = miscellaneousUtilities,
       { UPDATE_URI, INITIALISE_URI } = uris,
       { updateTransactionHandler, initialiseTransactionHandler } = handlers;

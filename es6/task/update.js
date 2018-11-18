@@ -2,21 +2,21 @@
 
 const sufficient = require('sufficient');
 
-const poster = require('../../poster'),
-      UpdateRequest = require('../../../request/update'),
-      UpdateResponse = require('../../../response/update'),
-      generateOperations = require('../../../operations/generate');
+const poster = require('../poster'),
+      UpdateRequest = require('../request/update'),
+      UpdateResponse = require('../response/update'),
+      generateOperations = require('../operations/generate');
 
 const { updatePost } = poster,
       { AsynchronousTask } = sufficient;
 
-class UpdateAsynchronousTask extends AsynchronousTask {
+class UpdateTask extends AsynchronousTask {
   constructor(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
     super(asynchronousMethod, userIdentifier, sessionIdentifier, workingContent, editableContent, callback)
   }
 }
 
-module.exports = UpdateAsynchronousTask;
+module.exports = UpdateTask;
 
 function asynchronousMethod(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
   const operations = generateOperations(workingContent, editableContent),

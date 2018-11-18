@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = {
+  'uris': require('./lib/uris'),
+  'handlers': require('./lib/handlers'),
   'EmptyOperation': require('./lib/operation/empty'),
   'InsertOperation': require('./lib/operation/insert'),
   'DeleteOperation': require('./lib/operation/delete'),

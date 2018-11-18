@@ -18,16 +18,6 @@ class EditableContentTextarea extends InputElement {
     return editableContent;
   }
 
-  parentContext() {
-    const getEditableContent = this.getEditableContent.bind(this),
-          setEditableContent = this.setEditableContent.bind(this);
-
-    return ({
-      getEditableContent,
-      setEditableContent
-    });
-  }
-
   static fromProperties(properties) { return InputElement.fromProperties(EditableContentTextarea, properties); }
 }
 
