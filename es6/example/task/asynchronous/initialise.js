@@ -3,8 +3,8 @@
 const sufficient = require('sufficient');
 
 const poster = require('../../poster'),
-      InitialiseRequest = require('../../request/initialise'),
-      InitialiseResponse = require('../../response/initialise');
+      InitialiseRequest = require('../../../request/initialise'),
+      InitialiseResponse = require('../../../response/initialise');
 
 const { initialisePost } = poster,
       { AsynchronousTask } = sufficient;

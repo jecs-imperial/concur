@@ -2,7 +2,7 @@
 
 const necessary = require('necessary');
 
-const uris = require('./uris');
+const uris = require('../uris');
 
 const { miscellaneousUtilities } = necessary,
       { post } = miscellaneousUtilities,

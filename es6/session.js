@@ -4,7 +4,7 @@ const uuidV4 = require('uuid/v4'),  ///
       necessary = require('necessary');
 
 const User = require('./user'),
-      transformContent = require('../content/transform');
+      transformContent = require('./content/transform');
 
 const { arrayUtilities } = necessary,
       { filter } = arrayUtilities;

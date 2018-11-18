@@ -1,25 +1,36 @@
 'use strict';
 
 const express = require('express'),
-      necessary = require('necessary');
+      necessary = require('necessary'),
+      bodyParser = require('body-parser');
 
-const exampleRouter = require('../es6/example/router');
+const uris = require('../es6/uris'),
+      handlers = require('../es6/handlers');
 
 const { miscellaneousUtilities } = necessary,
+      { exit } = process,
       { rc, onETX } = miscellaneousUtilities,
-      { exit } = process;
+      { UPDATE_URI, INITIALISE_URI } = uris,
+      { updateTransactionHandler, initialiseTransactionHandler } = handlers;
 
 rc();
 
 const { publicDirectoryPath, port } = rc;
 
-const server = express(); ///
+const server = express(), ///
+      jsonRouter = express.Router(),
+      staticRouter = express.static(publicDirectoryPath),
+      jsonBodyParser = bodyParser.json();
 
-const staticRouter = express.static(publicDirectoryPath);
+jsonRouter.use(jsonBodyParser);
 
-server.use(exampleRouter);
+jsonRouter.post(UPDATE_URI, updateTransactionHandler);
+
+jsonRouter.post(INITIALISE_URI, initialiseTransactionHandler);
 
 server.use(staticRouter);
+
+server.use(jsonRouter);
 
 server.listen(port);
 
