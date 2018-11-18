@@ -4,8 +4,8 @@ require('juxtapose');
 
 const easy = require('easy');
 
-const Agent = require('./agent'),
-      Document = require('./document'),
+const Agent = require('./example/agent'),
+      Document = require('./example/document'),
       EditableContentTextarea = require('./example/editableContentTextarea');
 
 const { Body } = easy;

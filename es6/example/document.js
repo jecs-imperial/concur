@@ -1,8 +1,8 @@
 'use strict';
 
-const transformContent = require('./content/transform'),
-      generateOperations = require('./operations/generate'),
-      transformOperations = require('./operations/transform');
+const transformContent = require('../content/transform'),
+      generateOperations = require('../operations/generate'),
+      transformOperations = require('../operations/transform');
 
 class Document {
   constructor(workingContent, editableContentTextarea) {
