@@ -47,13 +47,16 @@ The server implementation is straightforward and should present no challenges to
 
 The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea that implements the requisite functionality to get and set its content, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
 
+The example supports only one anonymous session per server instance and only one document within that session.
+If you want to write a client and a server to support multiple sessions and documents, you will need to abandon the example for the most part and use it for guidance only.
+
 ## Running the tests
 
 This can be done from the root of the repository:
 
     ./node_modules/.bin/mocha --recursive -R spec ./test
 
-As of writing the tests cover the operational transformations and rescursive function to transform sequences of operations, but no much else.
+As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
 
 ## Compiling from source
 
