@@ -27,24 +27,25 @@ You will need to do this if you want to look at the example.
 ```js
 const concur = require('concur-algorithm'),    ///
       { generateOperations, transformContent } = concur;
+
+...
 ```
 
 Not all of the functionality required to implement the algorithm is exported by the package. If you want to see a full implementation, albeit a basic one, the only place to start is the example.
 
-## Example
+## The example
 
 Once you have cloned the repository, the example server can be run with the following command:
 
     node ./bin/example.js
 
-When the server is running the example client will be available at `http://localhost:8888/example.html`. To try out the algorithm you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
+When the example server is up and running the example client will be available at `http://localhost:8888/example.html`. To try it out you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
 For a closer look at the example server and client implementations, see the `example.js` files in `bin` and `es6` directories, respectively.
 
-The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported alongside the handlers and must be used as-is, because they are utilised by the client.
+The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported alongside the handlers and must be used as-is, because they are effectively hard-coded into the client.
 
 The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea that implements the requisite functionality to get and set its content, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
-```
 
 ## Running the tests
 
