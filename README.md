@@ -39,11 +39,11 @@ Once you have cloned the repository, the example server can be run with the foll
 
 When the server is running the example client will be available at `http://localhost:8888/example.html`. To try out the algorithm you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
-For a closer look, see the `example.js` files in `bin/` and `es6/` directories. These are the implementations of the example server and client, respectively.
+For a closer look at the example server and client implementations, see the `example.js` files in `bin` and `es6` directories, respectively.
 
-The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported by the algorithm alongside the handlers and must be used as-is, because they are utilised by the client.
+The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported alongside the handlers and must be used as-is, because they are utilised by the client.
 
-The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a textarea, and scheduling. A document is then created from the textarea and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations, but bear in mind that this communication layer is a part of the algorithm, too.
+The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea, implementing the requisite functionality, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
 ```
 
 ## Running the tests
