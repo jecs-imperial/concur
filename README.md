@@ -43,7 +43,7 @@ For a closer look at the example server and client implementations, see the `exa
 
 The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/). To make use of the algorithm in your own server, you should replace the topmost `require('../index')` directive with `require('concur-algorithm')`. Note that the URIs are exported alongside the handlers and must be used as-is, because they are utilised by the client.
 
-The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea, implementing the requisite functionality, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
+The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea that implements the requisite functionality to get and set its content, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
 ```
 
 ## Running the tests
