@@ -39,16 +39,16 @@ Once you have cloned the repository, the example server can be run with the foll
 
     node ./bin/example.js
 
-When the example server is up and running the example client will be available at `http://localhost:8888/example.html`. To try it out you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
+When the server is up and running the client will be available at `http://localhost:8888/example.html`. To try it out you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
-For a closer look at the example server and client implementations, see the `example.js` files in `bin` and `es6` directories, respectively.
+For a closer look at the server and client implementations, see the `example.js` entry point files in `bin` and `es6` directories, respectively.
 
 The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/).
 
-The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, and scheduling. A document is created from the textarea that implements the requisite functionality to get and set its content, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
+The client implementation is necessarily more complex. It must handle user interactions, for which it sets up a dedicated textarea, as well as scheduling. A document is created from the textarea that implements the requisite functionality to get and set its content, and this is passed to an 'agent' that handles scheduling and communication with the server. All of this apparatus obscures the working of the operational transformations and recursive function to transform sequences of operations somewhat, but bear in mind that this layer is also a part of the algorithm.
 
-The example supports only one anonymous session per server instance and only one document within that session.
-If you want to write a client and a server to support multiple sessions and documents, you will need to abandon the example for the most part and use it for guidance only.
+The implementation supports only one anonymous session per server instance and only one document within that session.
+If you want to write a client and a server to support multiple sessions and documents, you will need to abandon this implementation for the most part and use it for guidance only.
 
 ## Running the tests
 
