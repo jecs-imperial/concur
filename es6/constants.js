@@ -1,7 +1,7 @@
 'use strict';
 
-const UPDATE_DELAY = 1000;
+const UPDATE_INTERVAL = 1000;
 
 module.exports = {
-  UPDATE_DELAY
+  UPDATE_INTERVAL
 };

@@ -3,20 +3,22 @@
 const Client = require('./client'),
       constants = require('./constants');
 
-const { UPDATE_DELAY } = constants;
+const { UPDATE_INTERVAL } = constants;
 
 class Agent {
-  constructor(client, timeout, document, userIdentifier, sessionIdentifier) {
+  constructor(client, busy, document, userIdentifier, sessionIdentifier, intervalIdentifier) {
+    this.busy = busy;
     this.client = client;
-    this.timeout = timeout;
     this.document = document;
     this.userIdentifier = userIdentifier;
     this.sessionIdentifier = sessionIdentifier;
+    this.intervalIdentifier = intervalIdentifier;
   }
 
   initialise(callback) {
     this.client.initialise((content, userIdentifier, sessionIdentifier) => {
       this.userIdentifier = userIdentifier;
+
       this.sessionIdentifier = sessionIdentifier;
 
       this.startUpdates();
@@ -29,29 +31,33 @@ class Agent {
     this.document = document;
   }
 
-  update() {
-    const immediately = true;
-
-    this.deferUpdate(immediately);
-  }
-
   startUpdates() {
-    const immediately = false;
+    this.resetUpdates();
 
-    this.deferUpdate(immediately);
+    const interval = UPDATE_INTERVAL;
+
+    this.intervalIdentifier = setInterval(() => this.update(), interval);
   }
 
-  deferUpdate(immediately) {
-    const delay = immediately ?
-                    0 : ///
-                      UPDATE_DELAY;
-
-    cancel(this.timeout);
-
-    this.timeout = defer(() => this.deferredUpdate(), delay);
+  stopUpdates() {
+    this.resetUpdates();
   }
 
-  deferredUpdate() {
+  resetUpdates() {
+    if (this.intervalIdentifier !== null) {
+      clearInterval(this.intervalIdentifier);
+
+      this.intervalIdentifier = null;
+    }
+  }
+
+  update() {
+    if (this.busy) {
+      return;
+    }
+
+    this.busy = true;
+
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
 
@@ -62,47 +68,27 @@ class Agent {
 				return;
 			}
 
-      const upToDate = this.document.update(pendingOperations),
-            immediately = !upToDate;
+      this.document.update(pendingOperations);
 
-      this.deferUpdate(immediately);
+    	this.busy = false;
 		});
 
     if (success) {
-      this.document.reset();
-    } else {
-      const immediately = false;
-
-      this.deferUpdate(immediately);
+      this.document.synchroniseWorkingContent();
     }
   }
 
   static fromNothing() {
     const client = Client.fromNothing(),
-          timeout = null, ///
+          busy = false,
           document = null,  ///
           userIdentifier = null,  ///
 					sessionIdentifier = null,	///
-          agent = new Agent(client, timeout, document, userIdentifier, sessionIdentifier);
+          intervalIdentifier = null, ///
+          agent = new Agent(client, busy, document, userIdentifier, sessionIdentifier, intervalIdentifier);
 
     return agent;
   }
 }
 
 module.exports = Agent;
-
-function defer(method, delay) {
-  const timeout = setTimeout(method, delay);
-
-  return timeout;
-}
-
-function cancel(timeout) {
-  if (timeout !== null) {
-    clearTimeout(timeout);
-
-    timeout = null;
-  }
-
-  return timeout;
-}

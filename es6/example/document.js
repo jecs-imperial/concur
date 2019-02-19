@@ -18,10 +18,11 @@ class Document {
 
   setEditableContent(editableContent) { this.editableContentTextarea.setEditableContent(editableContent); }
 
-  reset() {
-    const editableContent = this.getEditableContent();
+  synchroniseWorkingContent() {
+    const editableContent = this.getEditableContent(),
+          workingContent = editableContent; ///
 
-    this.workingContent = editableContent;  ///
+    this.workingContent = workingContent;
   }
 
   update(pendingOperations) {
