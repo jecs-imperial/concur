@@ -5,7 +5,7 @@
   border: 0;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.25; }
 
 button,
@@ -33,41 +33,47 @@ img {
   vertical-align: bottom; }
 
 h1 {
-  font-size: 2rem; }
+  font-size: 3rem; }
 
 h2 {
-  font-size: 1.5rem; }
+  font-size: 2rem; }
 
+p,
 h3,
 ol,
 ul,
-p {
-  font-size: 1rem; }
+li,
+input,
+option,
+button,
+select,
+textarea {
+  font-size: 1.6rem; }
 
+p,
 h1,
 h2,
 h3,
 ol,
-ul,
-p {
-  margin: 1rem 0 1rem 0; }
+ul {
+  margin: 1.6rem 0 1.6rem 0; }
+p:first-child,
 h1:first-child,
 h2:first-child,
 h3:first-child,
 ol:first-child,
-ul:first-child,
-p:first-child {
+ul:first-child {
   margin-top: 0; }
+p:last-child,
 h1:last-child,
 h2:last-child,
 h3:last-child,
 ol:last-child,
-ul:last-child,
-p:last-child {
+ul:last-child {
   margin-bottom: 0; }
 
 li {
-  margin-left: 2rem; }
+  margin-left: 3rem; }
 
 ul li {
   list-style-type: disc; }
