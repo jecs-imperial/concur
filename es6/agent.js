@@ -56,10 +56,10 @@ class Agent {
       return;
     }
 
-    this.busy = true;
-
     const workingContent = this.document.getWorkingContent(),
           editableContent = this.document.getEditableContent();
+
+    this.busy = true;
 
     const success = this.client.updateDocument(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, (sessionExpired, pendingOperations) => {
     	if (sessionExpired) {
@@ -75,6 +75,8 @@ class Agent {
 
     if (success) {
       this.document.synchroniseWorkingContent();
+    } else {
+      this.busy = false;
     }
   }
 
