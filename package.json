@@ -1,7 +1,15 @@
 {
   "name": "concur-algorithm",
+  "author": "James Smith",
+  "version": "1.0.1",
+  "license": "MIT, Anti-996",
+  "homepage": "https://github.com/jecs-imperial/concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
-  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jecs-imperial/concur-algorithm"
+  },
+  "dependencies": {},
   "devDependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.4",
