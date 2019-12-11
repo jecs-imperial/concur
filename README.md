@@ -37,7 +37,7 @@ Not all of the functionality required to implement the algorithm is exported by 
 
 Once you have cloned the repository, the example server can be run with the following command:
 
-    node ./bin/example.js
+    npm start
 
 When the server is up and running the client will be available at `http://localhost:8888/example.html`. To try it out you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
@@ -52,7 +52,11 @@ If you want to write a client and a server to support multiple sessions and docu
 
 ## Running the tests
 
-This can be done from the root of the repository with `npm run test` or just `npm test`. As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
+This can be done from the root of the repository with the following command:
+
+    npm test
+
+As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
 
 ## Compiling from source
 
