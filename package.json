@@ -1,7 +1,7 @@
 {
   "name": "concur-algorithm",
   "author": "James Smith",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/jecs-imperial/concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
@@ -37,6 +37,7 @@
     "build": "npm run clean && npm run babel && npm run browserify",
     "build-debug": "npm run clean && npm run babel-debug && npm run browserify-debug",
     "watch": "npm run build && chokidar 'index.js' './es6/**/*.js' -c 'npm run build'",
-    "watch-debug": "npm run build-debug && chokidar 'index.js' './es6/**/*.js' -c 'npm run build-debug'"
+    "watch-debug": "npm run build-debug && chokidar 'index.js' './es6/**/*.js' -c 'npm run build-debug'",
+    "test": "mocha --recursive -R spec ./test"
   }
 }

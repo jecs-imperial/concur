@@ -52,11 +52,7 @@ If you want to write a client and a server to support multiple sessions and docu
 
 ## Running the tests
 
-This can be done from the root of the repository:
-
-    ./node_modules/.bin/mocha --recursive -R spec ./test
-
-As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
+This can be done from the root of the repository with `npm run test` or just `npm test`. As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
 
 ## Compiling from source
 
