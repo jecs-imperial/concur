@@ -4,8 +4,8 @@ const express = require('express'),
       necessary = require('necessary'),
       bodyParser = require('body-parser');
 
-const uris = require('../es6/uris'),
-      handlers = require('../es6/handlers');
+const uris = require('../../es6/uris'),
+      handlers = require('../../es6/handlers');
 
 const { miscellaneousUtilities } = necessary,
       { exit } = process,

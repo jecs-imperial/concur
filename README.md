@@ -41,7 +41,7 @@ Once you have cloned the repository, the example server can be run with the foll
 
 When the server is up and running the client will be available at `http://localhost:8888/example.html`. To try it out you might want to open several browser tabs or windows with this URL. You can also increase the latency in most browser's developer tools.
 
-For a closer look at the server and client implementations, see the `example.js` entry point files in `bin` and `es6` directories, respectively.
+For a closer look at the server and client implementations, see the `bin/example/main.js` and `es6/example.js` files, respectively.
 
 The server implementation is straightforward and should present no challenges to anyone familiar with [Express](https://expressjs.com/).
 
