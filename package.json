@@ -26,8 +26,7 @@
     "browserify": "^16.5.0",
     "concurrently": "^5.1.0",
     "chai": "^4.1.0",
-    "chokidar-cli": "^1.2.0",
-    "lively-cli": "^1.0.2",
+≈    "lively-cli": "^1.0.2",
     "mocha": "~2.2.5",
     "watchful-cli": "^1.0.10"
   },
