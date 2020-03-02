@@ -34,7 +34,9 @@ agent.initialise(function(content) {
   body.append(
 
     <section>
-      <h1>Concur Example</h1>
+      <h1>
+        Concur Example
+      </h1>
       {editableContentTextarea}
     </section>
 
