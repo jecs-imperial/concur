@@ -8,7 +8,6 @@ const uris = require('../../es6/uris'),
       handlers = require('../../es6/handlers');
 
 const { miscellaneousUtilities } = necessary,
-      { exit } = process,
       { rc, onETX } = miscellaneousUtilities,
       { UPDATE_URI, INITIALISE_URI } = uris,
       { updateTransactionHandler, initialiseTransactionHandler } = handlers;
@@ -34,4 +33,4 @@ server.use(jsonRouter);
 
 server.listen(port);
 
-onETX(exit);
+onETX(process.exit);
