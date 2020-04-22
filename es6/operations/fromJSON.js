@@ -1,11 +1,10 @@
 "use strict";
 
-const types = require("../types"),
-      EmptyOperation = require("../operation/empty"),
-      DeleteOperation = require("../operation/delete"),
-      InsertOperation = require("../operation/insert");
+import EmptyOperation from "../operation/empty";
+import DeleteOperation from "../operation/delete";
+import InsertOperation from "../operation/insert";
 
-const { emptyType, deleteType, insertType } = types;
+import { emptyType, deleteType, insertType } from "../types";
 
 function operationsFromJSON(operationsJSON) {
   const operations = operationsJSON.map((operationJSON) => {

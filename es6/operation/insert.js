@@ -1,10 +1,9 @@
 "use strict";
 
-const types = require("../types"),
-      stringCompare = require("../stringCompare"),
-      DeleteOperation = require("../operation/delete");
+import stringCompare from "../stringCompare";
+import DeleteOperation from "../operation/delete";
 
-const { insertType } = types;
+import { insertType } from "../types";
 
 class InsertOperation {
   constructor(type, string, position) {

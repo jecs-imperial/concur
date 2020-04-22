@@ -1,8 +1,6 @@
 "use strict";
 
-const types = require("../types");
-
-const { emptyType } = types;
+import { emptyType } from "../types";
 
 class EmptyOperation {
   constructor(type) {

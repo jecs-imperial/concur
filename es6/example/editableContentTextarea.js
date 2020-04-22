@@ -1,8 +1,6 @@
 "use strict";
 
-const easy = require("easy");
-
-const { InputElement } = easy;
+import { InputElement } from "easy";
 
 class EditableContentTextarea extends InputElement {
   setEditableContent(editableContent) {

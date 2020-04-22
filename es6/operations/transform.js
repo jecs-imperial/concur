@@ -1,9 +1,8 @@
 "use strict";
 
-const necessary = require("necessary");
+import { arrayUtilities } from "necessary";
 
-const { arrayUtilities } = necessary,
-      { first, tail } = arrayUtilities;
+const { first, tail } = arrayUtilities;
 
 function transformOperations(tau, rho) {
   if ((tau.length === 0) || (rho.length === 0)) {
