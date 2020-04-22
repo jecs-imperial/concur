@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
-const chai = require('chai');
+const chai = require("chai");
 
-const helpers = require('../helpers'),
-      transformContent = require('../../es6/content/transform'),
-      operationsFromJSON = require('../../es6/operations/fromJSON'),
-      transformOperations = require('../../es6/operations/transform');
+const helpers = require("../helpers"),
+      transformContent = require("../../es6/content/transform"),
+      operationsFromJSON = require("../../es6/operations/fromJSON"),
+      transformOperations = require("../../es6/operations/transform");
 
 const { assert } = chai;
 
-describe('es6/transformOperations', function() {
-  describe('for two empty sequences of operations', function() {
-    it('The intentions are preserved', function() {
+describe("es6/transformOperations", function() {
+  describe("for two empty sequences of operations", function() {
+    it("The intentions are preserved", function() {
       const firstOperationsJSON = [],
             secondOperationsJSON = [],
             firstOperations = operationsFromJSON(firstOperationsJSON),
@@ -21,8 +21,8 @@ describe('es6/transformOperations', function() {
     });
   });
 
-  describe('for a sequence containing one operation and an empty sequence', function() {
-    it('The intentions are preserved', function() {
+  describe("for a sequence containing one operation and an empty sequence", function() {
+    it("The intentions are preserved", function() {
       const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
@@ -36,8 +36,8 @@ describe('es6/transformOperations', function() {
     });
   });
 
-  describe('for two sequences each containing one operation', function() {
-    it('The intentions are preserved', function() {
+  describe("for two sequences each containing one operation", function() {
+    it("The intentions are preserved", function() {
       const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
@@ -55,8 +55,8 @@ describe('es6/transformOperations', function() {
     });
   });
 
-  describe('for a sequence containing one operation and a sequence containing two operations', function() {
-    it('The intentions are preserved', function() {
+  describe("for a sequence containing one operation and a sequence containing two operations", function() {
+    it("The intentions are preserved", function() {
       const firstOperationsJSON = [{
               "type": "insert",
               "string": "xyz",
@@ -79,8 +79,8 @@ describe('es6/transformOperations', function() {
     });
   });
 
-  describe('for two sequences each containing two operations', function() {
-    it('The intentions are preserved', function() {
+  describe("for two sequences each containing two operations", function() {
+    it("The intentions are preserved", function() {
       const firstOperationsJSON = [{
               "type": "delete",
               "length": 6,
@@ -108,8 +108,8 @@ describe('es6/transformOperations', function() {
     });
   });
 
-  describe('for two sequences each containing a hundred operations', function() {
-    it('The intentions are preserved', function() {
+  describe("for two sequences each containing a hundred operations", function() {
+    it("The intentions are preserved", function() {
       const content = helpers.content(100),
             firstOperations = helpers.operations(content, 100),
             secondOperations = helpers.operations(content, 100);

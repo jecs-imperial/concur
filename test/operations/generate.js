@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
-const chai = require('chai'),
-      necessary = require('necessary');
+const chai = require("chai"),
+      necessary = require("necessary");
 
-const helpers = require('../helpers'),
-      types = require('../../es6/types'),
-      InsertOperation = require('../../es6/operation/insert'),
-      DeleteOperation = require('../../es6/operation/delete'),
-      generateOperations = require('../../es6/operations/generate');
+const helpers = require("../helpers"),
+      types = require("../../es6/types"),
+      InsertOperation = require("../../es6/operation/insert"),
+      DeleteOperation = require("../../es6/operation/delete"),
+      generateOperations = require("../../es6/operations/generate");
 
 const { assert } = chai,
       { arrayUtilities } = necessary,
       { first, second } = arrayUtilities,
       { insertType, deleteType } = types;
 
-describe('es6/generateOperations', function() {
-  describe('if the working and editable contents are the same', function() {
-    it('generates a zero length sequence of operations', function() {
+describe("es6/generateOperations", function() {
+  describe("if the working and editable contents are the same", function() {
+    it("generates a zero length sequence of operations", function() {
       const workingContent = helpers.content(),
             editableContent = workingContent,
             operations = generateOperations(workingContent, editableContent);
@@ -25,8 +25,8 @@ describe('es6/generateOperations', function() {
     });
   });
 
-  describe('if the the working content is a subset of the editable content', function() {
-    it('generates a sequence of operations containing an insert operation', function() {
+  describe("if the the working content is a subset of the editable content", function() {
+    it("generates a sequence of operations containing an insert operation", function() {
       const workingContent = helpers.content(),
             editableContent = `123${workingContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -34,7 +34,7 @@ describe('es6/generateOperations', function() {
       assert.lengthOf(operations, 1);
 
       const firstOperation = first(operations),
-            insertOperation = InsertOperation.fromStringAndPosition('123', 0),
+            insertOperation = InsertOperation.fromStringAndPosition("123", 0),
             operation = firstOperation, ///
             expectedOperation = insertOperation,  ///
             operationJSON = operation.toJSON(),
@@ -44,8 +44,8 @@ describe('es6/generateOperations', function() {
     });
   });
 
-  describe('if the editable content is a subset of the the working content', function() {
-    it('generates sequence of operations containing a delete operation', function() {
+  describe("if the editable content is a subset of the the working content", function() {
+    it("generates sequence of operations containing a delete operation", function() {
       const editableContent = helpers.content(),
             workingContent = `xyz${editableContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -63,8 +63,8 @@ describe('es6/generateOperations', function() {
     });
   });
 
-  describe('if the the working and editable contents are different', function() {
-    it('generates sequence of operations containing one delete operation followed by an insert operation', function() {
+  describe("if the the working and editable contents are different", function() {
+    it("generates sequence of operations containing one delete operation followed by an insert operation", function() {
       const workingContent = helpers.content(),
             editableContent = helpers.content(),
             operations = generateOperations(workingContent, editableContent);

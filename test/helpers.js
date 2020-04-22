@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-const randomSeed = require('random-seed');
+const randomSeed = require("random-seed");
 
-const EmptyOperation = require('../es6/operation/empty'),
-      InsertOperation = require('../es6/operation/insert'),
-      DeleteOperation = require('../es6/operation/delete');
+const EmptyOperation = require("../es6/operation/empty"),
+      InsertOperation = require("../es6/operation/insert"),
+      DeleteOperation = require("../es6/operation/delete");
 
 const DEFAULT_CONTENT_LENGTH = 4,
       DEFAULT_NUMBER_OF_OPERATIONS = 2,
       MAXIMUM_INSERT_OPERATION_LENGTH = 4;
 
-const random = randomSeed.create('.');
+const random = randomSeed.create(".");
 
 function content(length = DEFAULT_CONTENT_LENGTH) {
   const string = generateString(length),
@@ -39,9 +39,9 @@ module.exports = {
 };
 
 function generateString(length) {
-  let string = '';
+  let string = "";
 
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
   for (let index = 0; index < length; index++) {
     string += characters.charAt(random(characters.length));
@@ -51,7 +51,7 @@ function generateString(length) {
 }
 
 function generateOperation(string) {
-  if (string === '') {
+  if (string === "") {
     return [
       generateEmptyOperation,
       generateInsertOperation
