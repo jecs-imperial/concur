@@ -1,9 +1,8 @@
 "use strict";
 
-const Client = require("./client"),
-      constants = require("./constants");
+import Client from "./client";
 
-const { UPDATE_INTERVAL } = constants;
+import { UPDATE_INTERVAL } from "./constants";
 
 class Agent {
   constructor(client, busy, document, userIdentifier, sessionIdentifier, intervalIdentifier) {

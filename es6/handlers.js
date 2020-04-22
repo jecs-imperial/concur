@@ -1,7 +1,7 @@
 "use strict";
 
-const UpdateTransaction = require("./transaction/update"),
-      InitialiseTransaction = require("./transaction/initialise");
+import UpdateTransaction from "./transaction/update";
+import InitialiseTransaction from "./transaction/initialise";
 
 const updateTransactionHandler = createHandler(UpdateTransaction),
       initialiseTransactionHandler = createHandler(InitialiseTransaction);

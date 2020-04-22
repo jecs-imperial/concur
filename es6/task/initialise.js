@@ -1,13 +1,11 @@
 "use strict";
 
-const sufficient = require("sufficient");
+import { AsynchronousTask } from "sufficient";
 
-const poster = require("../poster"),
-      InitialiseRequest = require("../request/initialise"),
-      InitialiseResponse = require("../response/initialise");
+import InitialiseRequest from "../request/initialise";
+import InitialiseResponse from "../response/initialise";
 
-const { initialisePost } = poster,
-      { AsynchronousTask } = sufficient;
+import { initialisePost } from "../poster";
 
 class InitialiseTask extends AsynchronousTask {
   constructor(callback) {

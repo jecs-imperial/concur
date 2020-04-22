@@ -1,14 +1,12 @@
 "use strict";
 
-require("juxtapose");
+import "juxtapose";
 
-const easy = require("easy");
+import { Body } from"easy";
 
-const Agent = require("./agent"),
-      Document = require("./example/document"),
-      EditableContentTextarea = require("./example/editableContentTextarea");
-
-const { Body } = easy;
+import Agent from "./agent";
+import Document from "./example/document";
+import EditableContentTextarea from "./example/editableContentTextarea";
 
 const agent = Agent.fromNothing();
 

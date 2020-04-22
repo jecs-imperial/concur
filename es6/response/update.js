@@ -1,7 +1,7 @@
 "use strict";
 
-const operationsToJSON = require("../operations/toJSON"),
-      operationsFromJSON = require("../operations/fromJSON");
+import operationsToJSON from "../operations/toJSON";
+import operationsFromJSON from "../operations/fromJSON";
 
 class UpdateResponse {
   constructor(sessionExpired, pendingOperations) {

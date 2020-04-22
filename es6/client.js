@@ -1,11 +1,9 @@
 "use strict";
 
-const sufficient = require("sufficient");
+import { Scheduler } from "sufficient";
 
-const UpdateTask = require("./task/update"),
-      InitialiseTask = require("./task/initialise");
-
-const { Scheduler } = sufficient;
+import UpdateTask from "./task/update";
+import InitialiseTask from "./task/initialise";
 
 class Client {
   constructor(scheduler) {

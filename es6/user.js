@@ -1,6 +1,6 @@
 "use strict";
 
-const transformOperations = require("./operations/transform");
+import transformOperations from "./operations/transform";
 
 let identifier = 0;
 

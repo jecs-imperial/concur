@@ -1,14 +1,12 @@
 "use strict";
 
-const sufficient = require("sufficient");
+import { AsynchronousTask } from "sufficient";
 
-const poster = require("../poster"),
-      UpdateRequest = require("../request/update"),
-      UpdateResponse = require("../response/update"),
-      generateOperations = require("../operations/generate");
+import UpdateRequest from "../request/update";
+import UpdateResponse from "../response/update";
+import generateOperations from "../operations/generate";
 
-const { updatePost } = poster,
-      { AsynchronousTask } = sufficient;
+import { updatePost } from "../poster";
 
 class UpdateTask extends AsynchronousTask {
   constructor(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {

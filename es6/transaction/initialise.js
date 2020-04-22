@@ -1,7 +1,7 @@
 "use strict";
 
-const session = require("../session"),
-      InitialiseResponse = require("../response/initialise");
+import session from "../session";
+import InitialiseResponse from "../response/initialise";
 
 class InitialiseTransaction {
   constructor(initialiseResponse) {

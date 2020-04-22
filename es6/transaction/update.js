@@ -1,8 +1,8 @@
 "use strict";
 
-const session = require("../session"),
-      UpdateRequest = require("../request/update"),
-      UpdateResponse = require("../response/update");
+import session from "../session";
+import UpdateRequest from "../request/update";
+import UpdateResponse from "../response/update";
 
 class UpdateTransaction {
   constructor(updateResponse) {

@@ -1,12 +1,10 @@
 "use strict";
 
-const necessary = require("necessary");
+import { miscellaneousUtilities } from "necessary";
 
-const uris = require("./uris");
+import { UPDATE_URI, INITIALISE_URI } from "./uris";
 
-const { miscellaneousUtilities } = necessary,
-      { post } = miscellaneousUtilities,
-      { UPDATE_URI, INITIALISE_URI } = uris;
+const { post } = miscellaneousUtilities;
 
 const host = "";  ///
 

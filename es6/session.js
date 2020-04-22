@@ -1,13 +1,13 @@
 "use strict";
 
-const uuidV4 = require("uuid/v4"),  ///
-      necessary = require("necessary");
+import uuidV4 from "uuid/v4";
 
-const User = require("./user"),
-      transformContent = require("./content/transform");
+import { arrayUtilities } from "necessary";
 
-const { arrayUtilities } = necessary,
-      { filter } = arrayUtilities;
+import User from "./user";
+import transformContent from "./content/transform";
+
+const { filter } = arrayUtilities;
 
 class Session {
 	constructor(map, content, identifier) {
