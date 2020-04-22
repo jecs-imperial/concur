@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const uuidV4 = require('uuid/v4'),  ///
-      necessary = require('necessary');
+const uuidV4 = require("uuid/v4"),  ///
+      necessary = require("necessary");
 
-const User = require('./user'),
-      transformContent = require('./content/transform');
+const User = require("./user"),
+      transformContent = require("./content/transform");
 
 const { arrayUtilities } = necessary,
       { filter } = arrayUtilities;
@@ -92,7 +92,7 @@ class Session {
 
 	static fromNothing() {
 		const map = {},
-					content = '',	///
+					content = "",	///
 					identifier = uuidV4(),  ///
 					session = new Session(map, content, identifier);
 

@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const uris = require('./uris');
+const uris = require("./uris");
 
 const { miscellaneousUtilities } = necessary,
       { post } = miscellaneousUtilities,
       { UPDATE_URI, INITIALISE_URI } = uris;
 
-const host = '';  ///
+const host = "";  ///
 
 function updatePost(json, callback) { post(host, UPDATE_URI, json, callback); }
 

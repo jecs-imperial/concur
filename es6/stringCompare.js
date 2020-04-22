@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
 function stringCompare(stringA, stringB) {
-  if ((stringA === '') && (stringB === '')) {
+  if ((stringA === "") && (stringB === "")) {
     return false;
   }
 
-  if (stringA === '') {
+  if (stringA === "") {
     return true;
   }
 
-  if (stringB === '') {
+  if (stringB === "") {
     return false;
   }
 

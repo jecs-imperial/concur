@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const InsertOperation = require('../operation/insert'),
-      DeleteOperation = require('../operation/delete');
+const InsertOperation = require("../operation/insert"),
+      DeleteOperation = require("../operation/delete");
 
 function generateOperations(workingContent, editableContent) {
   const operations = [];

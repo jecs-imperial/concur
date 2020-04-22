@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const session = require('../session'),
-      UpdateRequest = require('../request/update'),
-      UpdateResponse = require('../response/update');
+const session = require("../session"),
+      UpdateRequest = require("../request/update"),
+      UpdateResponse = require("../response/update");
 
 class UpdateTransaction {
   constructor(updateResponse) {

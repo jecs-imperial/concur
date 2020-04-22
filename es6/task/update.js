@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const sufficient = require('sufficient');
+const sufficient = require("sufficient");
 
-const poster = require('../poster'),
-      UpdateRequest = require('../request/update'),
-      UpdateResponse = require('../response/update'),
-      generateOperations = require('../operations/generate');
+const poster = require("../poster"),
+      UpdateRequest = require("../request/update"),
+      UpdateResponse = require("../response/update"),
+      generateOperations = require("../operations/generate");
 
 const { updatePost } = poster,
       { AsynchronousTask } = sufficient;

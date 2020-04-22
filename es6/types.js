@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const emptyType = 'empty',
-      deleteType = 'delete',
-      insertType = 'insert';
+const emptyType = "empty",
+      deleteType = "delete",
+      insertType = "insert";
 
 module.exports = {
   emptyType,

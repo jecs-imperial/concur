@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const express = require('express'),
-      necessary = require('necessary'),
-      bodyParser = require('body-parser');
+const express = require("express"),
+      necessary = require("necessary"),
+      bodyParser = require("body-parser");
 
-const uris = require('../../es6/uris'),
-      handlers = require('../../es6/handlers');
+const uris = require("../../es6/uris"),
+      handlers = require("../../es6/handlers");
 
 const { miscellaneousUtilities } = necessary,
       { rc, onETX } = miscellaneousUtilities,

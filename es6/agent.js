@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const Client = require('./client'),
-      constants = require('./constants');
+const Client = require("./client"),
+      constants = require("./constants");
 
 const { UPDATE_INTERVAL } = constants;
 
@@ -63,7 +63,7 @@ class Agent {
 
     const success = this.client.updateDocument(this.userIdentifier, this.sessionIdentifier, workingContent, editableContent, (sessionExpired, pendingOperations) => {
     	if (sessionExpired) {
-				alert('The session has expired. Please refresh!');
+				alert("The session has expired. Please refresh!");
 
 				return;
 			}

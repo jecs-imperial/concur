@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const operationsToJSON = require('../operations/toJSON'),
-      operationsFromJSON = require('../operations/fromJSON');
+const operationsToJSON = require("../operations/toJSON"),
+      operationsFromJSON = require("../operations/fromJSON");
 
 class UpdateRequest {
   constructor(operations, userIdentifier, sessionIdentifier) {

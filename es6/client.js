@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const sufficient = require('sufficient');
+const sufficient = require("sufficient");
 
-const UpdateTask = require('./task/update'),
-      InitialiseTask = require('./task/initialise');
+const UpdateTask = require("./task/update"),
+      InitialiseTask = require("./task/initialise");
 
 const { Scheduler } = sufficient;
 

@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-require('juxtapose');
+require("juxtapose");
 
-const easy = require('easy');
+const easy = require("easy");
 
-const Agent = require('./agent'),
-      Document = require('./example/document'),
-      EditableContentTextarea = require('./example/editableContentTextarea');
+const Agent = require("./agent"),
+      Document = require("./example/document"),
+      EditableContentTextarea = require("./example/editableContentTextarea");
 
 const { Body } = easy;
 

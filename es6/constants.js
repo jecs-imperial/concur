@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const UPDATE_INTERVAL = 1000;
 

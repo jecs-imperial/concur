@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const session = require('../session'),
-      InitialiseResponse = require('../response/initialise');
+const session = require("../session"),
+      InitialiseResponse = require("../response/initialise");
 
 class InitialiseTransaction {
   constructor(initialiseResponse) {

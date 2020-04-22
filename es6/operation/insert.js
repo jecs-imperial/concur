@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const types = require('../types'),
-      stringCompare = require('../stringCompare'),
-      DeleteOperation = require('../operation/delete');
+const types = require("../types"),
+      stringCompare = require("../stringCompare"),
+      DeleteOperation = require("../operation/delete");
 
 const { insertType } = types;
 
@@ -29,7 +29,7 @@ class InsertOperation {
 
   transformOperation(operation) {
     switch (operation.type) {
-      case 'insert':
+      case "insert":
         return (function(tau, rho) {
 
           if (tau.position < rho.position) {
@@ -55,7 +55,7 @@ class InsertOperation {
 
         })(operation, this);
 
-      case 'delete':
+      case "delete":
         return (function(tau, rho) {
 
           if (tau.position + tau.length <= rho.position) {
@@ -72,7 +72,7 @@ class InsertOperation {
 
         })(operation, this);
 
-      case 'empty':
+      case "empty":
         return (function(tau, rho) {
 
           return [tau.clone()];

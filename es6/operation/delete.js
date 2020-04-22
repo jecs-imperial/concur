@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const types = require('../types'),
-      EmptyOperation = require('../operation/empty');
+const types = require("../types"),
+      EmptyOperation = require("../operation/empty");
 
 const { deleteType } = types;
 
@@ -28,7 +28,7 @@ class DeleteOperation {
 
   transformOperation(operation) {
     switch (operation.type) {
-      case 'insert':
+      case "insert":
         return (function(tau, rho) {
 
           if (tau.position <= rho.position) {
@@ -46,7 +46,7 @@ class DeleteOperation {
 
         })(operation, this);
 
-      case 'delete':
+      case "delete":
         return (function(tau, rho) {
 
           if (tau.position < rho.position) {
@@ -85,7 +85,7 @@ class DeleteOperation {
 
         })(operation, this);
 
-      case 'empty':
+      case "empty":
         return (function(tau, rho) {
 
           return [tau.clone()];

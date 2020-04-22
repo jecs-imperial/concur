@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const easy = require('easy');
+const easy = require("easy");
 
 const { InputElement } = easy;
 
@@ -18,15 +18,14 @@ class EditableContentTextarea extends InputElement {
     return editableContent;
   }
 
+  static tagName = "textarea";
+
+  static defaultProperties = {
+    className: "editable content",
+    spellCheck: false
+  };
+
   static fromProperties(properties) { return InputElement.fromProperties(EditableContentTextarea, properties); }
 }
-
-Object.assign(EditableContentTextarea, {
-  tagName: 'textarea',
-  defaultProperties: {
-    className: 'editable content',
-    spellCheck: false
-  }
-});
 
 module.exports = EditableContentTextarea;

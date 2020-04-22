@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const transformOperations = require('./operations/transform');
+const transformOperations = require("./operations/transform");
 
 let identifier = 0;
 

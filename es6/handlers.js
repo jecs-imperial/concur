@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const UpdateTransaction = require('./transaction/update'),
-      InitialiseTransaction = require('./transaction/initialise');
+const UpdateTransaction = require("./transaction/update"),
+      InitialiseTransaction = require("./transaction/initialise");
 
 const updateTransactionHandler = createHandler(UpdateTransaction),
       initialiseTransactionHandler = createHandler(InitialiseTransaction);
@@ -22,7 +22,7 @@ function createHandler(Transaction) {
     json = transaction.toJSON();
 
     const statusCode = 200,
-          headers = { 'Content-Type': 'application/json; charset=utf-8' },
+          headers = { "Content-Type": "application/json; charset=utf-8" },
           content = JSON.stringify(json);
 
     response.writeHead(statusCode, headers);

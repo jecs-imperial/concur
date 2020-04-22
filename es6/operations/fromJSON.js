@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const types = require('../types'),
-      EmptyOperation = require('../operation/empty'),
-      DeleteOperation = require('../operation/delete'),
-      InsertOperation = require('../operation/insert');
+const types = require("../types"),
+      EmptyOperation = require("../operation/empty"),
+      DeleteOperation = require("../operation/delete"),
+      InsertOperation = require("../operation/insert");
 
 const { emptyType, deleteType, insertType } = types;
 
