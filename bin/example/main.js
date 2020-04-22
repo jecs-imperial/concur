@@ -5,19 +5,21 @@ const express = require("express"),
       bodyParser = require("body-parser");
 
 const uris = require("../../es6/uris"),
-      handlers = require("../../es6/handlers");
+      handlers = require("../../es6/handlers"),
+      constants = require("./constants");
 
 const { miscellaneousUtilities } = necessary,
       { rc, onETX } = miscellaneousUtilities,
+      { PUBLIC_DIRECTORY_PATH } = constants,
       { UPDATE_URI, INITIALISE_URI } = uris,
       { updateTransactionHandler, initialiseTransactionHandler } = handlers;
 
 rc();
 
-const { publicDirectoryPath, port } = rc;
-
-const server = express(), ///
+const { port } = rc,
+      server = express(), ///
       jsonRouter = express.Router(),
+      publicDirectoryPath = PUBLIC_DIRECTORY_PATH,
       staticRouter = express.static(publicDirectoryPath),
       jsonBodyParser = bodyParser.json();
 

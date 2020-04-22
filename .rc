@@ -2,8 +2,7 @@
   "environments": [
     {
       "name": "development",
-      "port": 8888,
-      "publicDirectoryPath": "public"
+      "port": 8888
     }
   ]
 }
