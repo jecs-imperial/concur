@@ -3,13 +3,8 @@
 import UpdateTransaction from "./transaction/update";
 import InitialiseTransaction from "./transaction/initialise";
 
-const updateTransactionHandler = createHandler(UpdateTransaction),
-      initialiseTransactionHandler = createHandler(InitialiseTransaction);
-
-module.exports = {
-  updateTransactionHandler,
-  initialiseTransactionHandler
-};
+export const updateTransactionHandler = createHandler(UpdateTransaction);
+export const initialiseTransactionHandler = createHandler(InitialiseTransaction);
 
 function createHandler(Transaction) {
   return function(request, response, next) {

@@ -4,7 +4,7 @@ import transformOperations from "./operations/transform";
 
 let identifier = 0;
 
-class User {
+export default class User {
   constructor(identifier, pendingOperations) {
     this.identifier = identifier;
     this.pendingOperations = pendingOperations;
@@ -45,5 +45,3 @@ class User {
     return user;
   }
 }
-
-module.exports = User;

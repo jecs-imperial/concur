@@ -4,7 +4,7 @@ import Client from "./client";
 
 import { UPDATE_INTERVAL } from "./constants";
 
-class Agent {
+export default class Agent {
   constructor(client, busy, document, userIdentifier, sessionIdentifier, intervalIdentifier) {
     this.busy = busy;
     this.client = client;
@@ -91,5 +91,3 @@ class Agent {
     return agent;
   }
 }
-
-module.exports = Agent;

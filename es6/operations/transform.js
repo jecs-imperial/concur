@@ -4,7 +4,7 @@ import { arrayUtilities } from "necessary";
 
 const { first, tail } = arrayUtilities;
 
-function transformOperations(tau, rho) {
+export default function transformOperations(tau, rho) {
   if ((tau.length === 0) || (rho.length === 0)) {
     return tau;
   }
@@ -54,6 +54,4 @@ function transformOperations(tau, rho) {
 
     return rho.transformOperation(tau);
   }
-};
-
-module.exports = transformOperations;
+}

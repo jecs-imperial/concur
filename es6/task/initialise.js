@@ -7,13 +7,11 @@ import InitialiseResponse from "../response/initialise";
 
 import { initialisePost } from "../poster";
 
-class InitialiseTask extends AsynchronousTask {
+export default class InitialiseTask extends AsynchronousTask {
   constructor(callback) {
     super(asynchronousMethod, callback)
   }
 }
-
-module.exports = InitialiseTask;
 
 function asynchronousMethod(callback) {
   const initialiseRequest = InitialiseRequest.fromNothing(),

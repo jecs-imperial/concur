@@ -3,7 +3,7 @@
 import operationsToJSON from "../operations/toJSON";
 import operationsFromJSON from "../operations/fromJSON";
 
-class UpdateRequest {
+export default class UpdateRequest {
   constructor(operations, userIdentifier, sessionIdentifier) {
     this.operations = operations;
     this.userIdentifier = userIdentifier;
@@ -52,5 +52,3 @@ class UpdateRequest {
     return updateRequest;
   }
 }
-
-module.exports = UpdateRequest;

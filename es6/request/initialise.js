@@ -1,6 +1,6 @@
 "use strict";
 
-class InitialiseRequest {
+export default class InitialiseRequest {
   toJSON() {
     const json = {};  ///
 
@@ -13,5 +13,3 @@ class InitialiseRequest {
     return initialiseRequest;
   }
 }
-
-module.exports = InitialiseRequest;

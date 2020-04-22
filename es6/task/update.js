@@ -8,13 +8,11 @@ import generateOperations from "../operations/generate";
 
 import { updatePost } from "../poster";
 
-class UpdateTask extends AsynchronousTask {
+export default class UpdateTask extends AsynchronousTask {
   constructor(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
     super(asynchronousMethod, userIdentifier, sessionIdentifier, workingContent, editableContent, callback)
   }
 }
-
-module.exports = UpdateTask;
 
 function asynchronousMethod(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
   const operations = generateOperations(workingContent, editableContent),

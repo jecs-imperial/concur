@@ -3,7 +3,7 @@
 import session from "../session";
 import InitialiseResponse from "../response/initialise";
 
-class InitialiseTransaction {
+export default class InitialiseTransaction {
   constructor(initialiseResponse) {
     this.initialiseResponse = initialiseResponse;
   }
@@ -20,5 +20,3 @@ class InitialiseTransaction {
     return initialiseTransaction;
   }
 }
-
-module.exports = InitialiseTransaction;

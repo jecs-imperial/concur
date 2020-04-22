@@ -1,9 +1,4 @@
 "use strict";
 
-const UPDATE_URI = "/UPDATE",
-      INITIALISE_URI = "/INITIALISE";
-
-module.exports = {
-  UPDATE_URI,
-  INITIALISE_URI
-};
+export const UPDATE_URI = "/UPDATE";
+export const INITIALISE_URI = "/INITIALISE";

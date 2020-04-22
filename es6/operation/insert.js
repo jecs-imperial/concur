@@ -5,7 +5,7 @@ import DeleteOperation from "../operation/delete";
 
 import { insertType } from "../types";
 
-class InsertOperation {
+export default class InsertOperation {
   constructor(type, string, position) {
 	  this.type = type;
     this.string = string;
@@ -160,5 +160,3 @@ class InsertOperation {
     return insertOperation;
   }
 }
-
-module.exports = InsertOperation;

@@ -4,7 +4,7 @@ import transformContent from "../content/transform";
 import generateOperations from "../operations/generate";
 import transformOperations from "../operations/transform";
 
-class Document {
+export default class Document {
   constructor(workingContent, editableContentTextarea) {
     this.workingContent = workingContent;
     this.editableContentTextarea = editableContentTextarea;
@@ -59,5 +59,3 @@ class Document {
     return document;
   }
 }
-
-module.exports = Document;

@@ -3,7 +3,7 @@
 import InsertOperation from "../operation/insert";
 import DeleteOperation from "../operation/delete";
 
-function generateOperations(workingContent, editableContent) {
+export default function generateOperations(workingContent, editableContent) {
   const operations = [];
   
   let left, right, length, string, position;
@@ -32,5 +32,3 @@ function generateOperations(workingContent, editableContent) {
 
   return operations;
 }
-
-module.exports = generateOperations;

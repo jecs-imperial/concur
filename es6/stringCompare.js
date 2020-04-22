@@ -1,6 +1,6 @@
 "use strict";
 
-function stringCompare(stringA, stringB) {
+export default function stringCompare(stringA, stringB) {
   if ((stringA === "") && (stringB === "")) {
     return false;
   }
@@ -29,5 +29,3 @@ function stringCompare(stringA, stringB) {
 
   return stringCompare(subStringA, subStringB);
 }
-
-module.exports = stringCompare;

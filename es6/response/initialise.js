@@ -1,6 +1,6 @@
 "use strict";
 
-class InitialiseResponse {
+export default class InitialiseResponse {
   constructor(content, userIdentifier, sessionIdentifier) {
     this.content = content;
     this.userIdentifier = userIdentifier;
@@ -47,5 +47,3 @@ class InitialiseResponse {
     return initialiseResponse;
   }
 }
-
-module.exports = InitialiseResponse;

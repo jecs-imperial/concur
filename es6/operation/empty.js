@@ -2,7 +2,7 @@
 
 import { emptyType } from "../types";
 
-class EmptyOperation {
+export default class EmptyOperation {
   constructor(type) {
     this.type = type;
 
@@ -68,70 +68,3 @@ class EmptyOperation {
     return emptyOperation;
   }
 }
-
-module.exports = EmptyOperation;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@
 import operationsToJSON from "../operations/toJSON";
 import operationsFromJSON from "../operations/fromJSON";
 
-class UpdateResponse {
+export default class UpdateResponse {
   constructor(sessionExpired, pendingOperations) {
   	this.sessionExpired = sessionExpired;
     this.pendingOperations = pendingOperations;
@@ -44,5 +44,3 @@ class UpdateResponse {
     return updateResponse;
   }
 }
-
-module.exports = UpdateResponse;

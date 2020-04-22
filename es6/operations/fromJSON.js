@@ -6,7 +6,7 @@ import InsertOperation from "../operation/insert";
 
 import { emptyType, deleteType, insertType } from "../types";
 
-function operationsFromJSON(operationsJSON) {
+export default function operationsFromJSON(operationsJSON) {
   const operations = operationsJSON.map((operationJSON) => {
     let operation;
 
@@ -32,5 +32,3 @@ function operationsFromJSON(operationsJSON) {
 
   return operations;
 }
-
-module.exports = operationsFromJSON;

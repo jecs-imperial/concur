@@ -5,7 +5,7 @@ import { Scheduler } from "sufficient";
 import UpdateTask from "./task/update";
 import InitialiseTask from "./task/initialise";
 
-class Client {
+export default class Client {
   constructor(scheduler) {
     this.scheduler = scheduler;
   }
@@ -31,5 +31,3 @@ class Client {
     return client;
   }
 }
-
-module.exports = Client;

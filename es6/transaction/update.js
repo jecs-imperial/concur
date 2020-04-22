@@ -4,7 +4,7 @@ import session from "../session";
 import UpdateRequest from "../request/update";
 import UpdateResponse from "../response/update";
 
-class UpdateTransaction {
+export default class UpdateTransaction {
   constructor(updateResponse) {
     this.updateResponse = updateResponse;
   }
@@ -24,5 +24,3 @@ class UpdateTransaction {
     return updateTransaction;
   }
 }
-
-module.exports = UpdateTransaction;

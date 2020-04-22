@@ -4,7 +4,7 @@ import EmptyOperation from "../operation/empty";
 
 import { deleteType } from "../types";
 
-class DeleteOperation {
+export default class DeleteOperation {
   constructor(type, length, position) {
 	  this.type = type;
     this.length = length;
@@ -203,5 +203,3 @@ class DeleteOperation {
     return deleteOperation;
   }
 }
-
-module.exports = DeleteOperation;

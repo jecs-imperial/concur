@@ -2,7 +2,7 @@
 
 import { InputElement } from "easy";
 
-class EditableContentTextarea extends InputElement {
+export default class EditableContentTextarea extends InputElement {
   setEditableContent(editableContent) {
     const value = editableContent;  ///
 
@@ -25,5 +25,3 @@ class EditableContentTextarea extends InputElement {
 
   static fromProperties(properties) { return InputElement.fromProperties(EditableContentTextarea, properties); }
 }
-
-module.exports = EditableContentTextarea;

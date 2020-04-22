@@ -102,4 +102,4 @@ class Session {
 
 const session = Session.fromNothing();
 
-module.exports = session;
+export default session;
