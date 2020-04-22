@@ -23,7 +23,7 @@ function asynchronousMethod(userIdentifier, sessionIdentifier, workingContent, e
         updateRequest = UpdateRequest.fromOperationsUserIdentifierAndSessionIdentifier(operations, userIdentifier, sessionIdentifier),
         json = updateRequest.toJSON();
 
-  updatePost(json, function(json) {
+  updatePost(json, (json) => {
     const updateResponse = UpdateResponse.fromJSON(json),
 					sessionExpired = updateResponse.getSessionExpired(),
           pendingOperations = updateResponse.getPendingOperations();

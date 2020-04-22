@@ -14,9 +14,9 @@ const { assert } = chai,
       { first, second } = arrayUtilities,
       { insertType, deleteType } = types;
 
-describe("es6/generateOperations", function() {
-  describe("if the working and editable contents are the same", function() {
-    it("generates a zero length sequence of operations", function() {
+describe("es6/generateOperations", () => {
+  describe("if the working and editable contents are the same", () => {
+    it("generates a zero length sequence of operations", () => {
       const workingContent = helpers.content(),
             editableContent = workingContent,
             operations = generateOperations(workingContent, editableContent);
@@ -25,8 +25,8 @@ describe("es6/generateOperations", function() {
     });
   });
 
-  describe("if the the working content is a subset of the editable content", function() {
-    it("generates a sequence of operations containing an insert operation", function() {
+  describe("if the the working content is a subset of the editable content", () => {
+    it("generates a sequence of operations containing an insert operation", () => {
       const workingContent = helpers.content(),
             editableContent = `123${workingContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -44,8 +44,8 @@ describe("es6/generateOperations", function() {
     });
   });
 
-  describe("if the editable content is a subset of the the working content", function() {
-    it("generates sequence of operations containing a delete operation", function() {
+  describe("if the editable content is a subset of the the working content", () => {
+    it("generates sequence of operations containing a delete operation", () => {
       const editableContent = helpers.content(),
             workingContent = `xyz${editableContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -63,8 +63,8 @@ describe("es6/generateOperations", function() {
     });
   });
 
-  describe("if the the working and editable contents are different", function() {
-    it("generates sequence of operations containing one delete operation followed by an insert operation", function() {
+  describe("if the the working and editable contents are different", () => {
+    it("generates sequence of operations containing one delete operation followed by an insert operation", () => {
       const workingContent = helpers.content(),
             editableContent = helpers.content(),
             operations = generateOperations(workingContent, editableContent);

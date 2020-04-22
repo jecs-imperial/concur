@@ -12,7 +12,7 @@ const { Body } = easy;
 
 const agent = Agent.fromNothing();
 
-agent.initialise(function(content) {
+agent.initialise((content) => {
   const body = new Body(),
         editableContent = content,  ///
         editableContentTextarea =

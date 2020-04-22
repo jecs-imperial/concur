@@ -29,7 +29,7 @@ class DeleteOperation {
   transformOperation(operation) {
     switch (operation.type) {
       case "insert":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           if (tau.position <= rho.position) {
             return [tau.clone()];
@@ -47,7 +47,7 @@ class DeleteOperation {
         })(operation, this);
 
       case "delete":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           if (tau.position < rho.position) {
             if (tau.length + tau.position <= rho.position) {
@@ -86,7 +86,7 @@ class DeleteOperation {
         })(operation, this);
 
       case "empty":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           return [tau.clone()];
 

@@ -21,7 +21,7 @@ function asynchronousMethod(callback) {
   const initialiseRequest = InitialiseRequest.fromNothing(),
         json = initialiseRequest.toJSON();
 
-  initialisePost(json, function(json) {
+  initialisePost(json, (json) => {
     const initialiseResponse = InitialiseResponse.fromJSON(json),
           content = initialiseResponse.getContent(),
           userIdentifier = initialiseResponse.getUserIdentifier(),

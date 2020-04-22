@@ -30,7 +30,7 @@ class InsertOperation {
   transformOperation(operation) {
     switch (operation.type) {
       case "insert":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           if (tau.position < rho.position) {
             return [tau.clone()];
@@ -56,7 +56,7 @@ class InsertOperation {
         })(operation, this);
 
       case "delete":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           if (tau.position + tau.length <= rho.position) {
             return [tau.clone()];
@@ -73,7 +73,7 @@ class InsertOperation {
         })(operation, this);
 
       case "empty":
-        return (function(tau, rho) {
+        return ((tau, rho) => {
 
           return [tau.clone()];
 

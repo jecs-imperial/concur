@@ -26,7 +26,7 @@ class EmptyOperation {
   }
 
   transformOperation(operation) {
-    return (function(tau, rho) {
+    return ((tau, rho) => {
 
       return [tau.clone()];
 

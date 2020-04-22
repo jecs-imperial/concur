@@ -37,7 +37,7 @@ class Session {
 	getOtherUsers(userIdentifier) {
 		const otherUsers = Object.values(this.map);
 
-		filter(otherUsers, function(otherUser) {
+		filter(otherUsers, (otherUser) => {
 			const otherUserIdentifier = otherUser.getIdentifier();
 
 			if (otherUserIdentifier !== userIdentifier) {
@@ -77,7 +77,7 @@ class Session {
           transformedOperations = user.transformOperations(operations),
           transformedPendingOperations = user.transformedPendingOperations(operations);
 
-    otherUsers.forEach(function(otherUser) {
+    otherUsers.forEach((otherUser) => {
       otherUser.update(transformedOperations);
     });
 

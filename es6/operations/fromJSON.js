@@ -8,7 +8,7 @@ const types = require("../types"),
 const { emptyType, deleteType, insertType } = types;
 
 function operationsFromJSON(operationsJSON) {
-  const operations = operationsJSON.map(function(operationJSON) {
+  const operations = operationsJSON.map((operationJSON) => {
     let operation;
 
     const json = operationJSON, ///

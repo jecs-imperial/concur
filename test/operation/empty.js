@@ -12,9 +12,9 @@ const { assert } = chai,
       { arrayUtilities } = necessary,
       { first } = arrayUtilities;
 
-describe("es6/EmptyOperation", function() {
-  describe("transform", function() {
-    it("transforms an insert operation, leaving it the same", function() {
+describe("es6/EmptyOperation", () => {
+  describe("transform", () => {
+    it("transforms an insert operation, leaving it the same", () => {
       const emptyOperation1 = EmptyOperation.fromNothing(),
             insertOperation2 = InsertOperation.fromStringAndPosition(0, "b"),
             transformedOperations = emptyOperation1.transformOperation(insertOperation2);
@@ -30,7 +30,7 @@ describe("es6/EmptyOperation", function() {
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
-    it("transforms a second empty operation, leaving it the same", function() {
+    it("transforms a second empty operation, leaving it the same", () => {
       const emptyOperation1 = EmptyOperation.fromNothing(),
             emptyOperation2 = EmptyOperation.fromNothing(),
             transformedOperations = emptyOperation1.transformOperation(emptyOperation2);
@@ -46,7 +46,7 @@ describe("es6/EmptyOperation", function() {
       assert.deepEqual(transformedOperationJSON, expectedTransformedOperationJSON)
     });
 
-    it("transforms a delete operation, leaving it the same", function() {
+    it("transforms a delete operation, leaving it the same", () => {
       const emptyOperation1 = EmptyOperation.fromNothing(),
             deleteOperation2 = DeleteOperation.fromLengthAndPosition(0, 1),
             transformedOperations = emptyOperation1.transformOperation(deleteOperation2);
@@ -63,8 +63,8 @@ describe("es6/EmptyOperation", function() {
     });
   });
 
-  describe("transformContent", function() {
-    it("leaves the content unchanged", function() {
+  describe("transformContent", () => {
+    it("leaves the content unchanged", () => {
       const content = helpers.content(),
             emptyOperation = EmptyOperation.fromNothing(),
             transformedContent = emptyOperation.transformContent(content),
@@ -74,8 +74,8 @@ describe("es6/EmptyOperation", function() {
     });
   });
 
-  describe("fromJSON, toJSON", function() {
-    it("transforms from and to JSON, leaving the operation unchanged", function() {
+  describe("fromJSON, toJSON", () => {
+    it("transforms from and to JSON, leaving the operation unchanged", () => {
       const expectedJSON = {
               "type": "empty"
             },
