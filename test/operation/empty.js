@@ -1,18 +1,17 @@
 "use strict";
 
 const chai = require("chai"),
+      concur = require("../../lib/index"),  ///
       necessary = require("necessary");
 
-const helpers = require("../helpers"),
-      EmptyOperation = require("../../es6/operation/empty"),
-      DeleteOperation = require("../../es6/operation/delete"),
-      InsertOperation = require("../../es6/operation/insert");
+const helpers = require("../helpers");
 
 const { assert } = chai,
       { arrayUtilities } = necessary,
-      { first } = arrayUtilities;
+      { first } = arrayUtilities,
+      { EmptyOperation, DeleteOperation, InsertOperation } = concur;
 
-describe("es6/EmptyOperation", () => {
+describe("lib/EmptyOperation", () => {
   describe("transform", () => {
     it("transforms an insert operation, leaving it the same", () => {
       const emptyOperation1 = EmptyOperation.fromNothing(),

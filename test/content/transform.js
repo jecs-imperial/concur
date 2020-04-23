@@ -1,16 +1,14 @@
 "use strict";
 
-const chai = require("chai");
+const chai = require("chai"),
+      concur = require("../../lib/index");  ///
 
-const helpers = require("../helpers"),
-      DeleteOperation = require("../../es6/operation/delete"),
-      InsertOperation = require("../../es6/operation/insert"),
-      transformContent = require("../../es6/content/transform"),
-      generateOperations = require("../../es6/operations/generate");
+const helpers = require("../helpers");
 
-const { assert } = chai;
+const { assert } = chai,
+      { DeleteOperation, InsertOperation, transformContent, generateOperations } = concur;
 
-describe("es6/transformContent", () => {
+describe("lib/transformContent", () => {
   describe("if the sequence of operations is of zero length", () => {
     it("leaves the content unchanged", () => {
       const content = helpers.content(),

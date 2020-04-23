@@ -1,15 +1,14 @@
 "use strict";
 
-const chai = require("chai");
+const chai = require("chai"),
+      concur = require("../../lib/index");  ///
 
-const helpers = require("../helpers"),
-      transformContent = require("../../es6/content/transform"),
-      operationsFromJSON = require("../../es6/operations/fromJSON"),
-      transformOperations = require("../../es6/operations/transform");
+const helpers = require("../helpers");
 
-const { assert } = chai;
+const { assert } = chai,
+      { transformContent, operationsFromJSON, transformOperations } = concur;
 
-describe("es6/transformOperations", () => {
+describe("lib/transformOperations", () => {
   describe("for two empty sequences of operations", () => {
     it("The intentions are preserved", () => {
       const firstOperationsJSON = [],

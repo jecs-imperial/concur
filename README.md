@@ -24,9 +24,10 @@ You will need to do this if you want to look at the example.
 
 ## Usage
 
-```js
-const concur = require('concur-algorithm'),    ///
-      { generateOperations, transformContent } = concur;
+```
+const concur = require("concur-algorithm");    ///
+
+const { generateOperations, transformContent } = concur;
 
 ...
 ```

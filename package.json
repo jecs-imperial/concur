@@ -1,7 +1,7 @@
 {
   "name": "concur-algorithm",
   "author": "James Smith",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/jecs-imperial/concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
@@ -45,5 +45,6 @@
     "watch-debug": "npm run clean && npm run batch-debug && concurrently 'npm run incremental-debug' 'npm run lively'",
     "start": "node ./bin/example/main.js",
     "test": "mocha --recursive -R spec ./test"
-  }
+  },
+  "main": "./lib/index.js"
 }

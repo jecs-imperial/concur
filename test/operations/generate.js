@@ -1,20 +1,19 @@
 "use strict";
 
 const chai = require("chai"),
+      concur = require("../../lib/index"),  ///
       necessary = require("necessary");
 
 const helpers = require("../helpers"),
-      types = require("../../es6/types"),
-      InsertOperation = require("../../es6/operation/insert"),
-      DeleteOperation = require("../../es6/operation/delete"),
-      generateOperations = require("../../es6/operations/generate");
+      types = require("../../lib/types");
 
 const { assert } = chai,
       { arrayUtilities } = necessary,
       { first, second } = arrayUtilities,
-      { insertType, deleteType } = types;
+      { insertType, deleteType } = types,
+      { InsertOperation, DeleteOperation, generateOperations } = concur;
 
-describe("es6/generateOperations", () => {
+describe("lib/generateOperations", () => {
   describe("if the working and editable contents are the same", () => {
     it("generates a zero length sequence of operations", () => {
       const workingContent = helpers.content(),
