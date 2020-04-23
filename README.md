@@ -25,9 +25,7 @@ You will need to do this if you want to look at the example.
 ## Usage
 
 ```
-const concur = require("concur-algorithm");    ///
-
-const { generateOperations, transformContent } = concur;
+import { generateOperations, transformContent } from "concur-algorithm";
 
 ...
 ```
