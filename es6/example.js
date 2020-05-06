@@ -7,6 +7,7 @@ import withStyle from "easy-with-style";  ///
 import { Body } from "easy";
 
 import Agent from "./agent";
+import Heading from "./example/heading";
 import Document from "./example/document";
 import RichTextarea from "./example/richTextarea";
 
@@ -29,9 +30,9 @@ renderStyles();
 body.append(
 
   <section>
-    <h1>
+    <Heading>
       Concur example
-    </h1>
+    </Heading>
     {richTextarea}
   </section>
 
