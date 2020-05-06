@@ -5,18 +5,27 @@ import generateOperations from "../operations/generate";
 import transformOperations from "../operations/transform";
 
 export default class Document {
-  constructor(workingContent, editableContentTextarea) {
+  constructor(workingContent, richTextarea) {
     this.workingContent = workingContent;
-    this.editableContentTextarea = editableContentTextarea;
+    this.richTextarea = richTextarea;
   }
 
   getWorkingContent() {
     return this.workingContent;
   }
 
-  getEditableContent() { return this.editableContentTextarea.getEditableContent(); }
+  getEditableContent() {
+    const content = this.richTextarea.getContent(),
+          editableContent = content;  ///
 
-  setEditableContent(editableContent) { this.editableContentTextarea.setEditableContent(editableContent); }
+    return editableContent;
+  }
+
+  setEditableContent(editableContent) {
+    const content = editableContent;  ///
+
+    this.richTextarea.setContent(content);
+  }
 
   synchroniseWorkingContent() {
     const editableContent = this.getEditableContent(),
@@ -51,10 +60,11 @@ export default class Document {
     return operations;
   }
 
-  static fromEditableContentTextarea(editableContentTextarea) {
-    const editableContent = editableContentTextarea.getEditableContent(),
+  static fromRichTextarea(richTextarea) {
+    const content = richTextarea.getContent(),
+          editableContent = content,  ///
           workingContent = editableContent, ///
-          document = new Document(workingContent, editableContentTextarea);
+          document = new Document(workingContent, richTextarea);
 
     return document;
   }

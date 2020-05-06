@@ -8,41 +8,43 @@ import { Body } from "easy";
 
 import Agent from "./agent";
 import Document from "./example/document";
-import EditableContentTextarea from "./example/editableContentTextarea";
+import RichTextarea from "./example/richTextarea";
 
 const { renderStyles } = withStyle;
+
+const body = new Body(),
+      richTextarea =
+
+        <RichTextarea onKeyUp={(event, element) => {
+
+                                agent.update();
+
+                              }}
+        />
+
+      ;
+
+renderStyles();
+
+body.append(
+
+  <section>
+    <h1>
+      Concur example
+    </h1>
+    {richTextarea}
+  </section>
+
+);
 
 const agent = Agent.fromNothing();
 
 agent.initialise((content) => {
-  const body = new Body(),
-        editableContent = content,  ///
-        editableContentTextarea =
-
-          <EditableContentTextarea onKeyUp={(event, element) => {
-
-                                     agent.update();
-
-                                   }}
-          >
-            {editableContent}
-          </EditableContentTextarea>
-
-        ,
-        document = Document.fromEditableContentTextarea(editableContentTextarea);
+  const document = Document.fromRichTextarea(richTextarea);
 
   agent.setDocument(document);
 
-  renderStyles();
+  richTextarea.setContent(content);
 
-  body.append(
-
-    <section>
-      <h1>
-        Concur Example
-      </h1>
-      {editableContentTextarea}
-    </section>
-
-  );
+  richTextarea.activate();
 });
