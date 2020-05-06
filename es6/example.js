@@ -2,11 +2,15 @@
 
 import "juxtapose";
 
-import { Body } from"easy";
+import withStyle from "easy-with-style";  ///
+
+import { Body } from "easy";
 
 import Agent from "./agent";
 import Document from "./example/document";
 import EditableContentTextarea from "./example/editableContentTextarea";
+
+const { renderStyles } = withStyle;
 
 const agent = Agent.fromNothing();
 
@@ -15,7 +19,7 @@ agent.initialise((content) => {
         editableContent = content,  ///
         editableContentTextarea =
 
-          <EditableContentTextarea onKeyUp={() => {
+          <EditableContentTextarea onKeyUp={(event, element) => {
 
                                      agent.update();
 
@@ -28,6 +32,8 @@ agent.initialise((content) => {
         document = Document.fromEditableContentTextarea(editableContentTextarea);
 
   agent.setDocument(document);
+
+  renderStyles();
 
   body.append(
 

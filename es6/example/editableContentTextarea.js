@@ -1,8 +1,10 @@
 "use strict";
 
-import { InputElement } from "easy";
+import withStyle from "easy-with-style";  ///
 
-export default class EditableContentTextarea extends InputElement {
+import { Textarea } from "easy";
+
+class EditableContentTextarea extends Textarea {
   setEditableContent(editableContent) {
     const value = editableContent;  ///
 
@@ -16,12 +18,16 @@ export default class EditableContentTextarea extends InputElement {
     return editableContent;
   }
 
-  static tagName = "textarea";
-
   static defaultProperties = {
     className: "editable content",
     spellCheck: false
   };
-
-  static fromProperties(properties) { return InputElement.fromProperties(EditableContentTextarea, properties); }
 }
+
+export default withStyle(EditableContentTextarea)`
+
+  border: 1px solid black;
+  width: 40rem;
+  height: 20rem;
+  
+`;
