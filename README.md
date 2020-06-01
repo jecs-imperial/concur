@@ -57,7 +57,7 @@ This can be done from the root of the repository with the following command:
 
 As of writing the tests cover the operational transformations and recursive function to transform sequences of operations, but not much else.
 
-## Compiling from source
+## Building
 
 Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have a look at the `package.json` file. The pertinent commands are:
 
