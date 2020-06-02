@@ -26,7 +26,7 @@ const body = new Body(),
 
 renderStyles();
 
-body.prepend(richTextarea);
+body.mount(richTextarea);
 
 const agent = Agent.fromNothing();
 
