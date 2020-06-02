@@ -3,9 +3,6 @@
 import UpdateTransaction from "./transaction/update";
 import InitialiseTransaction from "./transaction/initialise";
 
-export const updateTransactionHandler = createHandler(UpdateTransaction);
-export const initialiseTransactionHandler = createHandler(InitialiseTransaction);
-
 function createHandler(Transaction) {
   return function(request, response, next) {
     const { body } = request;
@@ -27,3 +24,6 @@ function createHandler(Transaction) {
     response.end();
   };
 }
+
+export const updateTransactionHandler = createHandler(UpdateTransaction);
+export const initialiseTransactionHandler = createHandler(InitialiseTransaction);
