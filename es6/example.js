@@ -15,7 +15,7 @@ const { renderStyles } = withStyle;
 const body = new Body(),
       richTextarea =
 
-        <RichTextarea onKeyUp={(event, element) => {
+        <RichTextarea onChange={(event, element) => {
 
                                 agent.update();
 
