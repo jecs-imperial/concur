@@ -32,7 +32,7 @@ import { generateOperations, transformContent } from "concur-algorithm";
 ...
 ```
 
-Bear in mind that not all of the functionality required for a working algorithm is exported by the package. If you want to see a full implementation, albeit a basic one, the only place to start is the example. For a closer look at the server and client implementations, see the `bin/example/main.js` and `es6/example.js` files, respectively.
+Bear in mind that not all of the functionality required for a working algorithm is exported by the package. If you want to see a full implementation, albeit a basic one, the only place to start is the example. For a closer look at the server and client implementations, see the `bin/main.js` and `es6/example.js` files, respectively.
 
 ## The example
 

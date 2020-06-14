@@ -4,8 +4,8 @@ const express = require("express"),
       necessary = require("necessary"),
       bodyParser = require("body-parser");
 
-const uris = require("../../lib/uris"),
-      handlers = require("../../lib/handlers"),
+const uris = require("../lib/uris"),
+      handlers = require("../lib/handlers"),
       constants = require("./constants");
 
 const { miscellaneousUtilities } = necessary,
