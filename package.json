@@ -1,7 +1,7 @@
 {
-  "name": "concur-algorithm",
+  "name": "quiescence",
   "author": "James Smith",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/jecs-imperial/concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
