@@ -20,7 +20,7 @@ You can also clone the repository with [Git](https://git-scm.com/)...
 
     npm install
 
-You will need to do this if you want to look at the example.
+You can also run a development server, see the section on building later on.
 
 ## Usage
 
