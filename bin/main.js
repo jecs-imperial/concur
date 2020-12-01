@@ -10,7 +10,7 @@ const uris = require("../lib/uris"),
       constants = require("./constants");
 
 const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
+      { rc, onETX } = miscellaneousUtilities,
       { createReloadHandler } = lively,
       { UPDATE_URI, INITIALISE_URI } = uris,
       { RELOAD_PATH, WATCH_PATTERN, PUBLIC_DIRECTORY_PATH } = constants,
@@ -38,3 +38,5 @@ server.use(jsonRouter);
 server.get(RELOAD_PATH, reloadHandler);
 
 server.listen(port);
+
+onETX(process.exit);
