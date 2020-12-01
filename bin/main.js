@@ -1,6 +1,7 @@
 "use strict";
 
-const express = require("express"),
+const lively = require("lively-cli"), ///
+      express = require("express"),
       necessary = require("necessary"),
       bodyParser = require("body-parser");
 
@@ -9,9 +10,10 @@ const uris = require("../lib/uris"),
       constants = require("./constants");
 
 const { miscellaneousUtilities } = necessary,
-      { rc, onETX } = miscellaneousUtilities,
-      { PUBLIC_DIRECTORY_PATH } = constants,
+      { rc } = miscellaneousUtilities,
+      { createReloadHandler } = lively,
       { UPDATE_URI, INITIALISE_URI } = uris,
+      { RELOAD_PATH, WATCH_PATTERN, PUBLIC_DIRECTORY_PATH } = constants,
       { updateTransactionHandler, initialiseTransactionHandler } = handlers;
 
 rc();
@@ -19,9 +21,9 @@ rc();
 const { port } = rc,
       server = express(), ///
       jsonRouter = express.Router(),
-      publicDirectoryPath = PUBLIC_DIRECTORY_PATH,
-      staticRouter = express.static(publicDirectoryPath),
-      jsonBodyParser = bodyParser.json();
+      staticRouter = express.static(PUBLIC_DIRECTORY_PATH),
+      jsonBodyParser = bodyParser.json(),
+      reloadHandler = createReloadHandler(WATCH_PATTERN);
 
 jsonRouter.use(jsonBodyParser);
 
@@ -33,6 +35,6 @@ server.use(staticRouter);
 
 server.use(jsonRouter);
 
-server.listen(port);
+server.get(RELOAD_PATH, reloadHandler);
 
-onETX(process.exit);
+server.listen(port);

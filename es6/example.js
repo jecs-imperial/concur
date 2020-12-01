@@ -17,9 +17,9 @@ const body = new Body(),
 
         <RichTextarea onChange={(event, element) => {
 
-                                agent.update();
+                        agent.update();
 
-                              }}
+                      }}
         />
 
       ;
