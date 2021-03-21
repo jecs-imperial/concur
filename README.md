@@ -4,7 +4,7 @@ An implementation of the Concur algorithm.
 
 There is a paper describing the algorithm which is (as they say) by no means inaccessible to the non-specialist:
 
-* [The First Correct Concurrency Control Algorithm](http://djalbat.com/TFCCCA.pdf)
+* [The First Correct Concurrency Control Algorithm](https://djalbat.com/TFCCCA.pdf)
 
 ## Installation
 
