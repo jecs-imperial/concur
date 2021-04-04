@@ -1,6 +1,6 @@
 "use strict";
 
-import { transformContent, generateOperations, transformOperations } from "../index"; ///
+import { transformContent, generateOperations, transformOperations } from "../browser"; ///
 
 export default class Document {
   constructor(workingContent, richTextarea) {

@@ -1,13 +1,14 @@
 "use strict";
 
-import { miscellaneousUtilities } from "necessary";
+import { ajaxUtilities } from "necessary";
 
-import { UPDATE_URI, INITIALISE_URI } from "./uris";
+import { updateURI, initialiseURI } from "./uris";
 
-const { post } = miscellaneousUtilities;
+const { post } = ajaxUtilities;
 
-const host = "";  ///
+const host = "",  ///
+      parameters = {};
 
-export function updatePost(json, callback) { post(host, UPDATE_URI, json, callback); }
+export function updatePost(json, callback) { post(host, updateURI, parameters, json, callback); }
 
-export function initialisePost(json, callback) { post(host, INITIALISE_URI, json, callback); }
+export function initialisePost(json, callback) { post(host, initialiseURI, parameters, json, callback); }

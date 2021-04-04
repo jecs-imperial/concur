@@ -1,12 +1,9 @@
 "use strict";
 
-const chai = require("chai"),
-      concur = require("../../lib/index");  ///
+const { assert } = require("chai"),
+      { transformContent, operationsFromJSON, transformOperations } = require("../../lib/main");  ///
 
 const helpers = require("../helpers");
-
-const { assert } = chai,
-      { transformContent, operationsFromJSON, transformOperations } = concur;
 
 describe("lib/transformOperations", () => {
   describe("for two empty sequences of operations", () => {

@@ -1,19 +1,17 @@
 "use strict";
 
-const lively = require("lively-cli"), ///
-      express = require("express"),
-      necessary = require("necessary"),
+const express = require("express"),
       bodyParser = require("body-parser");
 
-const uris = require("../lib/uris"),
-      handlers = require("../lib/handlers"),
-      constants = require("./constants");
+const { paths, handlers } = require("../lib/main"), ///
+      { configurationUtilities } = require("necessary"),
+      { createLiveReloadHandler } = require("lively-cli");
 
-const { miscellaneousUtilities } = necessary,
-      { rc, onETX } = miscellaneousUtilities,
-      { createReloadHandler } = lively,
-      { UPDATE_URI, INITIALISE_URI } = uris,
-      { RELOAD_PATH, WATCH_PATTERN, PUBLIC_DIRECTORY_PATH } = constants,
+const { LIVE_RELOAD_PATH } = require("./paths"),
+      { WATCH_PATTERN, PUBLIC_DIRECTORY_PATH } = require("./constants");
+
+const { rc } = configurationUtilities,
+      { UPDATE_PATH, INITIALISE_PATH } = paths,
       { updateTransactionHandler, initialiseTransactionHandler } = handlers;
 
 rc();
@@ -23,20 +21,18 @@ const { port } = rc,
       jsonRouter = express.Router(),
       staticRouter = express.static(PUBLIC_DIRECTORY_PATH),
       jsonBodyParser = bodyParser.json(),
-      reloadHandler = createReloadHandler(WATCH_PATTERN);
+      liveReloadHandler = createLiveReloadHandler(WATCH_PATTERN);
 
 jsonRouter.use(jsonBodyParser);
 
-jsonRouter.post(UPDATE_URI, updateTransactionHandler);
+jsonRouter.post(UPDATE_PATH, updateTransactionHandler);
 
-jsonRouter.post(INITIALISE_URI, initialiseTransactionHandler);
+jsonRouter.post(INITIALISE_PATH, initialiseTransactionHandler);
 
 server.use(staticRouter);
 
 server.use(jsonRouter);
 
-server.get(RELOAD_PATH, reloadHandler);
+server.get(LIVE_RELOAD_PATH, liveReloadHandler);
 
 server.listen(port);
-
-onETX(process.exit);

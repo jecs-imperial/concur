@@ -1,12 +1,9 @@
 "use strict";
 
-const chai = require("chai"),
-      concur = require("../../lib/index");  ///
+const { assert } = require("chai"),
+      { DeleteOperation, InsertOperation, transformContent, generateOperations } = require("../../lib/main");  ///
 
 const helpers = require("../helpers");
-
-const { assert } = chai,
-      { DeleteOperation, InsertOperation, transformContent, generateOperations } = concur;
 
 describe("lib/transformContent", () => {
   describe("if the sequence of operations is of zero length", () => {

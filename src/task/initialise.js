@@ -1,13 +1,13 @@
 "use strict";
 
-import { AsynchronousTask } from "sufficient";
+import { Task } from "sufficient";
 
 import InitialiseRequest from "../request/initialise";
 import InitialiseResponse from "../response/initialise";
 
 import { initialisePost } from "../poster";
 
-export default class InitialiseTask extends AsynchronousTask {
+export default class InitialiseTask extends Task {
   constructor(callback) {
     super(asynchronousMethod, callback)
   }

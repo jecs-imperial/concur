@@ -1,17 +1,13 @@
 "use strict";
 
-const chai = require("chai"),
-      concur = require("../../lib/index"),  ///
-      necessary = require("necessary");
+const { assert } = require("chai"),
+      { arrayUtilities } = require("necessary"),
+      { types, InsertOperation, DeleteOperation, generateOperations } = require("../../lib/main");  ///
 
-const helpers = require("../helpers"),
-      types = require("../../lib/types");
+const helpers = require("../helpers");
 
-const { assert } = chai,
-      { arrayUtilities } = necessary,
-      { first, second } = arrayUtilities,
-      { insertType, deleteType } = types,
-      { InsertOperation, DeleteOperation, generateOperations } = concur;
+const{ first, second } = arrayUtilities,
+     { insertType, deleteType } = types;
 
 describe("lib/generateOperations", () => {
   describe("if the working and editable contents are the same", () => {

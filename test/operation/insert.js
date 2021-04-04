@@ -1,15 +1,12 @@
 "use strict";
 
-const chai = require("chai"),
-      concur = require("../../lib/index"),  ///
-      necessary = require("necessary");
+const { assert } = require("chai"),
+      { arrayUtilities } = require("necessary"),
+      { EmptyOperation, DeleteOperation, InsertOperation } = require("../../lib/main");  ///
 
 const helpers = require("../helpers");
 
-const { assert } = chai,
-      { arrayUtilities } = necessary,
-      { first, second } = arrayUtilities,
-      { EmptyOperation, DeleteOperation, InsertOperation } = concur;
+const { first, second } = arrayUtilities;
 
 describe("lib/InsertOperation", () => {
   describe("transform", () => {

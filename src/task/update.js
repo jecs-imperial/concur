@@ -1,6 +1,6 @@
 "use strict";
 
-import { AsynchronousTask } from "sufficient";
+import { Task } from "sufficient";
 
 import UpdateRequest from "../request/update";
 import UpdateResponse from "../response/update";
@@ -8,7 +8,7 @@ import generateOperations from "../operations/generate";
 
 import { updatePost } from "../poster";
 
-export default class UpdateTask extends AsynchronousTask {
+export default class UpdateTask extends Task {
   constructor(userIdentifier, sessionIdentifier, workingContent, editableContent, callback) {
     super(asynchronousMethod, userIdentifier, sessionIdentifier, workingContent, editableContent, callback)
   }

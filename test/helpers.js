@@ -1,9 +1,8 @@
 "use strict";
 
-const concur = require("../lib/index"),  ///
-      randomSeed = require("random-seed");
+const randomSeed = require("random-seed");
 
-const { EmptyOperation, InsertOperation, DeleteOperation } = concur;
+const { EmptyOperation, InsertOperation, DeleteOperation } = require("../lib/main");  ///
 
 const DEFAULT_CONTENT_LENGTH = 4,
       DEFAULT_NUMBER_OF_OPERATIONS = 2,

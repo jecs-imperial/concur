@@ -25,5 +25,10 @@ function createHandler(Transaction) {
   };
 }
 
-export const updateTransactionHandler = createHandler(UpdateTransaction);
-export const initialiseTransactionHandler = createHandler(InitialiseTransaction);
+const updateTransactionHandler = createHandler(UpdateTransaction);
+const initialiseTransactionHandler = createHandler(InitialiseTransaction);
+
+export default {
+  updateTransactionHandler,
+  initialiseTransactionHandler
+};
