@@ -8,7 +8,7 @@ const { paths, handlers } = require("../lib/main"), ///
       { createLiveReloadHandler } = require("lively-cli");
 
 const { LIVE_RELOAD_PATH } = require("./paths"),
-      { WATCH_PATTERN, PUBLIC_DIRECTORY_PATH } = require("./constants");
+      { WATCH_PATTERN, STATIC_DIRECTORY_PATH } = require("./constants");
 
 const { rc } = configurationUtilities,
       { UPDATE_PATH, INITIALISE_PATH } = paths,
@@ -19,7 +19,7 @@ rc();
 const { port } = rc,
       server = express(), ///
       jsonRouter = express.Router(),
-      staticRouter = express.static(PUBLIC_DIRECTORY_PATH),
+      staticRouter = express.static(STATIC_DIRECTORY_PATH),
       jsonBodyParser = bodyParser.json(),
       liveReloadHandler = createLiveReloadHandler(WATCH_PATTERN);
 

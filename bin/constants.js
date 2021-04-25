@@ -1,9 +1,9 @@
 "use strict";
 
-const WATCH_PATTERN = "./public/lib/example.js",
-      PUBLIC_DIRECTORY_PATH = "public";
+const WATCH_PATTERN = "./static/lib/example.js",
+      STATIC_DIRECTORY_PATH = "static";
 
 module.exports = {
   WATCH_PATTERN,
-  PUBLIC_DIRECTORY_PATH
+  STATIC_DIRECTORY_PATH
 };
