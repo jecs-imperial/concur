@@ -18,11 +18,11 @@ export default class User {
     return this.pendingOperations;
   }
 
-  reset() {
+  resetPendingOperations() {
     this.pendingOperations = [];
   }
 
-  update(transformedOperations) {
+  updatePendingOperations(transformedOperations) {
     this.pendingOperations = this.pendingOperations.concat(transformedOperations);
   }
 

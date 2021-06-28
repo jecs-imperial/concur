@@ -1,7 +1,7 @@
 {
   "name": "concur-algorithm",
   "author": "James Smith",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/concur-algorithm",
   "description": "An implementation of the Concur algorithm.",
@@ -19,15 +19,15 @@
   "devDependencies": {
     "@swc/core": "^1.2.50",
     "chai": "^4.1.0",
-    "easy": "^11.1.22",
-    "easy-richtextarea": "^3.0.21",
-    "easy-with-style": "^3.0.30",
+    "easy": "^12.0.10",
+    "easy-richtextarea": "^3.0.24",
+    "easy-with-style": "^3.0.34",
     "esbuild": "^0.11.5",
-    "juxtapose": "^3.0.22",
+    "juxtapose": "^4.0.8",
     "lively-cli": "^2.0.9",
     "mocha": "~2.2.5",
-    "sufficient": "^2.0.5",
-    "watchful-cli": "^1.6.15"
+    "sufficient": "^2.0.7",
+    "watchful-cli": "^1.7.3"
   },
   "scripts": {
     "start": "node ./bin/main.js",

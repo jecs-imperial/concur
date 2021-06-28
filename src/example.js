@@ -6,36 +6,31 @@ import withStyle from "easy-with-style";  ///
 
 import { Body } from "easy";
 
+import View from "./example/view";
 import Agent from "./agent";
 import Document from "./example/document";
-import RichTextarea from "./example/richTextarea";
 
 const { renderStyles } = withStyle;
 
 const body = new Body(),
-      richTextarea =
+      agent = Agent.fromNothing(),
+      view =
 
-        <RichTextarea onChange={(event, element) => {
-
-                        agent.update();
-
-                      }}
-        />
+        <View agent={agent} />
 
       ;
 
 renderStyles();
 
-body.mount(richTextarea);
-
-const agent = Agent.fromNothing();
+body.mount(view);
 
 agent.initialise((content) => {
-  const document = Document.fromRichTextarea(richTextarea);
+  const richTextarea = view.getRichTextarea(),
+        document = Document.fromContentAndRichTextarea(content, richTextarea);
 
   agent.setDocument(document);
 
-  richTextarea.setContent(content);
+  view.activateRichTextarea();
 
-  richTextarea.activate();
+  view.setRichTextareaContent(content);
 });

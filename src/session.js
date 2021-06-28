@@ -78,12 +78,12 @@ class Session {
           transformedPendingOperations = user.transformedPendingOperations(operations);
 
     otherUsers.forEach((otherUser) => {
-      otherUser.update(transformedOperations);
+      otherUser.updatePendingOperations(transformedOperations);
     });
 
     this.content = transformContent(this.content, transformedOperations);
 
-    user.reset();
+    user.resetPendingOperations();
 
     const pendingOperations = transformedPendingOperations; ///
 

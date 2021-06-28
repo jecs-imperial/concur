@@ -58,10 +58,8 @@ export default class Document {
     return operations;
   }
 
-  static fromRichTextarea(richTextarea) {
-    const content = richTextarea.getContent(),
-          editableContent = content,  ///
-          workingContent = editableContent, ///
+  static fromContentAndRichTextarea(content, richTextarea) {
+    const workingContent = content, ///
           document = new Document(workingContent, richTextarea);
 
     return document;
