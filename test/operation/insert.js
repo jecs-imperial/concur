@@ -8,7 +8,7 @@ const helpers = require("../helpers");
 
 const { first, second } = arrayUtilities;
 
-describe("lib/InsertOperation", () => {
+describe("InsertOperation", () => {
   describe("transform", () => {
     it("transforms a second insert operation at position 0, leaving it in the same position", () => {
       const insertOperation1 = InsertOperation.fromStringAndPosition("a", 1),

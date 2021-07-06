@@ -5,7 +5,7 @@ const { assert } = require("chai"),
 
 const helpers = require("../helpers");
 
-describe("lib/transformContent", () => {
+describe("transformContent", () => {
   describe("if the sequence of operations is of zero length", () => {
     it("leaves the content unchanged", () => {
       const content = helpers.content(),

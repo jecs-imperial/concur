@@ -8,7 +8,7 @@ const helpers = require("../helpers");
 
 const { first } = arrayUtilities;
 
-describe("lib/EmptyOperation", () => {
+describe("EmptyOperation", () => {
   describe("transform", () => {
     it("transforms an insert operation, leaving it the same", () => {
       const emptyOperation1 = EmptyOperation.fromNothing(),

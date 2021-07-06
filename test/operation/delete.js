@@ -8,7 +8,7 @@ const helpers = require("../helpers");
 
 const { first } = arrayUtilities;
 
-describe("lib/DeleteOperation", () => {
+describe("DeleteOperation", () => {
   describe("transform", () => {
     it("transforms an insert operation at position 2 to position 1", () => {
       const deleteOperation1 = DeleteOperation.fromLengthAndPosition(2, 1),

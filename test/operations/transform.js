@@ -5,7 +5,7 @@ const { assert } = require("chai"),
 
 const helpers = require("../helpers");
 
-describe("lib/transformOperations", () => {
+describe("transformOperations", () => {
   describe("for two empty sequences of operations", () => {
     it("The intentions are preserved", () => {
       const firstOperationsJSON = [],

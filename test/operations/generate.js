@@ -9,7 +9,7 @@ const helpers = require("../helpers");
 const{ first, second } = arrayUtilities,
      { insertType, deleteType } = types;
 
-describe("lib/generateOperations", () => {
+describe("generateOperations", () => {
   describe("if the working and editable contents are the same", () => {
     it("generates a zero length sequence of operations", () => {
       const workingContent = helpers.content(),
