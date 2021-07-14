@@ -17,7 +17,7 @@ describe("transformOperations", () => {
     });
   });
 
-  describe("for a sequence containing one operation and an empty sequence", () => {
+  describe("for an array containing one operation and an empty sequence", () => {
     it("The intentions are preserved", () => {
       const firstOperationsJSON = [{
               "type": "insert",
@@ -51,7 +51,7 @@ describe("transformOperations", () => {
     });
   });
 
-  describe("for a sequence containing one operation and a sequence containing two operations", () => {
+  describe("for an array containing one operation and a sequence containing two operations", () => {
     it("The intentions are preserved", () => {
       const firstOperationsJSON = [{
               "type": "insert",

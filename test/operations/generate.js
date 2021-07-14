@@ -11,7 +11,7 @@ const{ first, second } = arrayUtilities,
 
 describe("generateOperations", () => {
   describe("if the working and editable contents are the same", () => {
-    it("generates a zero length sequence of operations", () => {
+    it("generates a zero length array of operations", () => {
       const workingContent = helpers.content(),
             editableContent = workingContent,
             operations = generateOperations(workingContent, editableContent);
@@ -21,7 +21,7 @@ describe("generateOperations", () => {
   });
 
   describe("if the the working content is a subset of the editable content", () => {
-    it("generates a sequence of operations containing an insert operation", () => {
+    it("generates a array of operations containing an insert operation", () => {
       const workingContent = helpers.content(),
             editableContent = `123${workingContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -40,7 +40,7 @@ describe("generateOperations", () => {
   });
 
   describe("if the editable content is a subset of the the working content", () => {
-    it("generates sequence of operations containing a delete operation", () => {
+    it("generates array of operations containing a delete operation", () => {
       const editableContent = helpers.content(),
             workingContent = `xyz${editableContent}`,
             operations = generateOperations(workingContent, editableContent);
@@ -59,7 +59,7 @@ describe("generateOperations", () => {
   });
 
   describe("if the the working and editable contents are different", () => {
-    it("generates sequence of operations containing one delete operation followed by an insert operation", () => {
+    it("generates array of operations containing one delete operation followed by an insert operation", () => {
       const workingContent = helpers.content(),
             editableContent = helpers.content(),
             operations = generateOperations(workingContent, editableContent);

@@ -4,28 +4,36 @@ import InsertOperation from "../operation/insert";
 import DeleteOperation from "../operation/delete";
 
 export default function generateOperations(workingContent, editableContent) {
-  const operations = [];
+  const operations = [],
+        workingContentLength = workingContent.length,
+        editableContentLength = editableContent.length;
   
-  let left, right, length, string, position;
+  let left, right;
 
-  for (left = 0; (left < workingContent.length) && (left < editableContent.length) && (workingContent[left] === editableContent[left]); left++) {}
+  for (left = 0; (left < workingContentLength) && (left < editableContentLength); left++) {
+    if (workingContent[left] !== editableContent[left]) {
+      break;
+    }
+  }
 
-  for (right = 0; (right < workingContent.length - left) && (right < editableContent.length - left) && (workingContent[workingContent.length - right - 1] === editableContent[editableContent.length - right - 1]); right++) {}
+  for (right = 0; (right < workingContentLength - left) && (right < editableContentLength - left); right++) {
+    if (workingContent[workingContentLength - right - 1] !== editableContent[editableContentLength - right - 1]) {
+      break;
+    }
+  }
 
-  if (left + right !== workingContent.length) {
-    length = workingContent.length - left - right;  ///
-    position = left; ///
-    
-    const deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
+  if (left + right !== workingContentLength) {
+    const length = workingContentLength - left - right,  ///
+          position = left, ///
+          deleteOperation = DeleteOperation.fromLengthAndPosition(length, position);
 
     operations.push(deleteOperation);
   }
 
-  if (left + right !== editableContent.length) {
-    string = editableContent.substring(left, editableContent.length - right);  ///
-    position = left; ///
-    
-    const insertOperation = InsertOperation.fromStringAndPosition(string, position);
+  if (left + right !== editableContentLength) {
+    const string = editableContent.substring(left, editableContentLength - right),  ///
+          position = left, ///
+          insertOperation = InsertOperation.fromStringAndPosition(string, position);
 
     operations.push(insertOperation);
   }

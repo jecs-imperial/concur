@@ -56,7 +56,7 @@ export default class EmptyOperation {
 
   static fromNothing() {
     const type = emptyType, ///
-            emptyOperation = new EmptyOperation(type);
+          emptyOperation = new EmptyOperation(type);
 
     return emptyOperation;
   }

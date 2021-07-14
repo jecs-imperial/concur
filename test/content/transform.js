@@ -6,7 +6,7 @@ const { assert } = require("chai"),
 const helpers = require("../helpers");
 
 describe("transformContent", () => {
-  describe("if the sequence of operations is of zero length", () => {
+  describe("if the array of operations is of zero length", () => {
     it("leaves the content unchanged", () => {
       const content = helpers.content(),
             operations = [],
@@ -17,7 +17,7 @@ describe("transformContent", () => {
     });
   });
 
-  describe("if the sequence of operations is contains a single delete operation", () => {
+  describe("if the array of operations is contains a single delete operation", () => {
     it("deletes the requisite characters", () => {
       const content = helpers.content(),
             deleteOperation = DeleteOperation.fromLengthAndPosition(2, 0),
@@ -31,7 +31,7 @@ describe("transformContent", () => {
     });
   });
 
-  describe("if the sequence of operations is contains a single insert operation", () => {
+  describe("if the array of operations is contains a single insert operation", () => {
     it("inserts the requisite characters", () => {
       const content = helpers.content(),
             insertOperation = InsertOperation.fromStringAndPosition("xyz", 0),
@@ -45,7 +45,7 @@ describe("transformContent", () => {
     });
   });
 
-  describe("if the sequence of operations is generated from the working and editable contents", () => {
+  describe("if the array of operations is generated from the working and editable contents", () => {
     it("returns the result of applying those operations to the working content", () => {
       const editableContent = helpers.content(),
             workingContent = helpers.content(),

@@ -64,7 +64,7 @@ describe("EmptyOperation", () => {
       const content = helpers.content(),
             emptyOperation = EmptyOperation.fromNothing(),
             transformedContent = emptyOperation.transformContent(content),
-            expectedContent = content;
+            expectedContent = content;  ///
 
       assert.equal(transformedContent, expectedContent);
     });
